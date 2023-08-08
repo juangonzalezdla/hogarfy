@@ -1,3 +1,21 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  :root {
+    --azul: 229, 100%, 66%;
+    --blanco: 0, 0%, 100%;
+    --negro: 0, 0%, 0%;
+    --oscuro: 200, 5%, 12%;
+    --azul-palido: 228, 100%, 98%;
+    --gris-claro: 0, 0%, 94%;
+
+    --roboto: 'Roboto', sans-serif;
+    --poppins: 'Poppins', sans-serif;
+  }
+}
+
+body {
+  background-color: white;
+}

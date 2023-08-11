@@ -50,3 +50,9 @@ export const userUpdatePasswordDTOSchema = z.object(
     newPassword: passwordDTOSchema
   }
 );
+
+export const userUnregisterDTOSchema = z.object(
+  {
+    password: passwordDTOSchema
+  }
+);

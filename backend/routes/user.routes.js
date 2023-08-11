@@ -1,6 +1,20 @@
 import { Router } from 'express';
+import { userVerifyToken } from '../middlewares/jwt.middleware.js';
+import validateSchema from '../middlewares/validator.middleware.js';
 
 import { 
+  userRegisterDTOSchema, 
+  userLoginDTOSchema,
+  userUnregisterDTOSchema,
+  userUpdateDataDTOSchema, 
+  userUpdateEmailDTOSchema,
+  userUpdatePasswordDTOSchema, 
+} from '../dto/user-dto.js';
+
+import { 
+  userRegister,
+  userLogin, 
+  userLogout, 
   userProfile, 
   userUnregister, 
   userUpdateData, 
@@ -10,10 +24,42 @@ import {
 
 const userRouter = Router();
 
-userRouter.get('/profile', userProfile);
-userRouter.patch('/update-data', userUpdateData);
-userRouter.patch('/update-email', userUpdateEmail);
-userRouter.patch('/update-password', userUpdatePassword);
-userRouter.delete('/unregister', userUnregister);
+userRouter.post('/register', 
+  validateSchema(userRegisterDTOSchema), 
+  userRegister
+);
+
+userRouter.post('/login',
+  validateSchema(userLoginDTOSchema), 
+  userLogin
+);
+
+userRouter.post('/logout', userLogout);
+
+userRouter.get('/profile', userVerifyToken, userProfile);
+
+userRouter.patch('/update-data', 
+  userVerifyToken,
+  validateSchema(userUpdateDataDTOSchema), 
+  userUpdateData
+);
+
+userRouter.patch('/update-email', 
+  userVerifyToken,
+  validateSchema(userUpdateEmailDTOSchema), 
+  userUpdateEmail
+);
+
+userRouter.patch('/update-password', 
+  userVerifyToken,
+  validateSchema(userUpdatePasswordDTOSchema), 
+  userUpdatePassword
+);
+
+userRouter.delete('/unregister', 
+  userVerifyToken,
+  validateSchema(userUnregisterDTOSchema), 
+  userUnregister
+);
 
 export default userRouter;

@@ -1,13 +1,19 @@
+import { ZodError } from 'zod';
+
 const validateSchema = (schema) => (req, res, next) => {
-  schema.parse(req.body);
-
-  if (!schema) return res
-    .status(400)
-    .send({ 
-      message: validateSchema.errors.map(error => error.message) 
-    });
-
-  next();
-}
+  try {
+    schema.parse(req.body);
+    next();
+  } catch (error) {
+    if (error instanceof ZodError) {
+      return res.status(400).send(
+        error.issues.map((issue) => ({ 
+          path: issue.path,
+          message: issue.message 
+        }))
+      );
+    }
+  }
+};
 
 export default validateSchema;

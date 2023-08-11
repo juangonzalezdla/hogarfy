@@ -1,9 +1,9 @@
 import express from 'express';
 import dotenv from 'dotenv';
 import connectDB from './db.js';
-import authRouter from '../routes/auth.routes.js';
 import userRouter from '../routes/user.routes.js';
 import productRouter from '../routes/products.routes.js';
+import cookieParser from 'cookie-parser';
 
 dotenv.config(); // Configuración de las variables de entorno
 
@@ -12,9 +12,9 @@ const PORT = process.env.PORT;
 
 // Middlewares
 app.use(express.json());
+app.use(cookieParser());
 
 // Routes
-app.use('/auth', authRouter);
 app.use('/user', userRouter);
 app.use('/api', productRouter);
 

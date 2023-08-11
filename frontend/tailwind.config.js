@@ -10,9 +10,10 @@ export default {
         azul: 'hsl(var(--azul))',
         blanco: 'hsl(var(--blanco))',
         negro: 'hsl(var(--negro))',
-        oscuro: 'hsl(var(--azul))',
+        oscuro: 'hsl(var(--oscuro))',
         'azul-palido': 'hsl(var(--azul-palido))',
         'gris-claro': 'hsl(var(--gris-claro))',
+        'gris-oscuro': 'hsl(var(--gris-oscuro))'
       },
       fontFamily: {
         roboto: 'var(--roboto)',

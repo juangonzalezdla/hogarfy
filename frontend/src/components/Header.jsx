@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import IconLink from './IconLink';
 
 function Header() {
   return (
@@ -27,38 +27,20 @@ function Header() {
         </div>
 
         <div className='flex flex-row items-center gap-2'>
-          <div>
-            <Link 
-              to={'/login'}
-              className='flex flex-col justify-center items-center text-blanco 
-              hover:text-gris-oscuro'
-            >
-              <i className='bx bx-user text-3xl font-medium py-2 px-3 
-              hover:bg-gris-claro rounded-full'></i>
-            </Link>
-          </div>
+          <IconLink to='/login'>
+            <i className='bx bx-user text-3xl font-medium py-2 px-3 
+            hover:bg-gris-claro rounded-full'></i>
+          </IconLink>
 
-          <div>
-            <Link 
-              to={'/orders'}
-              className='flex flex-col justify-center items-center text-blanco 
-              hover:text-gris-oscuro'
-            >
-              <i className='bx bx-package text-3xl font-medium py-2 px-3 
-              hover:bg-gris-claro rounded-full'></i>
-            </Link>
-          </div>
+          <IconLink to='/orders'>
+            <i className='bx bx-package text-3xl font-medium py-2 px-3 
+            hover:bg-gris-claro rounded-full'></i>
+          </IconLink>
 
-          <div>
-            <Link 
-              to={'/cart'}
-              className='flex flex-col justify-center items-center text-blanco 
-              hover:text-gris-oscuro'
-            >
-              <i className='bx bx-cart text-3xl font-medium py-2 px-3 
-              hover:bg-gris-claro rounded-full'></i>
-            </Link>
-          </div>
+          <IconLink to='/cart'>
+            <i className='bx bx-cart text-3xl font-medium py-2 px-3 
+            hover:bg-gris-claro rounded-full'></i>
+          </IconLink>
         </div>
       </nav>
     </header>

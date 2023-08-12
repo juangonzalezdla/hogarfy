@@ -5,26 +5,63 @@ import FormContainer from '../components/FormContainer';
 import FormTitle from '../components/FormTitle';
 import Form from '../components/Form';
 import MessageLink from '../components/MessageLink';
+import ErrorMessage from '../components/ErrorMessage';
+
+import { useForm } from 'react-hook-form';
+import { useAuth } from '../context/AuthContext.jsx';
+import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { userLoginSchema } from '../schemas/user.js';
+import { zodResolver } from '@hookform/resolvers/zod';
 
 function LoginPage() {
+  const { signin, isAuthenticated, errors: loginErrors } = useAuth();
+  const { 
+    register, 
+    handleSubmit, 
+    formState: { errors } 
+  } = useForm({
+    resolver: zodResolver(userLoginSchema)
+  });
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (isAuthenticated) navigate('/')
+  }, [isAuthenticated]);
+
+  const onSubmit = (data) => signin(data);
+
   return (
     <>
       <BasicHeader />
 
       <Main>
+        {
+          loginErrors.map((error, i) => (
+            <ErrorMessage message={error} key={i} />
+          ))
+        }
         <FormContainer>
           <FormTitle title='Iniciar sesión' />
 
-          <Form>       
+          <Form onSubmit={handleSubmit(onSubmit)}>       
             <Input 
               type="email"
               placeholder='Correo electronico'
+              {...register('email')}
             />
+            {errors.email?.message && (
+              <p className='text-red-500 font-semibold'>{errors.email?.message}</p>
+            )}
 
             <Input 
               type="password"
               placeholder='Contraseña'
+              {...register('password')}
             />
+            {errors.password?.message && (
+              <p className='text-red-500 font-semibold'>{errors.password?.message}</p>
+            )}
 
             <button 
               type="submit"

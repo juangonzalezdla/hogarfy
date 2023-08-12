@@ -1,6 +1,6 @@
 function FormContainer({ children }) {
   return (
-    <div className='w-[400px] bg-azul-palido px-10 py-10 flex flex-col 
+    <div className='w-[400px] bg-azul-palido px-8 py-8 flex flex-col 
       justify-center items-center rounded-[20px]'>
       {children}
     </div>

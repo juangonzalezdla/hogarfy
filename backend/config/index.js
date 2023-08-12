@@ -4,13 +4,19 @@ import connectDB from './db.js';
 import userRouter from '../routes/user.routes.js';
 import productRouter from '../routes/products.routes.js';
 import cookieParser from 'cookie-parser';
+import cors from 'cors'
 
 dotenv.config(); // Configuración de las variables de entorno
 
 const app = express();
 const PORT = process.env.PORT;
+const FRONTEND_URL = process.env.FRONTEND_URL;
 
 // Middlewares
+app.use(cors({
+  origin: FRONTEND_URL,
+  credentials: true
+}));
 app.use(express.json());
 app.use(cookieParser());
 

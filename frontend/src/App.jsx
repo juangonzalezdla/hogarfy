@@ -5,6 +5,7 @@ import CartPage from './pages/CartPage.jsx';
 import LoginPage from './pages/LoginPage.jsx';
 import RegisterPage from './pages/RegisterPage.jsx';
 import { AuthProvider } from './context/AuthContext';
+import ProtectedRoute from './ProtectedRoute.jsx';
 
 function App() {
   return (
@@ -16,6 +17,10 @@ function App() {
           <Route path='/register' element={<RegisterPage />} />
           <Route path='/orders' element={<OrdersPage />} />
           <Route path='/cart' element={<CartPage />} />
+          <Route element={<ProtectedRoute />}>
+            <Route path='/profile' element={<h1>profile</h1>} />
+            <Route path='/admin' element={<h1>hola</h1>} />
+          </Route>
         </Routes>
       </BrowserRouter>
     </AuthProvider>

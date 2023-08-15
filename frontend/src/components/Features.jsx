@@ -3,8 +3,13 @@ import FeaturesCard from './FeaturesCard.jsx';
 function Features() {
   return (
     <section className='w-full max-w-[1400px] my-14 mx-[auto] 
-      flex flex-row justify-center items-center gap-10'>
-      <FeaturesCard 
+      flex flex-col justify-center items-center gap-10'>
+      <h1 className='text-[1.6rem] text-azul font-bold mb-2'>
+        En Hogarfy nos caracterizamos por
+      </h1>
+
+      <div className='flex flex-row justify-center items-center gap-10'>
+        <FeaturesCard 
           name='Envío rápido' 
           description='Nuestros envíos son rápidos y seguros.'
         >
@@ -31,6 +36,7 @@ function Features() {
         >
           <i class='bx bx-support text-azul text-5xl group-hover:text-blanco'></i>
         </FeaturesCard>
+      </div>
     </section>
   )
 }

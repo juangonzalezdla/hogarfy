@@ -3,8 +3,8 @@ import IconLink from './IconLink';
 
 function Header() {
   return (
-    <header className="bg-azul py-[0] px-[3rem]">
-      <nav className="w-full max-w-[1400px] my-[o] mx-[auto] h-[80px] 
+    <header className="bg-azul py-0 px-12">
+      <nav className="w-full max-w-[1400px] my-o mx-auto h-20 
         flex flex-row justify-between items-center">
         <figure>
           <a className="text-blanco font-poppins text-[1.8rem] 

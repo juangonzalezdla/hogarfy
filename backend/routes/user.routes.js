@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { userVerifyToken } from '../middlewares/jwt.middleware.js';
+import { verifyToken } from '../middlewares/jwt.middleware.js';
 import validateSchema from '../middlewares/validator.middleware.js';
 
 import { 
@@ -19,7 +19,8 @@ import {
   userUnregister, 
   userUpdateData, 
   userUpdateEmail,
-  userUpdatePassword, 
+  userUpdatePassword,
+  userVerifyToken 
 } from '../controllers/user.controller.js';
 
 const userRouter = Router();
@@ -36,7 +37,9 @@ userRouter.post('/login',
 
 userRouter.post('/logout', userLogout);
 
-userRouter.get('/profile', userVerifyToken, userProfile);
+userRouter.get('/verify', userVerifyToken);
+
+userRouter.get('/profile', verifyToken, userProfile);
 
 userRouter.patch('/update-data', 
   userVerifyToken,

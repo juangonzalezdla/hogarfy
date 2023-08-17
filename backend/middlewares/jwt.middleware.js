@@ -11,7 +11,7 @@ export const createAccessToken = (payload) => {
   });
 };
 
-export const userVerifyToken = async (req, res, next) => {
+export const verifyToken = async (req, res, next) => {
   const { token } = req.cookies;
 
   if (!token) 

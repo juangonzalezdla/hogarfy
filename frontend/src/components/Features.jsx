@@ -4,7 +4,7 @@ function Features() {
   return (
     <section className='w-full max-w-[1400px] my-14 mx-[auto] 
       flex flex-col justify-center items-center gap-10'>
-      <h1 className='text-[1.6rem] text-azul font-bold mb-2'>
+      <h1 className='text-[1.6rem] text-azul font-roboto font-bold mb-2'>
         En Hogarfy nos caracterizamos por
       </h1>
 
@@ -20,21 +20,21 @@ function Features() {
           name='Pago seguro'
           description='Pago seguro con tarjeta de crédito/Debíto.'
         >
-          <i class='bx bxs-credit-card text-azul text-5xl group-hover:text-blanco'></i>
+          <i className='bx bxs-credit-card text-azul text-5xl group-hover:text-blanco'></i>
         </FeaturesCard>
 
         <FeaturesCard
           name='Seguridad'
           description='Al comprar con nosotros tus datos estan 100% protegidos'
         >
-          <i class='bx bx-check-shield text-azul text-5xl group-hover:text-blanco'></i>
+          <i className='bx bx-check-shield text-azul text-5xl group-hover:text-blanco'></i>
         </FeaturesCard>
 
         <FeaturesCard
           name='Soporte 24/7'
           description='Soporte 24/7 para atenderte en cualquier momento.'
         >
-          <i class='bx bx-support text-azul text-5xl group-hover:text-blanco'></i>
+          <i className='bx bx-support text-azul text-5xl group-hover:text-blanco'></i>
         </FeaturesCard>
       </div>
     </section>

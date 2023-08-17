@@ -15,10 +15,10 @@ function App() {
           <Route path='/' element={<HomePage />} />
           <Route path='/login' element={<LoginPage />} />
           <Route path='/register' element={<RegisterPage />} />
-          <Route path='/orders' element={<OrdersPage />} />
-          <Route path='/cart' element={<CartPage />} />
+          <Route path='/pedidos' element={<OrdersPage />} />
+          <Route path='/carrito' element={<CartPage />} />
           <Route element={<ProtectedRoute />}>
-            <Route path='/profile' element={<h1>profile</h1>} />
+            <Route path='/perfil' element={<h1>profile</h1>} />
             <Route path='/admin' element={<h1>hola</h1>} />
           </Route>
         </Routes>

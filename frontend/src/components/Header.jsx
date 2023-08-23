@@ -81,7 +81,7 @@ function Header() {
         </Link>
         <hr />
         <Link
-          to='/'
+          to='/login'
           onClick={() => {
             logout();
           }}

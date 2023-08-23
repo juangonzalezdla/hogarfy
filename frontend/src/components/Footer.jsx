@@ -16,16 +16,16 @@ function Footer() {
 
         <div className='flex flex-col justify-center items-center'>
           <h2 className='text-2xl font-bold mb-2'>Informacíon</h2>
-          <Link to='/' className='mb-1'>
+          <Link to='/legal/sobre-nosotros' className='mb-1 hover:underline'>
             ¿Quiénes somos?
           </Link>
-          <Link to='/' className='mb-1'>
+          <Link to='/legal/preguntas-frecuentes' className='mb-1 hover:underline'>
             Preguntas frecuentes
           </Link>
-          <Link to='/' className='mb-1'>
+          <Link to='/legal/terminos-condiciones' className='mb-1 hover:underline'>
             Términos y condiciones
           </Link>
-          <Link to='/' className='mb-1'>
+          <Link to='/legal/privacidad' className='mb-1 hover:underline'>
             Política de privacidad
           </Link>
         </div>

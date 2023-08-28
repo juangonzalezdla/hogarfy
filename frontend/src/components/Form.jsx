@@ -7,6 +7,6 @@ function Form({ children, onSubmit }) {
       {children}
     </form>
   )
-}
+};
 
 export default Form;

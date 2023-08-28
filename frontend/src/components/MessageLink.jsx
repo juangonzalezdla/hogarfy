@@ -9,6 +9,6 @@ function MessageLink({ message, to, name }) {
       </p>
     </>
   )
-}
+};
 
 export default MessageLink;

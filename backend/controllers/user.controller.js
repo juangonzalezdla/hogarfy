@@ -2,6 +2,7 @@ import UserModel from '../models/user.schema.js'
 import { hash, compare } from 'bcrypt';
 import { SALT } from '../constants/salt.js';
 import { createAccessToken } from '../middlewares/jwt.middleware.js';
+import jwt from 'jsonwebtoken';
 
 export const userRegister = async (req, res) => {
   try {

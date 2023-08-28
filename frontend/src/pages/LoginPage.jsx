@@ -15,7 +15,6 @@ import { userLoginSchema } from '../schemas/user.js';
 import { zodResolver } from '@hookform/resolvers/zod';
 
 function LoginPage() {
-  const { signin, isAuthenticated, errors: loginErrors } = useAuth();
   const { 
     register, 
     handleSubmit, 
@@ -23,18 +22,18 @@ function LoginPage() {
   } = useForm({
     resolver: zodResolver(userLoginSchema)
   });
+  const { signin, errors: loginErrors, isAuthenticated } = useAuth();
   const navigate = useNavigate();
 
-  useEffect(() => {
-    if (isAuthenticated) navigate('/')
-  }, [isAuthenticated]);
-
   const onSubmit = (data) => signin(data);
+
+  useEffect(() => {
+    if (isAuthenticated) navigate('/');
+  }, [isAuthenticated]);
 
   return (
     <>
       <BasicHeader />
-
       <Main>
         {
           loginErrors.map((error, i) => (
@@ -81,6 +80,6 @@ function LoginPage() {
       </Main>
     </>
   )
-}
+};
 
 export default LoginPage;

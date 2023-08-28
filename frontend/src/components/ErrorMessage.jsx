@@ -5,6 +5,6 @@ function ErrorMessage({ message }) {
       {message}
     </p>
   )
-}
+};
 
 export default ErrorMessage;

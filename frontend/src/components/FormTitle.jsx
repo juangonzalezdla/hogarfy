@@ -4,6 +4,6 @@ function FormTitle({ title }) {
       {title}
     </h1>
   )
-}
+};
 
 export default FormTitle;

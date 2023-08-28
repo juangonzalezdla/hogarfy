@@ -15,7 +15,6 @@ import { userRegisterSchema } from '../schemas/user.js';
 import { zodResolver } from '@hookform/resolvers/zod';
 
 function RegisterPage() {
-  const { signup, isAuthenticated, errors: registerErrors } = useAuth();
   const { 
     register, 
     handleSubmit, 
@@ -23,20 +22,20 @@ function RegisterPage() {
   } = useForm({
     resolver: zodResolver(userRegisterSchema)
   });
+  const { signup, errors: registerErrors, isAuthenticated } = useAuth();
   const navigate = useNavigate();
 
-  useEffect(() => {
-    if (isAuthenticated) navigate('/login')
-  }, [isAuthenticated]);
-
-  const onSubmit = async(values) => {
-    signup(values);
+  const onSubmit = async (values) => {
+    await signup(values);
   };
+
+  useEffect(() => {
+    if (isAuthenticated) navigate('/login');
+  }, [isAuthenticated]);
 
   return (
     <>
       <BasicHeader />
-
       <Main>
         {
           registerErrors.map((error, i) => (
@@ -129,6 +128,6 @@ function RegisterPage() {
       </Main>
     </>
   )
-}
+};
 
 export default RegisterPage;

@@ -5,6 +5,6 @@ function LegalContainer({ children }) {
       {children}
     </main>
   )
-}
+};
 
 export default LegalContainer;

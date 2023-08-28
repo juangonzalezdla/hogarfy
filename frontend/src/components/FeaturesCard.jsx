@@ -12,6 +12,6 @@ function FeaturesCard({ children, name, description }) {
       </p>
     </div>
   )
-}
+};
 
 export default FeaturesCard;

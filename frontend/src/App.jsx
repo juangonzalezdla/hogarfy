@@ -7,10 +7,12 @@ import OrdersPage from './pages/OrdersPage.jsx';
 import CartPage from './pages/CartPage.jsx';
 import LoginPage from './pages/LoginPage.jsx';
 import RegisterPage from './pages/RegisterPage.jsx';
-import SobreNosotros from './pages/SobreNosotros.jsx';
-import PreguntasFrecuentes from './pages/PreguntasFrecuentes.jsx';
-import TerminosCondiciones from './pages/TerminosCondiciones.jsx';
-import Privacidad from './pages/Privacidad.jsx';
+import SobreNosotros from './pages/legal/SobreNosotros.jsx';
+import PreguntasFrecuentes from './pages/legal/PreguntasFrecuentes.jsx';
+import TerminosCondiciones from './pages/legal/TerminosCondiciones.jsx';
+import Privacidad from './pages/legal/Privacidad.jsx';
+import Admin from './pages/admin/Admin.jsx';
+import Profile from './pages/Profile.jsx';
 
 function App() {
   return (
@@ -27,13 +29,13 @@ function App() {
           <Route path='/legal/terminos-condiciones' element={<TerminosCondiciones />} />
           <Route path='/legal/privacidad' element={<Privacidad />} />
           <Route element={<ProtectedRoute />}>
-            <Route path='/perfil' element={<h1>profile</h1>} />
-            <Route path='/admin' element={<h1>hola</h1>} />
+            <Route path='/perfil' element={<Profile />} />
+            <Route path='/admin' element={<Admin />} />
           </Route>
         </Routes>
       </BrowserRouter>
     </AuthProvider>
   )
-}
+};
 
 export default App;

@@ -68,7 +68,7 @@ function Header() {
         </div>
       </nav>
 
-      {show && <div className='absolute top-20 right-24 bg-blanco w-48 p-4 rounded-lg 
+      {show && <div className='absolute top-[88px] right-24 bg-blanco w-48 p-4 rounded-lg 
         shadow-lg flex flex-col gap-3'>
         
         <Link
@@ -77,7 +77,7 @@ function Header() {
           font-medium p-2 rounded-lg hover:bg-gris-claro'
         >
           <i className='bx bx-cog text-2xl'></i>
-          Mi perfil
+          Mi cuenta
         </Link>
         <hr />
         <Link
@@ -94,6 +94,6 @@ function Header() {
       </div>}
     </header>
   )
-}
+};
 
 export default Header;

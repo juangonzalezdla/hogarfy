@@ -10,6 +10,6 @@ function IconLink ({ to, children }) {
       {children}
     </Link>
   )
-}
+};
 
 export default IconLink;

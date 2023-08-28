@@ -1,5 +1,3 @@
-import { Link } from 'react-router-dom';
-
 function Footer() {
   return (
     <footer className='bg-oscuro text-blanco px-12 py-12'>
@@ -16,18 +14,18 @@ function Footer() {
 
         <div className='flex flex-col justify-center items-center'>
           <h2 className='text-2xl font-bold mb-2'>Informacíon</h2>
-          <Link to='/legal/sobre-nosotros' className='mb-1 hover:underline'>
+          <a href='/legal/sobre-nosotros' className='mb-1 hover:underline' target='_blank'>
             ¿Quiénes somos?
-          </Link>
-          <Link to='/legal/preguntas-frecuentes' className='mb-1 hover:underline'>
+          </a>
+          <a href='/legal/preguntas-frecuentes' className='mb-1 hover:underline' target='_blank'>
             Preguntas frecuentes
-          </Link>
-          <Link to='/legal/terminos-condiciones' className='mb-1 hover:underline'>
+          </a>
+          <a href='/legal/terminos-condiciones' className='mb-1 hover:underline' target='_blank'>
             Términos y condiciones
-          </Link>
-          <Link to='/legal/privacidad' className='mb-1 hover:underline'>
+          </a>
+          <a href='/legal/privacidad' className='mb-1 hover:underline' target='_blank'>
             Política de privacidad
-          </Link>
+          </a>
         </div>
 
         <div className='flex flex-col items-center gap-2'>
@@ -72,6 +70,6 @@ function Footer() {
       </div>     
     </footer>
   )
-}
+};
 
 export default Footer;

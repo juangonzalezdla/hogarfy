@@ -1,6 +1,6 @@
-import BasicHeader from '../components/BasicHeader.jsx';
-import LegalContainer from '../components/LegalContainer.jsx';
-import Footer from '../components/Footer.jsx';
+import BasicHeader from '../../components/BasicHeader.jsx';
+import LegalContainer from '../../components/LegalContainer.jsx';
+import Footer from '../../components/Footer.jsx';
 
 function Privacidad() {
   return (
@@ -255,8 +255,7 @@ function Privacidad() {
       </LegalContainer>
       <Footer />
     </>
-    
   )
-}
+};
 
 export default Privacidad;

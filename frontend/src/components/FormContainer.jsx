@@ -5,6 +5,6 @@ function FormContainer({ children }) {
       {children}
     </div>
   )
-}
+};
 
 export default FormContainer;

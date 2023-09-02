@@ -1,4 +1,4 @@
-import { Schema, model} from "mongoose";
+import { Schema, model } from "mongoose";
 
 const userSchema = new Schema({
   cedula: { type: String, require: true },
@@ -7,7 +7,11 @@ const userSchema = new Schema({
   address: { type: String, require: true },
   phone: { type: String, require: true },
   email: { type: String, require: true, unique: true },
-  password: { type: String, require: true }
+  password: { type: String, require: true },
+  roles: {
+    client: { type: Boolean, default: true },
+    admin: { type: Boolean, default: false }
+  }
 });
 
 const UserModel = model('User', userSchema);

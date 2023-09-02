@@ -1,8 +1,13 @@
+import { useEffect } from 'react';
 import BasicHeader from '../../components/BasicHeader.jsx';
 import Footer from '../../components/Footer.jsx';
 import Legalcontainer from '../../components/LegalContainer.jsx';
 
 function PreguntasFrecuentes() {
+  useEffect(() => {
+    document.title = 'Preguntas frecuentes | Hogarfy';
+  }, []);
+
   return (
     <>
       <BasicHeader />

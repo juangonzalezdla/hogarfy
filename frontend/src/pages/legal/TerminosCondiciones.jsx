@@ -1,8 +1,13 @@
+import { useEffect } from 'react';
 import BasicHeader from '../../components/BasicHeader.jsx';
 import Footer from '../../components/Footer.jsx';
 import LegalContainer from '../../components/LegalContainer.jsx';
 
 function TerminosCondiciones() {
+  useEffect(() => {
+    document.title = 'Términos y condiciones | Hogarfy';
+  }, []);
+
   return (
     <>
       <BasicHeader />

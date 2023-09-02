@@ -33,6 +33,10 @@ function RegisterPage() {
     if (isAuthenticated) navigate('/login');
   }, [isAuthenticated]);
 
+  useEffect(() => {
+    document.title = 'Registrarse | Hogarfy';
+  }, []);
+
   return (
     <>
       <BasicHeader />

@@ -12,7 +12,7 @@ import PreguntasFrecuentes from './pages/legal/PreguntasFrecuentes.jsx';
 import TerminosCondiciones from './pages/legal/TerminosCondiciones.jsx';
 import Privacidad from './pages/legal/Privacidad.jsx';
 import Admin from './pages/admin/Admin.jsx';
-import Profile from './pages/Profile.jsx';
+import ProfilePage from './pages/ProfilePage.jsx';
 
 function App() {
   return (
@@ -29,7 +29,7 @@ function App() {
           <Route path='/legal/terminos-condiciones' element={<TerminosCondiciones />} />
           <Route path='/legal/privacidad' element={<Privacidad />} />
           <Route element={<ProtectedRoute />}>
-            <Route path='/perfil' element={<Profile />} />
+            <Route path='/perfil' element={<ProfilePage />} />
             <Route path='/admin' element={<Admin />} />
           </Route>
         </Routes>

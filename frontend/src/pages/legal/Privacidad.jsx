@@ -1,8 +1,13 @@
 import BasicHeader from '../../components/BasicHeader.jsx';
 import LegalContainer from '../../components/LegalContainer.jsx';
 import Footer from '../../components/Footer.jsx';
+import { useEffect } from 'react';
 
 function Privacidad() {
+  useEffect(() => {
+    document.title = 'Política de privacidad | Hogarfy';
+  }, []);
+
   return (
     <>
       <BasicHeader />

@@ -1,6 +1,11 @@
 import Header from '../components/Header.jsx';
 
 function OrdersPage() {
+
+  useEffect(() => {
+    document.title = 'Pedidos | Hogarfy';
+  }, []);
+
   return (
     <>
       <Header />

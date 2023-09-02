@@ -2,8 +2,13 @@ import BasicHeader from '../../components/BasicHeader.jsx';
 import Footer from '../../components/Footer.jsx';
 import Legalcontainer from '../../components/LegalContainer.jsx';
 import ilustration from '../../assets/shopping__bags.svg';
+import { useEffect } from 'react';
 
 function SobreNosotros() {
+  useEffect(() => {
+    document.title = 'Sobre nosotros | Hogarfy';
+  }, []);
+
   return (
     <>
       <BasicHeader />

@@ -31,6 +31,10 @@ function LoginPage() {
     if (isAuthenticated) navigate('/');
   }, [isAuthenticated]);
 
+  useEffect(() => {
+    document.title = 'Iniciar sesión | Hogarfy';
+  }, []);
+
   return (
     <>
       <BasicHeader />

@@ -4,7 +4,7 @@ import { useAuth } from '../context/AuthContext.jsx';
 import { Link } from 'react-router-dom';
 
 function Header() {
-  const { isAuthenticated, logout } = useAuth();
+  const { isAuthenticated, logout, user } = useAuth();
   const [show, setShow] = useState(false);
 
   const handleClick = () => {
@@ -70,6 +70,9 @@ function Header() {
 
       {show && <div className='absolute top-[88px] right-24 bg-blanco w-48 p-4 rounded-lg 
         shadow-lg flex flex-col gap-3'>
+        <span className='font-roboto text-oscuro text-base font-bold'>
+          ¡Hola, {user.name}!
+        </span>
         
         <Link
           to='/perfil' 

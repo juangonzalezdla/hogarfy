@@ -1,11 +1,11 @@
-import { Input } from '../components/Input';
 import BasicHeader from '../components/BasicHeader';
-import Main from '../components/Main';
-import FormContainer from '../components/FormContainer';
-import FormTitle from '../components/FormTitle';
-import Form from '../components/Form';
-import MessageLink from '../components/MessageLink';
-import ErrorMessage from '../components/ErrorMessage';
+import Main from '../components/form/Main';
+import FormContainer from '../components/form/FormContainer';
+import FormTitle from '../components/form/FormTitle';
+import Form from '../components/form/Form';
+import { Input } from '../components/form/Input';
+import MessageLink from '../components/form/MessageLink';
+import ErrorMessage from '../components/form/ErrorMessage';
 
 import { useForm } from 'react-hook-form';
 import { useAuth } from '../context/AuthContext.jsx';
@@ -39,14 +39,13 @@ function LoginPage() {
     <>
       <BasicHeader />
       <Main>
-        {
-          loginErrors.map((error, i) => (
-            <ErrorMessage message={error} key={i} />
-          ))
-        }
         <FormContainer>
           <FormTitle title='Iniciar sesión' />
-
+          {
+            loginErrors.map((error, i) => (
+              <ErrorMessage message={error} key={i} />
+            ))
+          }
           <Form onSubmit={handleSubmit(onSubmit)}>       
             <Input 
               type="email"
@@ -68,7 +67,7 @@ function LoginPage() {
 
             <button 
               type="submit"
-              className='mt-10 bg-azul px-[25px] py-[10px] text-base text-blanco 
+              className='mt-10 bg-azul px-6 py-2.5 text-base text-blanco 
               font-bold border-2 border-solid border-azul rounded-[20px]'
             >
               Ingresar

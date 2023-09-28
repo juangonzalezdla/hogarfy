@@ -1,5 +1,9 @@
 import { createContext, useContext, useState, useEffect } from 'react';
-import { registerRequest, loginRequest, verifyTokenRequest } from '../api/auth.js';
+import { 
+  registerRequest, 
+  loginRequest, 
+  verifyTokenRequest,
+} from '../api/requests.js';
 import Cookies from 'js-cookie';
 
 export const AuthContext = createContext();
@@ -13,28 +17,32 @@ export const useAuth = () => {
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const [errors, setErrors] = useState([]);
+  const [isRegistered, setIsRegistered] = useState(false);
+  const [errorsMessage, setErrorsMessage] = useState([]);
+  const [successMessage, setSuccessMessage] = useState([]);
   const [loading, setLoading] = useState(true);
 
   // Clear errors after 5 seconds
   useEffect(() => {
-    if (errors.length > 0) {
+    if (errorsMessage.length > 0 || successMessage.length > 0) {
       const timer = setTimeout(() => {
-        setErrors([]);
-      }, 5000);
+        setErrorsMessage([]);
+        setSuccessMessage([]);
+      }, 2000);
       return () => clearTimeout(timer);
     }
-  }, [errors]);
+  }, [errorsMessage, successMessage]);
 
   const signup = async (user) => {
     try {
       const res = await registerRequest(user);
       console.log(res.data.message);
       setUser(res.data);
-      setIsAuthenticated(true);
+      setIsRegistered(true);
+      setSuccessMessage(res.data.message);
     } catch (error) {
       console.log(error.response.data)
-      setErrors(error.response.data.message);
+      setErrorsMessage(error.response.data.message);
     }
   };
 
@@ -44,9 +52,10 @@ export const AuthProvider = ({ children }) => {
       console.log(res.data.message);
       setUser(res.data);
       setIsAuthenticated(true);
+      setSuccessMessage(res.data.message);
     } catch (error) {
       console.log(error.response.data)
-      setErrors(error.response.data.message);
+      setErrorsMessage(error.response.data.message);
     }
   };
 
@@ -57,12 +66,12 @@ export const AuthProvider = ({ children }) => {
   };
 
   useEffect(() => {
-    async function checkLogin() {
+    const checkLogin = async () => {
       const cookies = Cookies.get();
       if (!cookies.token) {
         setIsAuthenticated(false);
         setLoading(false);
-        return setUser(null);
+        return;
       }
       
       try {
@@ -87,12 +96,13 @@ export const AuthProvider = ({ children }) => {
         signup,
         signin,
         logout,
+        isRegistered,
         isAuthenticated,
-        errors,
+        successMessage,
+        errorsMessage,
         loading
       }}
     >
-
       {children}
     </AuthContext.Provider>
   )

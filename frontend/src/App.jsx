@@ -1,5 +1,6 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { AuthProvider } from './context/AuthContext';
+import { UserProvider } from './context/UserContext';
 import ProtectedRoute from './ProtectedRoute.jsx';
 
 import HomePage from './pages/HomePage.jsx';
@@ -12,28 +13,30 @@ import PreguntasFrecuentes from './pages/legal/PreguntasFrecuentes.jsx';
 import TerminosCondiciones from './pages/legal/TerminosCondiciones.jsx';
 import Privacidad from './pages/legal/Privacidad.jsx';
 import Admin from './pages/admin/Admin.jsx';
-import ProfilePage from './pages/ProfilePage.jsx';
+import AccountPage from './pages/AccountPage.jsx';
 
 function App() {
   return (
     <AuthProvider>
-      <BrowserRouter>
-        <Routes>
-          <Route path='/' element={<HomePage />} />
-          <Route path='/login' element={<LoginPage />} />
-          <Route path='/register' element={<RegisterPage />} />
-          <Route path='/pedidos' element={<OrdersPage />} />
-          <Route path='/carrito' element={<CartPage />} />
-          <Route path='/legal/sobre-nosotros/' element={<SobreNosotros />} />
-          <Route path='/legal/preguntas-frecuentes/' element={<PreguntasFrecuentes />} />
-          <Route path='/legal/terminos-condiciones' element={<TerminosCondiciones />} />
-          <Route path='/legal/privacidad' element={<Privacidad />} />
-          <Route element={<ProtectedRoute />}>
-            <Route path='/perfil' element={<ProfilePage />} />
-            <Route path='/admin' element={<Admin />} />
-          </Route>
-        </Routes>
-      </BrowserRouter>
+      <UserProvider>
+        <BrowserRouter>
+          <Routes>
+            <Route path='/' element={<HomePage />} />
+            <Route path='/auth/register' element={<RegisterPage />} />
+            <Route path='/auth/login' element={<LoginPage />} />
+            <Route path='/orders' element={<OrdersPage />} />
+            <Route path='/cart' element={<CartPage />} />
+            <Route path='/legal/sobre-nosotros/' element={<SobreNosotros />} />
+            <Route path='/legal/preguntas-frecuentes/' element={<PreguntasFrecuentes />} />
+            <Route path='/legal/terminos-condiciones' element={<TerminosCondiciones />} />
+            <Route path='/legal/privacidad' element={<Privacidad />} />
+            <Route element={<ProtectedRoute />}>
+              <Route path='/user/account/:id' element={<AccountPage />} />
+              <Route path='/auth/dashboard' element={<Admin />} />
+            </Route>
+          </Routes>
+        </BrowserRouter>
+      </UserProvider>
     </AuthProvider>
   )
 };

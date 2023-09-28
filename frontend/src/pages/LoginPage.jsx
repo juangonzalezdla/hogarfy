@@ -6,6 +6,7 @@ import Form from '../components/form/Form';
 import { Input } from '../components/form/Input';
 import MessageLink from '../components/form/MessageLink';
 import ErrorMessage from '../components/form/ErrorMessage';
+import SuccessMessage from '../components/form/SuccessMessage';
 
 import { useForm } from 'react-hook-form';
 import { useAuth } from '../context/AuthContext.jsx';
@@ -15,6 +16,10 @@ import { userLoginSchema } from '../schemas/user.js';
 import { zodResolver } from '@hookform/resolvers/zod';
 
 function LoginPage() {
+  useEffect(() => {
+    document.title = 'Iniciar sesión | Hogarfy';
+  }, []);
+
   const { 
     register, 
     handleSubmit, 
@@ -22,18 +27,20 @@ function LoginPage() {
   } = useForm({
     resolver: zodResolver(userLoginSchema)
   });
-  const { signin, errors: loginErrors, isAuthenticated } = useAuth();
+
+  const { signin, successMessage, errorsMessage, isAuthenticated } = useAuth();
   const navigate = useNavigate();
 
-  const onSubmit = (data) => signin(data);
+  const onSubmit = async (data) => await signin(data);
 
   useEffect(() => {
-    if (isAuthenticated) navigate('/');
+    if (isAuthenticated) {
+      const timer = setTimeout(() => {
+        navigate('/');
+      }, 3000);
+      return () => clearTimeout(timer);
+    }
   }, [isAuthenticated]);
-
-  useEffect(() => {
-    document.title = 'Iniciar sesión | Hogarfy';
-  }, []);
 
   return (
     <>
@@ -42,28 +49,37 @@ function LoginPage() {
         <FormContainer>
           <FormTitle title='Iniciar sesión' />
           {
-            loginErrors.map((error, i) => (
+            errorsMessage.map((error, i) => (
               <ErrorMessage message={error} key={i} />
             ))
           }
-          <Form onSubmit={handleSubmit(onSubmit)}>       
-            <Input 
-              type="email"
-              placeholder='Correo electronico'
-              {...register('email')}
-            />
-            {errors.email?.message && (
-              <p className='text-red-500 font-semibold'>{errors.email?.message}</p>
-            )}
+          {
+            successMessage.map((success, i) => (
+              <SuccessMessage message={success} key={i} />
+            ))
+          }
+          <Form onSubmit={handleSubmit(onSubmit)}>
+            <div className='w-full flex flex-col'>      
+              <Input 
+                type="email"
+                placeholder='Correo electronico'
+                id='email'
+                {...register('email')}
+              />
+              {errors.email?.message && (
+                <p className='text-red-500 font-semibold ml-2'>{errors.email?.message}</p>
+              )}
 
-            <Input 
-              type="password"
-              placeholder='Contraseña'
-              {...register('password')}
-            />
-            {errors.password?.message && (
-              <p className='text-red-500 font-semibold'>{errors.password?.message}</p>
-            )}
+              <Input 
+                type="password"
+                placeholder='Contraseña'
+                id='password'
+                {...register('password')}
+              />
+              {errors.password?.message && (
+                <p className='text-red-500 font-semibold ml-2'>{errors.password?.message}</p>
+              )}
+            </div>
 
             <button 
               type="submit"
@@ -75,7 +91,7 @@ function LoginPage() {
 
             <MessageLink 
               message='¿Aún no tienes una cuenta?'
-              to='/register'
+              to='/auth/register'
               name='Registrate'
             />
           </Form>

@@ -2,13 +2,12 @@ import FeaturesCard from './FeaturesCard.jsx';
 
 function Features() {
   return (
-    <section className='w-full max-w-[1400px] my-14 mx-[auto] 
-      flex flex-col justify-center items-center gap-10'>
-      <h1 className='text-[1.6rem] text-azul font-roboto font-bold mb-2'>
+    <section className='w-full max-w-[1400px] my-0 mx-auto py-12 px-12 flex flex-col justify-center items-center gap-10'>
+      <h1 className='text-2xl text-center text-azul font-roboto font-bold mb-2'>
         En Hogarfy nos caracterizamos por
       </h1>
 
-      <div className='flex flex-row justify-center items-center gap-10'>
+      <div className='flex justify-center items-center gap-5 max-lg:flex-col'>
         <FeaturesCard 
           name='Envío rápido' 
           description='Nuestros envíos son rápidos y seguros.'

@@ -1,12 +1,14 @@
 function Footer() {
   return (
-    <footer className='bg-oscuro text-blanco px-12 py-12'>
-      <div className='w-full max-w-[1400px] my-0 mx-auto flex 
-        flex-row justify-between'>
-        <div>
+    <footer className='bg-oscuro text-blanco px-12 py-12 max-md:px-4'>
+      <div className='w-full max-w-[1400px] my-0 mx-auto flex justify-between max-md:flex-col max-md:gap-8'>
+        <div className='flex flex-col justify-center items-center'>
           <figure>
-            <a className="block font-poppins text-[1.5rem] font-bold 
-            no-underline" href="/">Hogarfy</a>
+            <a href="/"
+              className="block font-poppins text-2xl font-bold no-underline" 
+            >
+              Hogarfy
+            </a>
           </figure>
 
           <span>© Copyright 2023, Hogarfy colombia SAS</span>
@@ -64,7 +66,6 @@ function Footer() {
               group-hover:text-blanco'>
               </i>
             </a>
-            
           </div>
         </div>
       </div>     

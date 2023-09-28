@@ -4,8 +4,7 @@ function IconLink ({ to, children }) {
   return (
     <Link 
       to={to}
-      className='flex flex-col justify-center items-center text-blanco 
-      hover:text-gris-oscuro'
+      className='flex flex-col justify-center items-center text-blanco hover:text-gris-oscuro group'
     >
       {children}
     </Link>

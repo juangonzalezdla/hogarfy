@@ -6,6 +6,7 @@ import Form from '../components/form/Form';
 import { Input } from '../components/form/Input';
 import MessageLink from '../components/form/MessageLink';
 import ErrorMessage from '../components/form/ErrorMessage';
+import SuccessMessage from '../components/form/SuccessMessage';
 
 import { useForm } from 'react-hook-form';
 import { useAuth } from '../context/AuthContext.jsx';
@@ -15,6 +16,10 @@ import { userRegisterSchema } from '../schemas/user.js';
 import { zodResolver } from '@hookform/resolvers/zod';
 
 function RegisterPage() {
+  useEffect(() => {
+    document.title = 'Registrarse | Hogarfy';
+  }, []);
+
   const { 
     register, 
     handleSubmit, 
@@ -22,20 +27,20 @@ function RegisterPage() {
   } = useForm({
     resolver: zodResolver(userRegisterSchema)
   });
-  const { signup, errors: registerErrors, isAuthenticated } = useAuth();
+
+  const { signup, successMessage, errorsMessage, isRegistered } = useAuth();
   const navigate = useNavigate();
 
-  const onSubmit = async (values) => {
-    await signup(values);
-  };
-
+  const onSubmit = async (data) => await signup(data);
+  
   useEffect(() => {
-    if (isAuthenticated) navigate('/login');
-  }, [isAuthenticated]);
-
-  useEffect(() => {
-    document.title = 'Registrarse | Hogarfy';
-  }, []);
+    if (isRegistered) {
+      const timer = setTimeout(() => {
+        navigate('/auth/login');
+      }, 3000);
+      return () => clearTimeout(timer);
+    }
+  }, [isRegistered]);
 
   return (
     <>
@@ -44,73 +49,80 @@ function RegisterPage() {
         <FormContainer>
           <FormTitle title='Registrate' />
           {
-            registerErrors.map((error, i) => (
+            errorsMessage.map((error, i) => (
               <ErrorMessage message={error} key={i} />
             ))
           }
-          <Form onSubmit={handleSubmit(onSubmit)}> 
-            <Input 
-              type="text"
-              placeholder='Ingresa tú cedula'
-              {...register('cedula')}
-            />
-            {errors.cedula?.message && (
-              <p className='text-red-500 font-semibold'>{errors.cedula?.message}</p>
-            )}
+          {
+            successMessage.map((success, i) => (
+              <SuccessMessage message={success} key={i} />
+            ))
+          }
+          <Form onSubmit={handleSubmit(onSubmit)}>
+            <div className='w-full flex flex-col'>
+              <Input 
+                type="text"
+                placeholder='Ingresa tú cedula'
+                {...register('cedula')}
+              />
+              {errors.cedula?.message && (
+                <p className='text-red-500 font-semibold ml-2'>{errors.cedula?.message}</p>
+              )}
 
-            <Input 
-              type="text"
-              placeholder='Nombres'
-              {...register('name')}
-            />
-            {errors.name?.message && (
-              <p className='text-red-500 font-semibold'>{errors.name?.message}</p>
-            )}
+              <Input 
+                type="text"
+                placeholder='Nombres'
+                {...register('name')}
+              />
+              {errors.name?.message && (
+                <p className='text-red-500 font-semibold ml-2'>{errors.name?.message}</p>
+              )}
 
-            <Input 
-              type="text"
-              placeholder='Apellidos'
-              {...register('lastName')}
-            />
-            {errors.lastName?.message && (
-              <p className='text-red-500 font-semibold'>{errors.lastName?.message}</p>
-            )}
+              <Input 
+                type="text"
+                placeholder='Apellidos'
+                {...register('lastName')}
+              />
+              {errors.lastName?.message && (
+                <p className='text-red-500 font-semibold ml-2'>{errors.lastName?.message}</p>
+              )}
 
-            <Input 
-              type="text"
-              placeholder='Direccion - Ciudad'
-              {...register('address')}
-            />
-            {errors.address?.message && (
-              <p className='text-red-500 font-semibold'>{errors.address?.message}</p>
-            )}
+              <Input 
+                type="text"
+                placeholder='Direccion - ciudad'
+                {...register('address')}
+              />
+              {errors.address?.message && (
+                <p className='text-red-500 font-semibold ml-2'>{errors.address?.message}</p>
+              )}
 
-            <Input 
-              type="text"
-              placeholder='Número de celular'
-              {...register('phone')}
-            />
-            {errors.phone?.message && (
-              <p className='text-red-500 font-semibold'>{errors.phone?.message}</p>
-            )}  
+              <Input 
+                type="text"
+                placeholder='Número de celular'
+                {...register('phone')}
+              />
+              {errors.phone?.message && (
+                <p className='text-red-500 font-semibold ml-2'>{errors.phone?.message}</p>
+              )}  
 
-            <Input 
-              type="email"
-              placeholder='Correo electronico'
-              {...register('email')}
-            />
-            {errors.email?.message && (
-              <p className='text-red-500 font-semibold'>{errors.email?.message}</p>
-            )}
+              <Input 
+                type="email"
+                placeholder='Correo electronico'
+                {...register('email')}
+              />
+              {errors.email?.message && (
+                <p className='text-red-500 font-semibold ml-2'>{errors.email?.message}</p>
+              )}
 
-            <Input 
-              type="password"
-              placeholder='Contraseña'
-              {...register('password')}
-            />
-            {errors.password?.message && (
-              <p className='text-red-500 font-semibold'>{errors.password?.message}</p>
-            )}
+              <Input 
+                type="password"
+                placeholder='Contraseña'
+                {...register('password')}
+              />
+              {errors.password?.message && (
+                <p className='text-red-500 font-semibold ml-2'>{errors.password?.message}</p>
+              )}
+            </div> 
 
             <button 
               type="submit"
@@ -123,7 +135,7 @@ function RegisterPage() {
 
             <MessageLink 
               message='¿Ya tienes una cuenta?'
-              to='/login'
+              to='/auth/login'
               name='Iniciar sesión'
             />
           </Form>

@@ -4,6 +4,7 @@ import connectDB from './db.js';
 import authRouter from '../routes/auth.routes.js';
 import userRouter from '../routes/user.routes.js';
 import productRouter from '../routes/products.routes.js';
+import categoryRouter from '../routes/categories.routes.js';
 import cookieParser from 'cookie-parser';
 import cors from 'cors'
 
@@ -25,6 +26,7 @@ app.use(cookieParser());
 app.use('/api/auth', authRouter);
 app.use('/api/user', userRouter);
 app.use('/api/product', productRouter);
+app.use('/api/category', categoryRouter);
 
 const bootstrap = async () => {
   await connectDB(process.env.MONGODB_URL); // Conexion a la BD mediante variable de entorno

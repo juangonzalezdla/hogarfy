@@ -1,7 +1,7 @@
-import IconLink from './IconLink';
-import { useAuth } from '../context/AuthContext.jsx';
-import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import IconLink from "./IconLink.jsx";
+import { useAuth } from "../context/AuthContext.jsx";
+import { useState } from "react";
+import { Link } from "react-router-dom";
 
 function HeaderIcons() {
   const { isAuthenticated, logout, user } = useAuth();
@@ -10,7 +10,7 @@ function HeaderIcons() {
 
   const handleClick = () => {
     setShow(!show);
-  }
+  };
 
   return (
     <>
@@ -81,6 +81,6 @@ function HeaderIcons() {
       )}
     </>
   );
-};
+}
 
 export default HeaderIcons;

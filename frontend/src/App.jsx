@@ -10,7 +10,7 @@ import OrdersPage from "./pages/OrdersPage.jsx";
 import CartPage from "./pages/CartPage.jsx";
 import LoginPage from "./pages/LoginPage.jsx";
 import RegisterPage from "./pages/RegisterPage.jsx";
-import AccountPage from "./pages/AccountPage.jsx";
+import AccountPage from "./pages/account/AccountPage.jsx";
 import SobreNosotros from "./pages/legal/SobreNosotros.jsx";
 import PreguntasFrecuentes from "./pages/legal/PreguntasFrecuentes.jsx";
 import TerminosCondiciones from "./pages/legal/TerminosCondiciones.jsx";

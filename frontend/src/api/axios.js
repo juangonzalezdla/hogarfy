@@ -10,9 +10,19 @@ const userAxios = axios.create({
   withCredentials: true
 });
 
-const apiAxios = axios.create({
+const productAxios = axios.create({
   baseURL: 'http://localhost:3000/api/product',
   withCredentials: true
 });
 
-export { authAxios, userAxios, apiAxios };
+const categoryAxios = axios.create({
+  baseURL: 'http://localhost:3000/api/category',
+  withCredentials: true
+});
+
+const orderAxios = axios.create({
+  baseURL: 'http://localhost:3000/api/order',
+  withCredentials: true
+});
+
+export { authAxios, userAxios, productAxios, categoryAxios, orderAxios };

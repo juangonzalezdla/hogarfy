@@ -1,21 +1,21 @@
-import { createContext, useContext, useState, useEffect } from 'react';
-import { 
-  registerRequest, 
-  loginRequest, 
+import { createContext, useContext, useState, useEffect } from "react";
+import {
+  registerRequest,
+  loginRequest,
   verifyTokenRequest,
-} from '../api/requests.js';
-import Cookies from 'js-cookie';
+} from "../api/requests.js";
+import Cookies from "js-cookie";
 
 export const AuthContext = createContext();
 
 export const useAuth = () => {
   const context = useContext(AuthContext);
-  if (!context) throw new Error('useAuth must be used within an AuthProvider');
+  if (!context) throw new Error("useAuth must be used within an AuthProvider");
   return context;
 };
 
 export const AuthProvider = ({ children }) => {
-  const [user, setUser] = useState(null);
+  const [userData, setUserData] = useState(null);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [isRegistered, setIsRegistered] = useState(false);
   const [errorsMessage, setErrorsMessage] = useState([]);
@@ -37,11 +37,11 @@ export const AuthProvider = ({ children }) => {
     try {
       const res = await registerRequest(user);
       console.log(res.data.message);
-      setUser(res.data);
+      setUserData(res.data);
       setIsRegistered(true);
       setSuccessMessage(res.data.message);
     } catch (error) {
-      console.log(error.response.data)
+      console.log(error.response.data);
       setErrorsMessage(error.response.data.message);
     }
   };
@@ -50,18 +50,18 @@ export const AuthProvider = ({ children }) => {
     try {
       const res = await loginRequest(user);
       console.log(res.data.message);
-      setUser(res.data);
+      setUserData(res.data);
       setIsAuthenticated(true);
       setSuccessMessage(res.data.message);
     } catch (error) {
-      console.log(error.response.data)
+      console.log(error.response.data);
       setErrorsMessage(error.response.data.message);
     }
   };
 
   const logout = () => {
-    Cookies.remove('token');
-    setUser(null);
+    Cookies.remove("token");
+    setUserData(null);
     setIsAuthenticated(false);
   };
 
@@ -73,13 +73,13 @@ export const AuthProvider = ({ children }) => {
         setLoading(false);
         return;
       }
-      
+
       try {
         const res = await verifyTokenRequest(cookies.token);
         console.log(res);
         if (!res.data) return setIsAuthenticated(false);
         setIsAuthenticated(true);
-        setUser(res.data);
+        setUserData(res.data);
         setLoading(false);
       } catch (error) {
         setIsAuthenticated(false);
@@ -92,7 +92,7 @@ export const AuthProvider = ({ children }) => {
   return (
     <AuthContext.Provider
       value={{
-        user,
+        userData,
         signup,
         signin,
         logout,
@@ -100,10 +100,10 @@ export const AuthProvider = ({ children }) => {
         isAuthenticated,
         successMessage,
         errorsMessage,
-        loading
+        loading,
       }}
     >
       {children}
     </AuthContext.Provider>
-  )
+  );
 };

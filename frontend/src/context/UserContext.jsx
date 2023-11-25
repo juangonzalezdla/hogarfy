@@ -1,23 +1,24 @@
-import { createContext, useContext, useState, useEffect } from 'react';
-import { 
-  getUserRequest, 
-  updateDataRequest, 
-  updateEmailRequest, 
-  updatePasswordRequest, 
-  deleteUserRequest 
-} from '../api/requests.js';
+import { createContext, useContext, useState, useEffect } from "react";
+import {
+  getUserRequest,
+  updateDataRequest,
+  updateEmailRequest,
+  updatePasswordRequest,
+  deleteUserRequest,
+} from "../api/requests.js";
 
 export const UserContext = createContext();
 
 export const useUser = () => {
   const context = useContext(UserContext);
-  if (!context) throw new Error('useUser must be used within an UserProvider');
+  if (!context) throw new Error("useUser must be used within an UserProvider");
   return context;
 };
 
 export const UserProvider = ({ children }) => {
   const [errorsMessage, setErrorsMessage] = useState([]);
   const [successMessage, setSuccessMessage] = useState([]);
+  const [userData, setUserData] = useState(null);
 
   // Clear errors and success messages after 5 seconds
   useEffect(() => {
@@ -34,7 +35,7 @@ export const UserProvider = ({ children }) => {
     try {
       const res = await getUserRequest(id);
       console.log(res.data);
-      return res.data;
+      setUserData(res.data);
     } catch (error) {
       console.log(error);
     }
@@ -71,7 +72,7 @@ export const UserProvider = ({ children }) => {
       console.log(error.response.data);
       setErrorsMessage(error.response.data.message);
     }
-  }; 
+  };
 
   const deleteUser = async (id) => {
     try {
@@ -88,15 +89,16 @@ export const UserProvider = ({ children }) => {
     <UserContext.Provider
       value={{
         getUser,
+        userData,
         updateUserData,
         updateUserEmail,
         updateUserPassword,
         deleteUser,
         successMessage,
-        errorsMessage
+        errorsMessage,
       }}
     >
       {children}
     </UserContext.Provider>
-  )
+  );
 };

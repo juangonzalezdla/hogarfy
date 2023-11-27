@@ -1,5 +1,7 @@
 import { Router } from 'express';
 import multer from 'multer';
+import path from 'path';
+import { v4 as uuidv4 } from 'uuid';
 import { 
   createProduct,
   getProducts,
@@ -15,7 +17,7 @@ const storage = multer.diskStorage({
     cb(null, './backend/uploads/');
   },
   filename: (req, file, cb) => {
-    cb(null, file.originalname);
+    cb(null, uuidv4() + path.extname(file.originalname).toLocaleLowerCase());
   },
 });
 

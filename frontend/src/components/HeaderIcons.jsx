@@ -1,16 +1,23 @@
 import IconLink from "./IconLink.jsx";
 import { useAuth } from "../context/AuthContext.jsx";
-import { useState } from "react";
+import { useUser } from "../context/UserContext.jsx";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
 function HeaderIcons() {
-  const { isAuthenticated, logout, user } = useAuth();
-
+  const { isAuthenticated, logout } = useAuth();
+  const { getUser, userData } = useUser();
   const [show, setShow] = useState(false);
 
   const handleClick = () => {
     setShow(!show);
   };
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      getUser(); 
+    }
+  }, [isAuthenticated]);
 
   return (
     <>
@@ -56,11 +63,11 @@ function HeaderIcons() {
       {show && (
         <div className="absolute top-[88px] right-24 bg-blanco w-48 p-4 rounded-lg shadow-lg flex flex-col gap-3 z-20">
           <span className="font-roboto text-oscuro text-base font-bold">
-            ¡Hola, {user.name}!
+            ¡Hola, {userData?.name}!
           </span>
 
           <Link
-            to={`/user/account/${user._id}`}
+            to={`/user/account/${userData._id}`}
             className="flex justify-center items-center gap-2 text-lg text-gris-oscuro font-medium p-2 rounded-lg hover:bg-gris-claro"
           >
             <i className="bx bx-cog text-2xl"></i>

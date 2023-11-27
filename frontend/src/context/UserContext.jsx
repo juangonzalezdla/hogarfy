@@ -36,6 +36,7 @@ export const UserProvider = ({ children }) => {
       const res = await getUserRequest(id);
       console.log(res.data);
       setUserData(res.data);
+      return res.data;
     } catch (error) {
       console.log(error);
     }

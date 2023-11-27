@@ -20,7 +20,7 @@ export const createCategory = async (req, res) => {
 
 export const getCategories = async (req, res) => {
   try {
-    const categories = await CategoryModel.find();
+    const categories = await CategoryModel.find().populate('parent');
     return res.status(201).json(categories);
   } catch (error) {
     return res.status(500).json(error);
@@ -29,7 +29,7 @@ export const getCategories = async (req, res) => {
 
 export const getCategory = async (req, res) => {
   try {
-    const category = await CategoryModel.findById(req.params.id);
+    const category = await CategoryModel.findById(req.params.id).populate('parent');;
     if (!category) return res.status(401).json('Categoria no encontrada');
 
     return res.status(201).json(category);

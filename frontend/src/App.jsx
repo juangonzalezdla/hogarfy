@@ -11,6 +11,9 @@ import CartPage from "./pages/CartPage.jsx";
 import LoginPage from "./pages/LoginPage.jsx";
 import RegisterPage from "./pages/RegisterPage.jsx";
 import AccountPage from "./pages/account/AccountPage.jsx";
+import UpdateEmail from "./pages/account/UpdateEmail.jsx";
+import UpdatePassword from "./pages/account/UpdatePassword.jsx";
+import DeleteAccount from "./pages/account/DeleteAccount.jsx";
 import SobreNosotros from "./pages/legal/SobreNosotros.jsx";
 import PreguntasFrecuentes from "./pages/legal/PreguntasFrecuentes.jsx";
 import TerminosCondiciones from "./pages/legal/TerminosCondiciones.jsx";
@@ -39,6 +42,9 @@ function App() {
                 <Route path="/legal/privacidad" element={<Privacidad />} />
                 <Route element={<ProtectedRoute />}>
                   <Route path="/user/account/:id" element={<AccountPage />} />
+                  <Route path="/user/account/update-email/:id" element={<UpdateEmail />} />
+                  <Route path="/user/account/update-password/:id" element={<UpdatePassword />} />
+                  <Route path="/user/account/delete-account/:id" element={<DeleteAccount />} />
                   <Route path="/auth/dashboard" element={<Dashboard />} />
                   <Route path="/dashboard" element={<Dashboard />} />
                   <Route path="/dashboard/products" element={<Products />} />

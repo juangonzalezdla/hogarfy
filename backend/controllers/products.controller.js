@@ -1,9 +1,11 @@
 import ProductModel from '../models/product.schema.js';
+import { v4 as uuidv4 } from 'uuid';
+import path from 'path';
 
 export const createProduct = async (req, res) => {
   try {
     const { brand, name, description, price, images, properties, category } = req.body;
-    const originalImageNames = req.files.map(file => file.originalname);
+    const originalImageNames = req.files.map(file => uuidv4() + path.extname(file.originalname).toLocaleLowerCase());
 
     const product = new ProductModel({
       brand,

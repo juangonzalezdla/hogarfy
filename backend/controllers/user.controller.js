@@ -55,7 +55,7 @@ export const userUpdateEmail = async (req, res) => {
     existingUserById.email = email;
     await existingUserById.save();
 
-    return res.status(200).send({ message: ['Email del usuario actualizado'] });
+    return res.status(200).send({ message: ['Email actualizado'] });
   } catch (error) { 
     return res.status(500).send({ message: error.message });
   }
@@ -78,7 +78,7 @@ export const userUpdatePassword = async (req, res) => {
     existingUserById.password = hashedPassword;
     await existingUserById.save();
 
-    return res.status(200).send({ message: ['Contraseña del usuario actualizada'] });
+    return res.status(200).send({ message: ['Contraseña actualizada'] });
   } catch (error) { 
     return res.status(500).send({ message: error.message });
   }
@@ -87,7 +87,7 @@ export const userUpdatePassword = async (req, res) => {
 export const userUnregister = async (req, res) => {
   try {
     const { user } = req;
-    const { password  } = req.body;
+    const { password } = req.body;
 
     const existingUserById = await UserModel.findById(user.id);
     if (!existingUserById) 

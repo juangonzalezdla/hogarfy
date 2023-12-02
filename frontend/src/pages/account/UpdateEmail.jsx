@@ -4,8 +4,9 @@ import ErrorMessage from "../../components/form/ErrorMessage.jsx";
 import AccountLayout from "./AccountLayout.jsx";
 
 import { useUser } from "../../context/UserContext.jsx";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useForm } from "react-hook-form";
+import { useParams } from "react-router-dom";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { userUpdateEmailSchema } from "../../schemas/user.js";
 
@@ -13,6 +14,7 @@ function UpdateEmail() {
   const {
     register,
     handleSubmit,
+    setValue,
     formState: { errors },
   } = useForm({
     resolver: zodResolver(userUpdateEmailSchema),
@@ -20,7 +22,23 @@ function UpdateEmail() {
 
   const { getUser, updateUserEmail, successMessage, errorsMessage } = useUser();
 
-  const onSubmit = async (data) => await updateUserEmail(data);
+  const params = useParams();
+
+  useEffect(() => {
+    const loadUser = async () => {
+      if (params.id) {
+        const user = await getUser(params.id);
+        setValue("email", user.email);
+      }
+    };
+    loadUser();
+  }, []);
+
+  const onSubmit = async (data) => {
+    await updateUserEmail(data);
+    setValue("password", "");
+    getUser();
+  };
 
   return (
     <AccountLayout>

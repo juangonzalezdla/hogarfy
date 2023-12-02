@@ -44,7 +44,7 @@ function App() {
                   <Route path="/user/account/:id" element={<AccountPage />} />
                   <Route path="/user/account/update-email/:id" element={<UpdateEmail />} />
                   <Route path="/user/account/update-password/:id" element={<UpdatePassword />} />
-                  <Route path="/user/account/delete-account/:id" element={<DeleteAccount />} />
+                  <Route path="/user/account/delete/:id" element={<DeleteAccount />} />
                   <Route path="/auth/dashboard" element={<Dashboard />} />
                   <Route path="/dashboard" element={<Dashboard />} />
                   <Route path="/dashboard/products" element={<Products />} />

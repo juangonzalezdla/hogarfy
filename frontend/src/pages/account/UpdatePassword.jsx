@@ -4,7 +4,6 @@ import ErrorMessage from "../../components/form/ErrorMessage.jsx";
 import AccountLayout from "./AccountLayout.jsx";
 
 import { useUser } from "../../context/UserContext.jsx";
-import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { userUpdatePasswordSchema } from "../../schemas/user.js";
@@ -13,14 +12,19 @@ function UpdatePassword() {
   const {
     register,
     handleSubmit,
+    setValue,
     formState: { errors },
   } = useForm({
     resolver: zodResolver(userUpdatePasswordSchema),
   });
 
-  const { getUser, updateUserPassword, successMessage, errorsMessage } = useUser();
+  const { updateUserPassword, successMessage, errorsMessage } = useUser();
 
-  const onSubmit = async (data) => await updateUserPassword(data);
+  const onSubmit = async (data) => {
+    await updateUserPassword(data);
+    setValue("oldPassword", "");
+    setValue("newPassword", "");
+  }
 
   return (
     <AccountLayout>

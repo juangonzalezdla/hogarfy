@@ -75,9 +75,9 @@ export const UserProvider = ({ children }) => {
     }
   };
 
-  const deleteUser = async (id) => {
+  const deleteUser = async (id, user) => {
     try {
-      const res = await deleteUserRequest(id);
+      const res = await deleteUserRequest(id, user);
       console.log(res.data.message);
       setSuccessMessage(res.data.message);
     } catch (error) {

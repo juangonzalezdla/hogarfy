@@ -15,7 +15,7 @@ export const useAuth = () => {
 };
 
 export const AuthProvider = ({ children }) => {
-  const [userData, setUserData] = useState(null);
+  const [user, setUser] = useState(null);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [isRegistered, setIsRegistered] = useState(false);
   const [errorsMessage, setErrorsMessage] = useState([]);
@@ -37,7 +37,7 @@ export const AuthProvider = ({ children }) => {
     try {
       const res = await registerRequest(user);
       console.log(res.data.message);
-      setUserData(res.data);
+      setUser(res.data);
       setIsRegistered(true);
       setSuccessMessage(res.data.message);
     } catch (error) {
@@ -50,7 +50,7 @@ export const AuthProvider = ({ children }) => {
     try {
       const res = await loginRequest(user);
       console.log(res.data.message);
-      setUserData(res.data);
+      setUser(res.data);
       setIsAuthenticated(true);
       setSuccessMessage(res.data.message);
     } catch (error) {
@@ -61,7 +61,7 @@ export const AuthProvider = ({ children }) => {
 
   const logout = () => {
     Cookies.remove("token");
-    setUserData(null);
+    setUser(null);
     setIsAuthenticated(false);
   };
 
@@ -79,7 +79,7 @@ export const AuthProvider = ({ children }) => {
         console.log(res);
         if (!res.data) return setIsAuthenticated(false);
         setIsAuthenticated(true);
-        setUserData(res.data);
+        setUser(res.data);
         setLoading(false);
       } catch (error) {
         setIsAuthenticated(false);
@@ -92,7 +92,7 @@ export const AuthProvider = ({ children }) => {
   return (
     <AuthContext.Provider
       value={{
-        userData,
+        user,
         signup,
         signin,
         logout,

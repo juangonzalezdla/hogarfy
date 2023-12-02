@@ -4,7 +4,7 @@ import ErrorMessage from "../../components/form/ErrorMessage.jsx";
 import AccountLayout from "./AccountLayout.jsx";
 
 import { useUser } from "../../context/UserContext.jsx";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -24,8 +24,7 @@ function AccountPage() {
     resolver: zodResolver(userUpdateDataSchema),
   });
 
-  const { getUser, userData, updateUserData, successMessage, errorsMessage } =
-    useUser();
+  const { getUser, updateUserData, successMessage, errorsMessage } = useUser();
 
   const params = useParams();
 
@@ -44,7 +43,10 @@ function AccountPage() {
     loadUser();
   }, []);
 
-  const onSubmit = async (data) => await updateUserData(data);
+  const onSubmit = async (data) => {
+    await updateUserData(data);
+    getUser();
+  }
 
   return (
     <AccountLayout>

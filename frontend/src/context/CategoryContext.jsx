@@ -1,4 +1,5 @@
 import { createContext, useContext, useState, useEffect } from "react";
+import toast from "react-hot-toast";
 import {
   createCategoryRequest,
   getCategoriesRequest,
@@ -33,6 +34,7 @@ export const CategoryProvider = ({ children }) => {
     try {
       const res = await getCategoryRequest(id);
       setCategoryData(res.data);
+      return res.data;
     } catch (error) {
       console.log(error);
     }
@@ -42,26 +44,33 @@ export const CategoryProvider = ({ children }) => {
     try {
       const res = await createCategoryRequest(product);
       console.log(res.data);
+      toast.success('Categoria creada con éxito!', {duration: 4000});
     } catch (error) {
       console.log(error);
+      toast.error('No fué posible crear la categoria', {duration: 4000});
     }
   };
 
   const updateCategory = async (id, product) => {
     try {
       const res = await updateCategoryRequest(id, product);
-      console.log(res.data.message);
+      console.log(res.data);
+      toast.success('Categoria actualizada', {duration: 4000});
     } catch (error) {
       console.log(error);
+      toast.error('No fué posible actualizar la categoria', {duration: 4000});
     }
   };
 
   const deleteCategory = async (id) => {
     try {
       const res = await deleteCategoryRequest(id);
-      console.log(res.data.message);
+      if (res.status === 204) setCategories(categories.filter((category) => category._id !== id));
+      console.log(res.data);
+      toast.success('Categoria eliminada', {duration: 4000});
     } catch (error) {
       console.log(error);
+      toast.error('No fué posible eliminar la categoria', {duration: 4000});
     }
   };
 

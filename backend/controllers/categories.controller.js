@@ -11,7 +11,7 @@ export const createCategory = async (req, res) => {
     })
     await category.save();
 
-    return res.status(201).json('Categoria creada con éxito');
+    return res.status(200).json('Categoria creada con éxito');
   } catch (error) {
     console.log(error)
     return res.status(500).json(error);
@@ -21,7 +21,7 @@ export const createCategory = async (req, res) => {
 export const getCategories = async (req, res) => {
   try {
     const categories = await CategoryModel.find().populate('parent');
-    return res.status(201).json(categories);
+    return res.status(200).json(categories);
   } catch (error) {
     return res.status(500).json(error);
   }
@@ -30,9 +30,9 @@ export const getCategories = async (req, res) => {
 export const getCategory = async (req, res) => {
   try {
     const category = await CategoryModel.findById(req.params.id).populate('parent');;
-    if (!category) return res.status(401).json('Categoria no encontrada');
+    if (!category) return res.status(404).json('Categoria no encontrada');
 
-    return res.status(201).json(category);
+    return res.status(200).json(category);
   } catch (error) {
     return res.status(500).json(error);
   }
@@ -43,14 +43,14 @@ export const updateCategory = async (req, res) => {
     const { name, properties, parent } = req.body;
 
     const category = await CategoryModel.findById(req.params.id);
-    if (!category) return res.status(401).json('Categoria no encontrada');
+    if (!category) return res.status(404).json('Categoria no encontrada');
 
     category.name = name;
     category.properties = properties;
     category.parent = parent;
     await category.save();
 
-    return res.status(201).json('Categoria actualizada correctamente');
+    return res.status(201).json('Categoria actualizada');
   } catch (error) {
     return res.status(500).json(error);
   }
@@ -59,11 +59,11 @@ export const updateCategory = async (req, res) => {
 export const deleteCategory = async (req, res) => {
   try {
     const category = await CategoryModel.findById(req.params.id);
-    if (!category) return res.status(401).json('Categoria no encontrada');
+    if (!category) return res.status(404).json('Categoria no encontrada');
 
     await category.deleteOne();
 
-    return res.status(201).json('Categoria eliminada correctamente');
+    return res.status(204).json('Categoria eliminada');
   } catch (error) {
     return res.status(500).json(error);
   }

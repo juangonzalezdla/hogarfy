@@ -44,7 +44,7 @@ function HeaderIcons() {
           <>
             <IconLink to="/auth/login">
               <i className="bx bx-user text-3xl leading-none font-medium group-hover:text-blanco"></i>
-              <span className="group-hover:underline group-hover:text-blanco">
+              <span className="group-hover:underline group-hover:text-blanco text-xs">
                 Ingresar
               </span>
             </IconLink>
@@ -67,7 +67,7 @@ function HeaderIcons() {
           </span>
 
           <Link
-            to={`/user/account/${userData._id}`}
+            to={`/u/account/${userData._id}`}
             className="flex justify-center items-center gap-2 text-lg text-gris-oscuro font-medium p-2 rounded-lg hover:bg-gris-claro"
           >
             <i className="bx bx-cog text-2xl"></i>

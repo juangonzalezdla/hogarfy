@@ -25,7 +25,7 @@ export const userUpdateData = async (req, res) => {
 
     const existingUserById = await UserModel.findById(user.id);
     if (!existingUserById) 
-      return res.status(401).send({ message: ['Usuario no autorizado'] });
+      return res.status(404).send({ message: ['Usuario no encontrado'] });
 
     existingUserById.name = name;
     existingUserById.lastName = lastName;
@@ -33,7 +33,7 @@ export const userUpdateData = async (req, res) => {
     existingUserById.phone = phone;
     await existingUserById.save();
 
-    return res.status(200).send({ message: ['Usuario actualizado'] });
+    return res.status(201).send({ message: ['Usuario actualizado'] });
   } catch (error) { 
     return res.status(500).send({ message: error.message });
   }
@@ -46,7 +46,7 @@ export const userUpdateEmail = async (req, res) => {
 
     const existingUserById = await UserModel.findById(user.id);
     if (!existingUserById) 
-      return res.status(401).send({ message: ['Usuario no autorizado'] });
+      return res.status(404).send({ message: ['Usuario no encontrado'] });
 
     const checkPassord = await compare(password, existingUserById.password);
     if (!checkPassord)
@@ -55,7 +55,7 @@ export const userUpdateEmail = async (req, res) => {
     existingUserById.email = email;
     await existingUserById.save();
 
-    return res.status(200).send({ message: ['Email actualizado'] });
+    return res.status(201).send({ message: ['Email actualizado'] });
   } catch (error) { 
     return res.status(500).send({ message: error.message });
   }
@@ -68,7 +68,7 @@ export const userUpdatePassword = async (req, res) => {
 
     const existingUserById = await UserModel.findById(user.id);
     if (!existingUserById) 
-      return res.status(401).send({ message: ['Usuario no autorizado'] });
+      return res.status(404).send({ message: ['Usuario no encontrado'] });
 
     const checkPassord = await compare(oldPassword, existingUserById.password);
     if (!checkPassord)
@@ -78,7 +78,7 @@ export const userUpdatePassword = async (req, res) => {
     existingUserById.password = hashedPassword;
     await existingUserById.save();
 
-    return res.status(200).send({ message: ['Contraseña actualizada'] });
+    return res.status(201).send({ message: ['Contraseña actualizada'] });
   } catch (error) { 
     return res.status(500).send({ message: error.message });
   }
@@ -91,7 +91,7 @@ export const userUnregister = async (req, res) => {
 
     const existingUserById = await UserModel.findById(user.id);
     if (!existingUserById) 
-      return res.status(401).send({ message: ['Usuario no autorizado'] });
+      return res.status(404).send({ message: ['Usuario no encontrado'] });
 
     const checkPassord = compare(password, existingUserById.password);
     if (!checkPassord)
@@ -99,7 +99,7 @@ export const userUnregister = async (req, res) => {
 
     await existingUserById.deleteOne();
 
-    return res.status(200).send({ message: ['Usuario eliminado'] });
+    return res.status(204).send({ message: ['Usuario eliminado'] });
   } catch (error) { 
     return res.status(500).send({ message: error.message });
   }

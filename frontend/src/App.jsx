@@ -20,6 +20,7 @@ import TerminosCondiciones from "./pages/legal/TerminosCondiciones.jsx";
 import Privacidad from "./pages/legal/Privacidad.jsx";
 import Dashboard from "./pages/dashboard/Dashboard.jsx";
 import Products from "./pages/dashboard/Products.jsx";
+import EditProduct from "./pages/dashboard/EditProduct.jsx";
 import Categories from "./pages/dashboard/Categories.jsx";
 import Orders from "./pages/dashboard/Orders.jsx";
 
@@ -41,13 +42,13 @@ function App() {
                 <Route path="/legal/terminos-condiciones" element={<TerminosCondiciones />} />
                 <Route path="/legal/privacidad" element={<Privacidad />} />
                 <Route element={<ProtectedRoute />}>
-                  <Route path="/user/account/:id" element={<AccountPage />} />
-                  <Route path="/user/account/update-email/:id" element={<UpdateEmail />} />
-                  <Route path="/user/account/update-password/:id" element={<UpdatePassword />} />
-                  <Route path="/user/account/delete/:id" element={<DeleteAccount />} />
-                  <Route path="/auth/dashboard" element={<Dashboard />} />
+                  <Route path="/u/account/:id" element={<AccountPage />} />
+                  <Route path="/u/account/update-email/:id" element={<UpdateEmail />} />
+                  <Route path="/u/account/update-password/:id" element={<UpdatePassword />} />
+                  <Route path="/u/account/delete/:id" element={<DeleteAccount />} />
                   <Route path="/dashboard" element={<Dashboard />} />
                   <Route path="/dashboard/products" element={<Products />} />
+                  <Route path="/dashboard/products/edit/:id" element={<EditProduct />} />
                   <Route path="/dashboard/categories" element={<Categories />} />
                   <Route path="/dashboard/orders" element={<Orders />} />
                 </Route>

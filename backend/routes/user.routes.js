@@ -39,7 +39,7 @@ userRouter.patch('/update-password/:id',
   userUpdatePassword
 );
 
-userRouter.delete('/unregister/:id', 
+userRouter.delete('/delete-user/:id', 
   verifyToken,
   validateSchema(userUnregisterDTOSchema), 
   userUnregister

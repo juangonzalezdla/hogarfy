@@ -7,6 +7,12 @@ app.get('/', (req, res) => {
   res.send('Hello world');
 })
 
-app.listen(PORT, () => {
-  console.log(`Example app listening on port ${PORT}`);
-})
+const bootstrap = async () => {
+  await connectDB(process.env.MONGODB_URL); // Conexion a la BD mediante variable de entorno
+
+  app.listen(PORT, () => {
+    console.log(`app listening on port ${PORT}`);
+  });
+};
+
+bootstrap(); 

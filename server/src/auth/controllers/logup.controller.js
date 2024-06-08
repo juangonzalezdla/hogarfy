@@ -4,10 +4,10 @@ import { SALT } from '../helpers/salt.js';
 import { v4 as uuidv4 } from 'uuid';
 
 const logUp = async (req, res) => {
-  const { names, lastNames, citizenshipCard, phoneNumber,
-    cityAndDepartment, address, email, password } = req.body;
-
   try {
+    const { names, lastNames, citizenshipCard, phoneNumber,
+      cityAndDepartment, address, email, password } = req.body;
+
     const existingUserByEmail = await userModel.findOne({ email });
     if (existingUserByEmail)
       return res

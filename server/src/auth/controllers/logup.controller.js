@@ -8,8 +8,8 @@ const logUp = async (req, res) => {
     const { names, lastNames, citizenshipCard, phoneNumber,
       cityAndDepartment, address, email, password } = req.body;
 
-    const existingUserByEmail = await userModel.findOne({ email });
-    if (existingUserByEmail)
+    const userByEmail = await userModel.findOne({ email });
+    if (userByEmail)
       return res
         .status(409)
         .json({ ok: false, message: 'Ya existe un usuario con ese email registrado' });

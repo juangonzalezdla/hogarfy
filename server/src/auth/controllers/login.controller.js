@@ -6,16 +6,16 @@ const login = async (req, res) => {
   try {
     const { email, password } = req.body;
 
-    const existingUserByEmail = await userModel.findOne({ email });
-    if (!existingUserByEmail)
+    const userByEmail = await userModel.findOne({ email });
+    if (!userByEmail)
       return res.status(401).send({ ok: false, message: 'Credenciales incorrectas' });
 
-    const checkPassword = await compare(password, existingUserByEmail.password);
+    const checkPassword = await compare(password, userByEmail.password);
     if (!checkPassword)
       return res.status(401).send({ ok: false, message: 'Credenciales incorrectas' });
 
     const token = jwt.sign(
-      { id: existingUserByEmail._id, isAdmin: existingUserByEmail.isAdmin },
+      { id: userByEmail._id, isAdmin: userByEmail.isAdmin },
       process.env.JWT_PRIVATE_KEY,
       { expiresIn: '2d' }
     );
@@ -23,7 +23,7 @@ const login = async (req, res) => {
 
     return res.status(200).json({ ok: true, message: 'Inicio de sesión exitoso' });
   } catch (error) {
-    return res.status(500).send({ message: error.message });
+    return res.status(500).send({ ok: false, message: error.message });
   }
 }
 

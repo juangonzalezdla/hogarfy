@@ -1,8 +1,10 @@
 import express from 'express';
 import dotenv from 'dotenv';
 import connectDB from './db.js';
-import userRouter from './users/routes/user.routes.js';
 import authRouter from './auth/routes/auth.routes.js';
+import userRouter from './users/routes/user.routes.js';
+import productRouter from './products/routes/product.routes.js';
+import categoryRouter from './categories/routes/category.routes.js';
 
 dotenv.config(); // Configuración de las variables de entorno
 
@@ -16,8 +18,8 @@ app.use(express.json());
 // Routes
 app.use('/auth', authRouter);
 app.use('/user', userRouter);
-//app.use('/product');
-//app.use('/category');
+app.use('/product', productRouter);
+app.use('/category', categoryRouter);
 
 const bootstrap = async () => {
   await connectDB(MONGODB_URL); // Conexion a la BD mediante variable de entorno

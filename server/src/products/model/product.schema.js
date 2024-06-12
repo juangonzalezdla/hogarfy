@@ -9,7 +9,8 @@ const productSchema = new Schema({
   price: { type: Number, require: true },
   images: [{ type: String }],
   properties: { type: Object },
-  category: { type: String, ref: 'Category' }
+  category: { type: String, ref: 'Category' },
+  isFeatured: { type: Boolean, default: false }
 }, {
   timestamps: true
 });

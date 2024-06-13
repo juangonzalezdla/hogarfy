@@ -2,7 +2,7 @@ import userModel from '../../users/model/user.schema.js';
 import { compare } from 'bcrypt';
 import jwt from 'jsonwebtoken';
 
-const login = async (req, res) => {
+const logIn = async (req, res) => {
   try {
     const { email, password } = req.body;
 
@@ -27,4 +27,4 @@ const login = async (req, res) => {
   }
 }
 
-export default login;
+export default logIn;

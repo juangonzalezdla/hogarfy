@@ -5,6 +5,7 @@ import authRouter from './auth/routes/auth.routes.js';
 import userRouter from './users/routes/user.routes.js';
 import productRouter from './products/routes/product.routes.js';
 import categoryRouter from './categories/routes/category.routes.js';
+import cookieParser from 'cookie-parser';
 
 dotenv.config(); // Configuración de las variables de entorno
 
@@ -14,6 +15,7 @@ const MONGODB_URL = process.env.MONGODB_URL;
 
 // Middlewares
 app.use(express.json());
+app.use(cookieParser());
 
 // Routes
 app.use('/auth', authRouter);

@@ -1,3 +1,16 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+:root {
+  --blue: 229, 100%, 66%;
+  --white: 0, 0%, 100%;
+  --black: 0, 0%, 0%;
+  --dark: 200, 5%, 12%;
+  --light-blue: 228, 100%, 98%;
+  --light-gray: 0, 0%, 92%;
+  --dark-gray: 0, 0%, 40%;
+
+  --roboto: 'Roboto', sans-serif;
+  --poppins: 'Poppins', sans-serif;
+}

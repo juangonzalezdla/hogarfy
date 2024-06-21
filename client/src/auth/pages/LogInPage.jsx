@@ -6,7 +6,13 @@ import MessageLink from '../components/MessageLink';
 import SuccessMessage from '../components/SuccessMessage';
 import ErrorMessage from '../components/ErrorMessage';
 
+import { useEffect, useState } from 'react';
+
 export default function LogInPage() {
+  useEffect(() => {
+    document.title = 'Inicio de sesión'
+  }, []);
+
   return (
     <>
       <BasicHeader />

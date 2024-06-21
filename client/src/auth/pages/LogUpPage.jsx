@@ -6,7 +6,12 @@ import MessageLink from '../components/MessageLink';
 import SuccessMessage from '../components/SuccessMessage';
 import ErrorMessage from '../components/ErrorMessage';
 
+import { useEffect, useState } from 'react';
+
 export default function LogUpPage() {
+  useEffect(() => {
+    document.title = 'Registro de usuario'
+  }, []);
   return (
     <>
       <BasicHeader />

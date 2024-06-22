@@ -5,7 +5,7 @@ export default function Form({ children, onSubmit }) {
         className='w-full flex flex-col justify-center items-center'
         onSubmit={onSubmit}
       >
-        {children}
+        <div className='w-full flex flex-col'>{children}</div>
       </form>
     </div>
   );

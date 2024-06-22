@@ -6,14 +6,20 @@ import userRouter from './users/routes/user.routes.js';
 import productRouter from './products/routes/product.routes.js';
 import categoryRouter from './categories/routes/category.routes.js';
 import cookieParser from 'cookie-parser';
+import cors from 'cors'
 
 dotenv.config(); // Configuración de las variables de entorno
 
 const app = express();
 const PORT = process.env.PORT;
 const MONGODB_URL = process.env.MONGODB_URL;
+const FRONTEND_URL = process.env.FRONTEND_URL;
 
 // Middlewares
+app.use(cors({
+  origin: FRONTEND_URL,
+  credentials: true
+}));
 app.use(express.json());
 app.use(cookieParser());
 

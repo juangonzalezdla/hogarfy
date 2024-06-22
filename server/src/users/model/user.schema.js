@@ -9,7 +9,7 @@ const userSchema = new Schema({
   cityAndDepartment: { type: String, require: true, minLength: 4, maxLength: 50 },
   address: { type: String, require: true, minLength: 4, maxLength: 50 },
   email: { type: String, require: true, unique: true },
-  password: { type: String, require: true, minLength: 10, maxLength: 25 },
+  password: { type: String, require: true, minLength: 10 },
   isAdmin: { type: Boolean, default: false }
 })
 

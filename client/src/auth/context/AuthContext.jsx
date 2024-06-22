@@ -1,6 +1,7 @@
 import { createContext, useContext, useState, useEffect } from 'react';
 import { logUpService, logInService } from '../../services/authServices';
 import Cookies from 'js-cookie';
+import { toast } from 'react-hot-toast';
 
 // Crear el contexto
 const AuthContext = createContext();
@@ -18,34 +19,26 @@ export const AuthProvider = ({ children }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [isAuthorized, setIsAuthorized] = useState(false);
   const [loading, setLoading] = useState(true);
-  const [successMessage, setSuccessMessage] = useState([]);
-  const [errorsMessage, setErrorsMessage] = useState([]);
 
   const logUp = async (userData) => {
     try {
       const res = await logUpService(userData);
-      console.log(res.data.message);
-      console.log(res.data);
       setUser(res.data);
-      setSuccessMessage(res.data.message);
+      toast.success(res.data.message, { duration: 3000 });
     } catch (error) {
-      console.log(error.response.data);
-      setErrorsMessage(error.response.data.message);
+      toast.error(error.response.data.message, { duration: 3000 });
     }
   };
 
-  const logIn = async (userData) => {
+  const logIn = async (user) => {
     try {
-      const res = await logInService(userData);
-      console.log(res.data.message);
-      console.log(res.data);
+      const res = await logInService(user);
       setUser(res.data);
       setIsAuthenticated(true);
       setIsAuthorized(res.data.isAdmin);
-      setSuccessMessage(res.data.message);
+      toast.success(res.data.message, { duration: 3000 });
     } catch (error) {
-      console.log(error.response.data);
-      setErrorsMessage(error.response.data.message);
+      toast.error(error.response.data.message, { duration: 3000 });
     }
   };
 
@@ -60,12 +53,9 @@ export const AuthProvider = ({ children }) => {
       const cookies = Cookies.get('token');
       if (cookies.token) {
         setIsAuthenticated(true);
-        setIsAuthorized(true);
-        setUser(res.data);
         setLoading(false);
       } else {
         setIsAuthenticated(false);
-        setIsAuthorized(false);
         setLoading(false);
       }
     };
@@ -80,10 +70,10 @@ export const AuthProvider = ({ children }) => {
         logOut,
         isAuthenticated,
         isAuthorized,
-        successMessage,
-        errorsMessage,
         loading,
       }}
-    ></AuthContext.Provider>
+    >
+      {children}
+    </AuthContext.Provider>
   );
 };

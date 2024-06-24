@@ -20,9 +20,9 @@ export const AuthProvider = ({ children }) => {
   const [isAuthorized, setIsAuthorized] = useState(false);
   const [loading, setLoading] = useState(true);
 
-  const logUp = async (userData) => {
+  const logUp = async (user) => {
     try {
-      const res = await logUpService(userData);
+      const res = await logUpService(user);
       setUser(res.data);
       toast.success(res.data.message, { duration: 3000 });
     } catch (error) {

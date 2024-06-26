@@ -26,6 +26,7 @@ export const UserProvider = ({ children }) => {
     try {
       const res = await getUserService(id);
       setUserData(res.data);
+      return res.data;
     } catch (error) {
       console.log(error);
     }

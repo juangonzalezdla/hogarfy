@@ -1,8 +1,8 @@
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import { AuthProvider } from './auth/context/AuthContext';
 import { UserProvider } from './account/context/UserContext';
-import { ProductProvider } from './dashboard/context/ProductContext';
 import { CategoryProvider } from './dashboard/context/CategoryContext';
+import { ProductProvider } from './dashboard/context/ProductContext';
 import LogUpPage from './auth/pages/LogUpPage';
 import LogInPage from './auth/pages/LogInPage';
 import Home from './home/Home';
@@ -45,11 +45,11 @@ function App() {
   return (
     <AuthProvider>
       <UserProvider>
-        <ProductProvider>
-          <CategoryProvider>
+        <CategoryProvider>
+          <ProductProvider>
             <RouterProvider router={router} />
-          </CategoryProvider>
-        </ProductProvider>
+          </ProductProvider>
+        </CategoryProvider>
       </UserProvider>
     </AuthProvider>
   );

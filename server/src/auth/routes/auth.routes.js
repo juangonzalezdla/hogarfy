@@ -13,6 +13,6 @@ const authRouter = Router();
 authRouter.post('/logup', validateDto(logUpDto), logUp);
 authRouter.post('/login', validateDto(logInDto), logIn);
 authRouter.get('/verify', verifyToken);
-authRouter.post('/logout', authenticate, logOut);
+authRouter.post('/logout', verifyToken, logOut);
 
 export default authRouter;

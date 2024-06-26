@@ -1,5 +1,9 @@
 import { createContext, useContext, useState, useEffect } from 'react';
-import { logUpService, logInService } from '../../services/authServices';
+import {
+  logUpService,
+  logInService,
+  verifyTokenService,
+} from '../../services/authServices';
 import Cookies from 'js-cookie';
 import { toast } from 'react-hot-toast';
 
@@ -23,7 +27,6 @@ export const AuthProvider = ({ children }) => {
   const logUp = async (user) => {
     try {
       const res = await logUpService(user);
-      setUser(res.data);
       toast.success(res.data.message, { duration: 3000 });
     } catch (error) {
       toast.error(error.response.data.message, { duration: 3000 });
@@ -33,9 +36,7 @@ export const AuthProvider = ({ children }) => {
   const logIn = async (user) => {
     try {
       const res = await logInService(user);
-      setUser(res.data);
       setIsAuthenticated(true);
-      setIsAuthorized(res.data.isAdmin);
       toast.success(res.data.message, { duration: 3000 });
     } catch (error) {
       toast.error(error.response.data.message, { duration: 3000 });
@@ -49,16 +50,29 @@ export const AuthProvider = ({ children }) => {
   };
 
   useEffect(() => {
-    const checkLogIn = () => {
-      const cookies = Cookies.get('token');
-      if (cookies.token) {
-        setIsAuthenticated(true);
+    const checkLogIn = async () => {
+      const cookies = Cookies.get();
+      console.log(cookies.token)
+      if (!cookies.token) {
+        setIsAuthenticated(false);
         setLoading(false);
-      } else {
+        return;
+      }
+
+      try {
+        const res = await verifyTokenService(cookies.token);
+        if (!res.data) return setIsAuthenticated(false);
+        
+        setIsAuthenticated(true);
+        setIsAuthorized(res.data.isAdmin);
+        setUser(res.data);
+        setLoading(false);
+      } catch (error) {
         setIsAuthenticated(false);
         setLoading(false);
       }
     };
+    checkLogIn();
   }, []);
 
   return (

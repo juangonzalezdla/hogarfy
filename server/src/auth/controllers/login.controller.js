@@ -19,7 +19,7 @@ const logIn = async (req, res) => {
       process.env.JWT_PRIVATE_KEY,
       { expiresIn: '2d' }
     );
-    res.cookie('token', token, { httpOnly: true });
+    res.cookie('token', token);
 
     return res.status(200).json({ ok: true, message: 'Inicio de sesión exitoso' });
   } catch (error) {

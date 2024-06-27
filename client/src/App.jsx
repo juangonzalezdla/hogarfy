@@ -5,7 +5,7 @@ import { CategoryProvider } from './dashboard/context/CategoryContext';
 import { ProductProvider } from './dashboard/context/ProductContext';
 import LogUpPage from './auth/pages/LogUpPage';
 import LogInPage from './auth/pages/LogInPage';
-import Home from './home/Home';
+import Home from './home/pages/Home';
 
 const router = createBrowserRouter([
   {
@@ -24,6 +24,12 @@ const router = createBrowserRouter([
   {
     path: '/',
     element: <Home />,
+  },
+  {
+    path: '/orders',
+  },
+  {
+    path: '/cart',
   },
   {
     path: '/account/:id/',

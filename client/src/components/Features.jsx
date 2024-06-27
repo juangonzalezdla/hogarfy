@@ -27,26 +27,28 @@ const features = [
 
 export default function Features() {
   return (
-    <section className='w-full max-w-[1400px] my-0 mx-auto py-12 px-12 flex flex-col justify-center items-center gap-10'>
-      <h1 className='text-2xl text-center text-blue font-roboto font-bold mb-2'>
-        En Hogarfy nos caracterizamos por
-      </h1>
+    <section className=' bg-light-blue py-12 px-12'>
+      <div className='w-full max-w-[1400px] my-0 mx-auto flex flex-col justify-center items-center gap-10'>
+        <h1 className='text-2xl text-center text-blue font-roboto font-bold mb-2'>
+          En Hogarfy nos caracterizamos por
+        </h1>
 
-      <div className='flex justify-center items-center gap-5 max-lg:flex-col'>
-        {features.map((feature) => (
-          <article
-            className='w-60 bg-white py-4 px-3 flex flex-col items-center rounded-lg shadow-lg transition-all duration-300 ease-in-out group hover:bg-blue'
-            key={feature.id}
-          >
-            <i className={feature.icon}></i>
-            <h2 className='text-black font-bold text-xl mt-1 group-hover:text-white'>
-              {feature.name}
-            </h2>
-            <p className='text-center group-hover:text-white'>
-              {feature.description}
-            </p>
-          </article>
-        ))}
+        <div className='flex justify-center items-center gap-5 max-lg:flex-col'>
+          {features.map((feature) => (
+            <article
+              className='w-60 bg-white py-4 px-3 flex flex-col items-center rounded-lg shadow-lg transition-all duration-300 ease-in-out group hover:bg-blue'
+              key={feature.id}
+            >
+              <i className={feature.icon}></i>
+              <h2 className='text-black font-bold text-xl mt-1 group-hover:text-white'>
+                {feature.name}
+              </h2>
+              <p className='text-center group-hover:text-white'>
+                {feature.description}
+              </p>
+            </article>
+          ))}
+        </div>
       </div>
     </section>
   );

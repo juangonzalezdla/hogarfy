@@ -6,6 +6,7 @@ import { ProductProvider } from './dashboard/context/ProductContext';
 import LogUpPage from './auth/pages/LogUpPage';
 import LogInPage from './auth/pages/LogInPage';
 import Home from './home/pages/Home';
+import AccountPage from './account/pages/AccountPage';
 
 const router = createBrowserRouter([
   {
@@ -33,6 +34,7 @@ const router = createBrowserRouter([
   },
   {
     path: '/account/:id/',
+    element: <AccountPage />,
     children: [
       {
         path: 'update-email',
@@ -44,6 +46,23 @@ const router = createBrowserRouter([
         path: 'delete-account',
       },
     ],
+  },
+  {
+    path: '/legal/',
+    children: [
+      {
+        path: 'sobre-nosotros',
+      },
+      {
+        path: 'preguntas-frecuentes',
+      },
+      {
+        path: 'terminos-condiciones',
+      },
+      {
+        path: 'privacidad',
+      },
+    ]
   },
 ]);
 

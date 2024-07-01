@@ -50,7 +50,7 @@ export default function HeaderIcons() {
           </span>
 
           <Link
-            to={`/account/${user._id}`}
+            to={`/account/${user._id}/my-account`}
             className='flex justify-start items-center gap-2 text-lg text-dark-gray font-medium p-2 rounded-lg hover:bg-light-gray'
           >
             <i className='bx bx-cog bx-sm'></i>

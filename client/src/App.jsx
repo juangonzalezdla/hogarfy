@@ -7,6 +7,9 @@ import LogUpPage from './auth/pages/LogUpPage';
 import LogInPage from './auth/pages/LogInPage';
 import Home from './home/pages/Home';
 import AccountPage from './account/pages/AccountPage';
+import UpdateEmailPage from './account/pages/UpdateEmailPage';
+import UpdatePasswordPage from './account/pages/UpdatePasswordPage';
+import DeleteAccountPage from './account/pages/DeleteAccountPage';
 
 const router = createBrowserRouter([
   {
@@ -34,16 +37,22 @@ const router = createBrowserRouter([
   },
   {
     path: '/account/:id/',
-    element: <AccountPage />,
     children: [
       {
+        path: 'my-account',
+        element: <AccountPage />,
+      },
+      {
         path: 'update-email',
+        element: <UpdateEmailPage />,
       },
       {
         path: 'update-password',
+        element: <UpdatePasswordPage />,
       },
       {
         path: 'delete-account',
+        element: <DeleteAccountPage />,
       },
     ],
   },
@@ -62,7 +71,7 @@ const router = createBrowserRouter([
       {
         path: 'privacidad',
       },
-    ]
+    ],
   },
 ]);
 

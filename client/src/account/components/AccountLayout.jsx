@@ -47,7 +47,7 @@ export default function AccountLayout({ children }) {
               </div>
 
               <div className='flex flex-col gap-3'>
-                <Link to={`/account/${userData?._id}`}>
+                <Link to={`/account/${userData?._id}/my-account`}>
                   <Button className='w-full' color='purple'>Cambiar datos</Button>
                 </Link>
                 <Link to={`/account/${userData?._id}/update-email`}>

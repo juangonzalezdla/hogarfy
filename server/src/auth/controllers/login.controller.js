@@ -8,11 +8,11 @@ const logIn = async (req, res) => {
 
     const userByEmail = await userModel.findOne({ email });
     if (!userByEmail)
-      return res.status(401).send({ ok: false, message: 'Credenciales incorrectas' });
+      return res.status(401).json({ ok: false, message: 'Credenciales incorrectas' });
 
     const checkPassword = await compare(password, userByEmail.password);
     if (!checkPassword)
-      return res.status(401).send({ ok: false, message: 'Credenciales incorrectas' });
+      return res.status(401).json({ ok: false, message: 'Credenciales incorrectas' });
 
     const token = jwt.sign(
       { id: userByEmail._id, isAdmin: userByEmail.isAdmin },

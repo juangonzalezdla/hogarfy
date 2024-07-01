@@ -15,7 +15,7 @@ const updateUser = async (req, res) => {
     userById.address = address;
     await userById.save();
 
-    return res.status(201).send({ ok: true, message: 'Datos actualizados' });
+    return res.status(201).json({ ok: true, message: 'Datos actualizados' });
   } catch (error) {
     return res.status(500).json({ ok: false, message: message.error });
   }

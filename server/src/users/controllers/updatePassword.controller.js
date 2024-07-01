@@ -10,15 +10,15 @@ const updatePassword = async (req, res) => {
     if (!userById)
       return res.status(404).json({ ok: false, message: 'Usuario no encontrado' });
 
-    const checkPassord = await compare(oldPassword, userById.password);
+    const checkPassord = compare(oldPassword, userById.password);
     if (!checkPassord)
-      return res.status(401).send({ ok: false, message: 'Contraseña incorrecta' });
+      return res.status(401).json({ ok: false, message: 'Contraseña incorrecta' });
     
     const hashedPassword = await hash(newPassword, SALT);
     userById.password = hashedPassword;
     await userById.save();
 
-    return res.status(201).send({ ok: true, message: 'Contraseña actualizada' });
+    return res.status(201).json({ ok: true, message: 'Contraseña actualizada' });
   } catch (error) {
     return res.status(500).json({ ok: false, message: message.error });
   }

@@ -74,7 +74,7 @@ export default function AccountPage() {
               value='Correo electronico'
               className='mb-2 block'
             />
-            <TextInput id='email' type='text' disabled {...register('email')} />
+            <TextInput id='email' type='email' disabled {...register('email')} />
           </div>
 
           <div className='w-60'>

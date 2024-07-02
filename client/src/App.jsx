@@ -3,13 +3,17 @@ import { AuthProvider } from './auth/context/AuthContext';
 import { UserProvider } from './account/context/UserContext';
 import { CategoryProvider } from './dashboard/context/CategoryContext';
 import { ProductProvider } from './dashboard/context/ProductContext';
+
 import LogUpPage from './auth/pages/LogUpPage';
 import LogInPage from './auth/pages/LogInPage';
 import Home from './home/pages/Home';
+
 import AccountPage from './account/pages/AccountPage';
 import UpdateEmailPage from './account/pages/UpdateEmailPage';
 import UpdatePasswordPage from './account/pages/UpdatePasswordPage';
 import DeleteAccountPage from './account/pages/DeleteAccountPage';
+
+import FrequentQuestions from './legal/pages/FrequentQuestions';
 
 const router = createBrowserRouter([
   {
@@ -64,6 +68,7 @@ const router = createBrowserRouter([
       },
       {
         path: 'preguntas-frecuentes',
+        element: <FrequentQuestions />,
       },
       {
         path: 'terminos-condiciones',

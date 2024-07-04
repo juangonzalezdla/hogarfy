@@ -3,7 +3,6 @@ import BasicHeader from '../../components/BasicHeader';
 import Main from '../components/Main';
 import Title from '../components/Title';
 import Subtitle from '../components/Subtitle';
-import StrongText from '../components/StrongText';
 import Footer from '../../components/Footer';
 
 const terms = [

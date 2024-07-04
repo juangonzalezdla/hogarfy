@@ -32,7 +32,7 @@ export default function Footer() {
       <div className='w-full max-w-[1400px] my-0 mx-auto flex justify-between max-md:flex-col max-md:gap-8'>
         <section className='flex flex-col justify-center items-center'>
           <Logo />
-          <span>© Copyright 2023, Hogarfy colombia SAS</span>
+          <span className='text-center'>© Copyright 2023, Hogarfy colombia SAS</span>
         </section>
 
         <section className='flex flex-col justify-center items-center'>

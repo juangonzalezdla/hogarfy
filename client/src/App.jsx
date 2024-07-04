@@ -16,6 +16,7 @@ import DeleteAccountPage from './account/pages/DeleteAccountPage';
 import AboutUs from './legal/pages/AboutUs';
 import FrequentQuestions from './legal/pages/FrequentQuestions';
 import Terms from './legal/pages/Terms';
+import Privacy from './legal/pages/Privacy';
 
 const router = createBrowserRouter([
   {
@@ -79,6 +80,7 @@ const router = createBrowserRouter([
       },
       {
         path: 'privacidad',
+        element: <Privacy />
       },
     ],
   },

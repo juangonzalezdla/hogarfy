@@ -13,7 +13,9 @@ import UpdateEmailPage from './account/pages/UpdateEmailPage';
 import UpdatePasswordPage from './account/pages/UpdatePasswordPage';
 import DeleteAccountPage from './account/pages/DeleteAccountPage';
 
+import AboutUs from './legal/pages/AboutUs';
 import FrequentQuestions from './legal/pages/FrequentQuestions';
+import Terms from './legal/pages/Terms';
 
 const router = createBrowserRouter([
   {
@@ -65,6 +67,7 @@ const router = createBrowserRouter([
     children: [
       {
         path: 'sobre-nosotros',
+        element: <AboutUs />,
       },
       {
         path: 'preguntas-frecuentes',
@@ -72,6 +75,7 @@ const router = createBrowserRouter([
       },
       {
         path: 'terminos-condiciones',
+        element: <Terms />
       },
       {
         path: 'privacidad',

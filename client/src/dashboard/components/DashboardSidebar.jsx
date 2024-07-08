@@ -35,7 +35,7 @@ export default function DashboardSidebar({ show }) {
     <aside
       className={
         (show ? 'left-0' : '-left-full') +
-        ' fixed top-0 p-4 w-full bg-light-blue h-full md:static md:w-52 transition-all z-10 rounded-r-xl'
+        ' fixed top-0 p-4 w-full bg-light-blue max-h-full md:static md:w-52 transition-all z-10 rounded-r-xl'
       }
     >
       <nav className='flex flex-col gap-3'>
@@ -44,6 +44,7 @@ export default function DashboardSidebar({ show }) {
             <Link
               to={link.to}
               className={pathname === link.to ? activeLink : inactiveLink}
+              key={link.id}
             >
               <i className={link.icon + ' mr-2'}></i>
               {link.name}

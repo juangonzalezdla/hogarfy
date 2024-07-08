@@ -15,8 +15,8 @@ export default function DashboardLayout({ pageTitle, children }) {
       <div className='flex gap-5'>
         <DashboardSidebar show={showSidebar} />
 
-        <div className='flex-grow p-4'>
-          <h1 className='text-blue font-poppins text-lg font-bold mb-5'>
+        <div className='flex-grow bg-light-blue p-4 rounded-l-xl'>
+          <h1 className='text-blue font-poppins text-lg font-bold mb-5 max-md:text-center'>
             {pageTitle}
           </h1>
           {children}

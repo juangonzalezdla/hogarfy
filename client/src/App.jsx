@@ -18,6 +18,10 @@ import FrequentQuestions from './legal/pages/FrequentQuestions';
 import Terms from './legal/pages/Terms';
 import Privacy from './legal/pages/Privacy';
 
+import DashboardPage from './dashboard/pages/DashboardPage';
+import ProductsPage from './dashboard/pages/ProductsPage';
+import CategoriesPage from './dashboard/pages/CategoriesPage';
+
 const router = createBrowserRouter([
   {
     path: '/auth/',
@@ -76,13 +80,25 @@ const router = createBrowserRouter([
       },
       {
         path: 'terminos-condiciones',
-        element: <Terms />
+        element: <Terms />,
       },
       {
         path: 'privacidad',
-        element: <Privacy />
+        element: <Privacy />,
       },
     ],
+  },
+  {
+    path: '/dashboard',
+    element: <DashboardPage />,
+  },
+  {
+    path: '/dashboard/products',
+    element: <ProductsPage />,
+  },
+  {
+    path: '/dashboard/categories',
+    element: <CategoriesPage />,
   },
 ]);
 

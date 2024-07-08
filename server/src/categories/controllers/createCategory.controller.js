@@ -2,15 +2,16 @@ import categoryModel from '../model/category.schema.js';
 
 const createCategory = async (req, res) => {
   try {
-    const { name, parentId } = req.body;
+    const { name, properties, parentId } = req.body;
 
     const category = new categoryModel({
       name: name,
+      properties: properties,
       parent: parentId,
     });
 
     if (parentId) {
-      const parentCategory = await Category.findById(parentId);
+      const parentCategory = await categoryModel.findById(parentId);
       parentCategory.children.push(category._id);
       await parentCategory.save();
     }

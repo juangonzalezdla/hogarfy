@@ -60,9 +60,9 @@ export const ProductProvider = ({ children }) => {
     }
   };
 
-  const deleteProduct = async (id, product) => {
+  const deleteProduct = async (id) => {
     try {
-      const res = await deleteProductService(id, product);
+      const res = await deleteProductService(id);
       toast.success(res.data.message, { duration: 3000 });
     } catch (error) {
       toast.error(error.response.data.message, { duration: 3000 });

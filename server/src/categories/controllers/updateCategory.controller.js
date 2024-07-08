@@ -2,13 +2,14 @@ import categoryModel from '../model/category.schema.js';
 
 const updateCategory = async (req, res) => {
   try {
-    const { name, parentId } = req.body;
+    const { name, properties, parentId } = req.body;
 
     const categoryById = await categoryModel.findById(req.params.id);
     if (!categoryById)
       return res.status(404).json({ ok: false, message: 'Categoria no encontrada' });
 
     categoryById.name = name;
+    categoryById.properties = properties;
 
      // Manejo de la relación de categoría padre
      if (parentId && parentId !== category.parent) {

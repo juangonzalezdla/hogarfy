@@ -10,7 +10,7 @@ const deleteProduct = async (req, res) => {
 
     return res.status(204).json({ ok: true, message: 'Producto eliminado' });
   } catch (error) {
-    return res.status(500).json({ ok: false, message: message.error });
+    return res.status(500).json({ ok: false, message: error.message });
   }
 }
 

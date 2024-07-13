@@ -18,7 +18,7 @@ const updateEmail = async (req, res) => {
 
     return res.status(201).json({ ok: true, message: 'Email actualizado' });
   } catch (error) {
-    return res.status(500).json({ ok: false, message: message.error });
+    return res.status(500).json({ ok: false, message: error.message });
   }
 }
 

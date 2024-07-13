@@ -8,7 +8,7 @@ const getUser = async (req, res) => {
 
     return res.status(200).json(userById);
   } catch (error) {
-    return res.status(500).json({ ok: false, message: message.error });
+    return res.status(500).json({ ok: false, message: error.message });
   }
 }
 

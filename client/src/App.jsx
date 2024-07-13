@@ -21,6 +21,8 @@ import Privacy from './legal/pages/Privacy';
 import DashboardPage from './dashboard/pages/DashboardPage';
 import ProductsPage from './dashboard/pages/ProductsPage';
 import CategoriesPage from './dashboard/pages/CategoriesPage';
+import UnauthorizedPage from './home/pages/UnauthorizedPage';
+import ProtectedRoute from './ProtectedRoute';
 
 const router = createBrowserRouter([
   {
@@ -47,27 +49,6 @@ const router = createBrowserRouter([
     path: '/cart',
   },
   {
-    path: '/account/:id/',
-    children: [
-      {
-        path: 'my-account',
-        element: <AccountPage />,
-      },
-      {
-        path: 'update-email',
-        element: <UpdateEmailPage />,
-      },
-      {
-        path: 'update-password',
-        element: <UpdatePasswordPage />,
-      },
-      {
-        path: 'delete-account',
-        element: <DeleteAccountPage />,
-      },
-    ],
-  },
-  {
     path: '/legal/',
     children: [
       {
@@ -89,16 +70,48 @@ const router = createBrowserRouter([
     ],
   },
   {
-    path: '/dashboard',
-    element: <DashboardPage />,
+    path: '/account/:id/',
+    element: <ProtectedRoute />,
+    children: [
+      {
+        path: 'my-account',
+        element: <AccountPage />,
+      },
+      {
+        path: 'update-email',
+        element: <UpdateEmailPage />,
+      },
+      {
+        path: 'update-password',
+        element: <UpdatePasswordPage />,
+      },
+      {
+        path: 'delete-account',
+        element: <DeleteAccountPage />,
+      },
+    ],
   },
   {
-    path: '/dashboard/products',
-    element: <ProductsPage />,
+    path: '/dashboard/',
+    element: <ProtectedRoute adminOnly={true} />,
+    children: [
+      {
+        path: 'home',
+        element: <DashboardPage />
+      },
+      {
+        path: 'products',
+        element: <ProductsPage />,
+      },
+      {
+        path: 'categories',
+        element: <CategoriesPage />,
+      },
+    ]
   },
   {
-    path: '/dashboard/categories',
-    element: <CategoriesPage />,
+    path: '/unauthorized',
+    element: <UnauthorizedPage />,
   },
 ]);
 

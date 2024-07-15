@@ -23,6 +23,7 @@ export const useProduct = () => {
 export const ProductProvider = ({ children }) => {
   const [productData, setProductData] = useState(null);
   const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   const createProduct = async (product) => {
     try {
@@ -46,6 +47,7 @@ export const ProductProvider = ({ children }) => {
     try {
       const res = await getProductsService();
       setProducts(res.data);
+      setLoading(false);
     } catch (error) {
       console.log(error);
     }
@@ -79,6 +81,7 @@ export const ProductProvider = ({ children }) => {
         getProducts,
         updateProduct,
         deleteProduct,
+        loading
       }}
     >
       {children}

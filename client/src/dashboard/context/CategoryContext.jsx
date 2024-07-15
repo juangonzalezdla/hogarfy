@@ -23,6 +23,7 @@ export const useCategory = () => {
 export const CategoryProvider = ({ children }) => {
   const [categoryData, setCategoryData] = useState(null);
   const [categories, setCategories] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   const createCategory = async (category) => {
     try {
@@ -46,6 +47,7 @@ export const CategoryProvider = ({ children }) => {
     try {
       const res = await getCategoriesService();
       setCategories(res.data);
+      setLoading(false);
     } catch (error) {
       console.log(error);
     }
@@ -79,6 +81,7 @@ export const CategoryProvider = ({ children }) => {
         getCategories,
         updateCategory,
         deleteCategory,
+        loading,
       }}
     >
       {children}

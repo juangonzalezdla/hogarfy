@@ -3,8 +3,8 @@ import logUp from '../controllers/logUp.controller.js';
 import logIn from '../controllers/login.controller.js';
 import logOut from '../controllers/logOut.controller.js';
 import verifyToken from '../controllers/verifyToken.controller.js';
-import authenticate from '../Middlewares/authenticate.middleware.js';
-import validateDto from '../Middlewares/validateDto.middleware.js';
+import authenticate from '../../Middlewares/authenticate.middleware.js';
+import validateDto from '../../Middlewares/validateDto.middleware.js';
 import logUpDto from '../dto/logup.dto.js';
 import logInDto from '../dto/login.dto.js';
 

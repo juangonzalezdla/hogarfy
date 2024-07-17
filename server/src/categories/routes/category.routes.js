@@ -4,8 +4,8 @@ import getCategory from '../controllers/getCategory.controller.js';
 import getCategories from '../controllers/getCategories.controller.js';
 import updateCategory from '../controllers/updateCategory.controller.js';
 import deleteCategory from '../controllers/deleteCategory.controller.js';
-import authenticate from '../../auth/Middlewares/authenticate.middleware.js';
-import authorizeAdmin from '../../auth/Middlewares/authorizeAdmin.middleware.js';
+import authenticate from '../../Middlewares/authenticate.middleware.js';
+import authorizeAdmin from '../../Middlewares/authorizeAdmin.middleware.js';
 
 const categoryRouter = Router();
 

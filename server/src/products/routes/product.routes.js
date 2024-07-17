@@ -4,8 +4,8 @@ import getProduct from '../controllers/getProduct.controller.js';
 import getProducts from '../controllers/getProducts.controller.js';
 import updateProduct from '../controllers/updateProduct.controller.js';
 import deleteProduct from '../controllers/deleteProduct.controller.js';
-import authenticate from '../../auth/Middlewares/authenticate.middleware.js';
-import authorizeAdmin from '../../auth/Middlewares/authorizeAdmin.middleware.js';
+import authenticate from '../../Middlewares/authenticate.middleware.js';
+import authorizeAdmin from '../../Middlewares/authorizeAdmin.middleware.js';
 
 const productRouter = Router();
 

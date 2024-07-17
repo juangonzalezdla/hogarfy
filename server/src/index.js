@@ -6,7 +6,7 @@ import userRouter from './users/routes/user.routes.js';
 import productRouter from './products/routes/product.routes.js';
 import categoryRouter from './categories/routes/category.routes.js';
 import cookieParser from 'cookie-parser';
-import cors from 'cors'
+import cors from 'cors';
 
 dotenv.config(); // Configuración de las variables de entorno
 

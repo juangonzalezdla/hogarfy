@@ -6,7 +6,10 @@ const createCategory = async (req, res) => {
 
     const category = new categoryModel({
       name: name,
-      properties: properties,
+      properties: properties.map(prop => ({
+        name: prop.name,
+        values: prop.values
+      })),
       parent: parentId,
     });
 

@@ -1,11 +1,12 @@
 import DashboardLayout from '../components/DashboardLayout';
-import BasicHeader from '../../components/BasicHeader';
+import CategoriesTable from '../components/category/CategoriesTable';
 
 export default function CategoriesPage() {
   return (
     <>
-      <BasicHeader />
-      <DashboardLayout pageTitle='Categorías' />
+      <DashboardLayout pageTitle='Categorías'>
+        <CategoriesTable />
+      </DashboardLayout>
     </>
   );
 }

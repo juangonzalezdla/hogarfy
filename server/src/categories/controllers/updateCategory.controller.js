@@ -9,24 +9,29 @@ const updateCategory = async (req, res) => {
       return res.status(404).json({ ok: false, message: 'Categoria no encontrada' });
 
     categoryById.name = name;
-    categoryById.properties = properties;
+    categoryById.properties = properties.map(prop => ({
+      name: prop.name,
+      values: prop.values
+    }))
 
-     // Manejo de la relación de categoría padre
-     if (parentId && parentId !== category.parent) {
+    // Manejo de la relación de categoría padre
+    if (parentId && parentId !== categoryById.parent) {
       // Remover de los hijos de la antigua categoría padre, si existe
-      if (category.parent) {
-        const oldParent = await Category.findById(category.parent);
-        oldParent.children.pull(category._id);
-        await oldParent.save();
+      if (categoryById.parent) {
+        const oldParent = await categoryModel.findById(categoryById.parent);
+        if (oldParent) {
+          oldParent.children.pull(categoryById._id);
+          await oldParent.save();
+        }
       }
 
       // Añadir a los hijos de la nueva categoría padre, si existe
-      const newParent = await Category.findById(parentId);
+      const newParent = await categoryModel.findById(parentId);
       if (newParent) {
-        newParent.children.push(category._id);
+        newParent.children.push(categoryById._id);
         await newParent.save();
       }
-      category.parent = parentId;
+      categoryById.parent = parentId;
     }
 
     await categoryById.save();

@@ -1,11 +1,10 @@
-import { Modal, Button } from 'flowbite-react';
-import { Toaster } from 'react-hot-toast';
+import { Modal } from 'flowbite-react';
+import ProductForm from './ProductForm';
 import { useEffect, useState } from 'react';
 import { useProduct } from '../../context/ProductContext';
-import ProductForm from './ProductForm';
 
 export default function ModalCreateEditProduct({ show, product, onClose }) {
-  const { createProduct, updateProduct } = useProduct();
+  const { createProduct, updateProduct, getProducts } = useProduct();
   const [isEdit, setIsEdit] = useState(false);
 
   useEffect(() => {
@@ -14,19 +13,20 @@ export default function ModalCreateEditProduct({ show, product, onClose }) {
   }, [product]);
 
   const onSubmit = async (data) => {
-    if (isEdit) {
-      data.images = data.images.map((image) => image.url);
-      await updateProduct(product._id, data);
-    } else {
-      data.images = data.images.map((image) => image.url);
-      await createProduct(data);
-    }
+    data.images = data.images.map((image) => ({
+      url: image.url,
+      publicId: image.publicId,
+    }));
+
+    if (isEdit) await updateProduct(product._id, data);
+    else await createProduct(data);
+
     onClose();
+    getProducts();
   };
 
   return (
     <>
-      <Toaster />
       <Modal show={show} size='2xl' onClose={onClose}>
         <Modal.Header>
           {isEdit

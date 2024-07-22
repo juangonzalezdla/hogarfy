@@ -7,7 +7,7 @@ const productSchema = new Schema({
   name: { type: String, require: true },
   description: { type: String },
   price: { type: Number, require: true },
-  images: [{ type: String }],
+  images: [{ type: Object }],
   properties: { type: Object },
   category: { type: String, ref: 'Category' },
   isFeatured: { type: Boolean, default: false }

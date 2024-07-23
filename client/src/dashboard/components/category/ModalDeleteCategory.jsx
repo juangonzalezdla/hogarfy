@@ -6,6 +6,7 @@ export default function ModalDeleteCategory({ show, category, onClose }) {
 
   const handleDeleteCategory = async (category) => {
     await deleteCategory(category._id);
+    onClose();
     getCategories();
   };
 

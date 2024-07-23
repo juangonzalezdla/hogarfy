@@ -16,7 +16,7 @@ const deleteCategory = async (req, res) => {
 
     await categoryById.deleteOne();
 
-    return res.status(204).json({ ok: true, message: 'Categoria eliminada'});
+    return res.status(200).json({ ok: true, message: 'Categoria eliminada'});
   } catch (error) {
     return res.status(500).json({ ok: false, message: error.message });
   }

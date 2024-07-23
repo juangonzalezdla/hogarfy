@@ -15,7 +15,7 @@ const deleteUser = async (req, res) => {
 
     await userById.deleteOne();
 
-    return res.status(204).json({ ok: true, message: 'Usuario eliminado' });
+    return res.status(200).json({ ok: true, message: 'Usuario eliminado' });
   } catch (error) {
     return res.status(500).json({ ok: false, message: error.message });
   }

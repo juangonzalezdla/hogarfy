@@ -6,6 +6,7 @@ export default function ModalDeleteProduct({ show, product, onClose }) {
 
   const handleDeleteProduct = async (product) => {
     await deleteProduct(product._id);
+    onClose();
     getProducts();
   };
 

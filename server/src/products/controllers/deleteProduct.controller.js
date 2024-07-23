@@ -8,7 +8,7 @@ const deleteProduct = async (req, res) => {
 
     await productById.deleteOne();
 
-    return res.status(204).json({ ok: true, message: 'Producto eliminado' });
+    return res.status(200).json({ ok: true, message: 'Producto eliminado' });
   } catch (error) {
     return res.status(500).json({ ok: false, message: error.message });
   }

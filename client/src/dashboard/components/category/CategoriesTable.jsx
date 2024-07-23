@@ -1,9 +1,11 @@
-import { Table, Dropdown, Pagination, Spinner, Button, TextInput } from 'flowbite-react';
+import { Table, Spinner, Button, TextInput } from 'flowbite-react';
+import CategoryRow from './CategoryRow';
 import ModalCreateEditCategory from './ModalCreateEditCategory';
 import ModalDeleteCategory from './ModalDeleteCategory';
 import { useEffect, useState } from 'react';
 import { useCategory } from '../../context/CategoryContext';
 import { Toaster } from 'react-hot-toast';
+import TablePagination from '../TablePagination';
 
 export default function CategoriesTable() {
   const { getCategories, categories, loading } = useCategory();
@@ -44,23 +46,15 @@ export default function CategoriesTable() {
     currentPage * ITEMS_PER_PAGE
   );
 
-  const totalPages = Math.ceil(filteredCategories.length / ITEMS_PER_PAGE);
-
   const handleSearch = (event) => {
     setSearchTerm(event.target.value);
     setCurrentPage(1);
   };
 
-  const startIndex = (currentPage - 1) * ITEMS_PER_PAGE + 1;
-  const endIndex = Math.min(
-    currentPage * ITEMS_PER_PAGE,
-    filteredCategories.length
-  );
-
   return (
     <>
       <Toaster />
-      <div className='flex justify-between items-center mb-4 max-sm:flex-col-reverse max-sm:items-start max-sm:gap-4 max-sm:justify-start'>    
+      <div className='flex justify-between items-center mb-4 max-sm:flex-col-reverse max-sm:items-start max-sm:gap-4 max-sm:justify-start'>
         <TextInput
           type='text'
           placeholder='Buscar categoría...'
@@ -81,60 +75,34 @@ export default function CategoriesTable() {
         <>
           <Table className='max-w-full'>
             <Table.Head>
-              <Table.HeadCell className='bg-light-gray px-3'>Nombre</Table.HeadCell>
-              <Table.HeadCell className='bg-light-gray px-3'>Categoría Padre</Table.HeadCell>
-              <Table.HeadCell className='bg-light-gray px-3'>Acciones</Table.HeadCell>
+              <Table.HeadCell className='bg-light-gray px-3'>
+                Nombre
+              </Table.HeadCell>
+              <Table.HeadCell className='bg-light-gray px-3'>
+                Categoría Padre
+              </Table.HeadCell>
+              <Table.HeadCell className='bg-light-gray px-3'>
+                Acciones
+              </Table.HeadCell>
             </Table.Head>
 
             <Table.Body className='divide-y'>
               {paginatedCategories.map((category) => (
-                <Table.Row key={category._id} className='bg-white'>
-                  <Table.Cell className='px-3 py-1.5'>{category.name}</Table.Cell>
-                  <Table.Cell className='px-3 py-1.5'>
-                    {category.parent?.name}
-                  </Table.Cell>
-                  <Table.Cell className='px-3 py-1.5'>
-                    <Dropdown
-                      renderTrigger={() => (
-                        <i className='bx bx-dots-horizontal-rounded text-[25px] cursor-pointer p-2 rounded-full hover:text-dark-gray hover:bg-light-gray'></i>
-                      )}
-                      className='p-2 rounded-md'
-                    >
-                      <Dropdown.Item
-                        className='text-sm font-medium rounded-md flex items-center gap-2'
-                        onClick={() => handleCreateEditModal(category)}
-                      >
-                        <i className='bx bx-edit bx-sm'></i>
-                        Editar
-                      </Dropdown.Item>
-                      <Dropdown.Divider />
-                      <Dropdown.Item className='text-sm text-red-700 font-medium rounded-md flex items-center gap-2'
-                        onClick={() => handleDeleteModal(category)}
-                      >
-                        <i className='bx bxs-trash bx-sm'></i>
-                        Eliminar
-                      </Dropdown.Item>
-                    </Dropdown>
-                  </Table.Cell>
-                </Table.Row>
+                <CategoryRow
+                  key={category._id}
+                  category={category}
+                  onEdit={handleCreateEditModal}
+                  onDelete={handleDeleteModal}
+                />
               ))}
             </Table.Body>
           </Table>
-          <div className='flex flex-col justify-center items-center mt-5'>
-            <div>
-              Mostrando {startIndex} a {endIndex} de {filteredCategories.length} categorías
-            </div>
-
-            <Pagination
-              layout='navigation'
-              currentPage={currentPage}
-              totalPages={totalPages}
-              onPageChange={(page) => setCurrentPage(page)}
-              previousLabel='Anterior'
-              nextLabel='Siguiente'
-              showIcons
-            />
-          </div>
+          <TablePagination
+            currentPage={currentPage}
+            totalItems={filteredCategories.length}
+            itemsPerPage={ITEMS_PER_PAGE}
+            onPageChange={(page) => setCurrentPage(page)}
+          />
         </>
       )}
       {showModal && (

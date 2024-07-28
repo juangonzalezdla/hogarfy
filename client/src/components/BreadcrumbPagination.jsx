@@ -3,7 +3,9 @@ import { Link, useLocation } from 'react-router-dom';
 
 export default function BreadcrumbPagination() {
   const location = useLocation();
-  const pathnames = location.pathname.split('/').filter((x) => x);
+  const pathnames = decodeURI(location.pathname)
+    .split('/')
+    .filter((x) => x);
 
   return (
     <Breadcrumb aria-label='Default breadcrumb example'>
@@ -17,16 +19,14 @@ export default function BreadcrumbPagination() {
       {pathnames.map((value, index) => {
         const to = `/${pathnames.slice(0, index + 1).join('/')}`;
         const isLast = index === pathnames.length - 1;
+        const displayValue = value.charAt(0).toUpperCase() + value.slice(1);
+
         return (
           <Breadcrumb.Item key={to}>
             {isLast ? (
-              <span className='font-bold'>
-                {value.charAt(0).toUpperCase() + value.slice(1)}
-              </span>
+              <span className='font-bold'>{displayValue}</span>
             ) : (
-              <Link to={to}>
-                {value.charAt(0).toUpperCase() + value.slice(1)}
-              </Link>
+              <Link to={to}>{displayValue}</Link>
             )}
           </Breadcrumb.Item>
         );

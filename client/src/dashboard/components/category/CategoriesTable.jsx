@@ -3,7 +3,7 @@ import CategoryRow from './CategoryRow';
 import ModalCreateEditCategory from './ModalCreateEditCategory';
 import ModalDeleteCategory from './ModalDeleteCategory';
 import { useEffect, useState } from 'react';
-import { useCategory } from '../../context/CategoryContext';
+import { useCategory } from '../../../contexts/CategoryContext';
 import { Toaster } from 'react-hot-toast';
 import TablePagination from '../TablePagination';
 

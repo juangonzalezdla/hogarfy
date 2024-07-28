@@ -13,10 +13,10 @@ import deleteUserDto from '../dto/deleteUser.dto.js';
 
 const userRouter = Router();
 
-userRouter.get('/get-user/:id', authenticate, getUser);
+userRouter.get('/get/:id', authenticate, getUser);
 userRouter.put('/update-user/:id', validateDto(updateUserDto), authenticate, updateUser);
 userRouter.patch('/update-email/:id', validateDto(updateEmailDto), authenticate, updateEmail);
 userRouter.patch('/update-password/:id', validateDto(updatePasswordDto), authenticate, updatePassword);
-userRouter.delete('/delete-user/:id', validateDto(deleteUserDto), authenticate, deleteUser);
+userRouter.delete('/delete/:id', validateDto(deleteUserDto), authenticate, deleteUser);
 
 export default userRouter;

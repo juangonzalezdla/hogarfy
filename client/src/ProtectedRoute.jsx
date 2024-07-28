@@ -1,4 +1,4 @@
-import { useAuth } from './auth/context/AuthContext';
+import { useAuth } from './contexts/AuthContext';
 import { Navigate, Outlet } from 'react-router-dom';
 
 export default function ProtectedRoute({ adminOnly }) {

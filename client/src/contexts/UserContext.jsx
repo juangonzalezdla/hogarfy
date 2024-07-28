@@ -5,7 +5,7 @@ import {
   updateEmailService,
   updatePasswordService,
   deleteUserService,
-} from '../../services/userServices';
+} from '../services/userServices';
 import { toast } from 'react-hot-toast';
 
 // Crear el contexto

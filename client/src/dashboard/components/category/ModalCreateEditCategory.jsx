@@ -1,7 +1,7 @@
 import { Modal } from 'flowbite-react';
 import CategoryForm from './CategoryForm';
 import { useEffect, useState } from 'react';
-import { useCategory } from '../../context/CategoryContext';
+import { useCategory } from '../../../contexts/CategoryContext';
 
 export default function ModalCreateEditCategory({ show, category, onClose }) {
   const { createCategory, updateCategory, getCategories } = useCategory();

@@ -2,8 +2,8 @@ import AccountLayout from '../components/AccountLayout';
 import { Button, Label, TextInput } from 'flowbite-react';
 import { Toaster } from 'react-hot-toast';
 
-import { useUser } from '../context/UserContext';
-import { useAuth } from '../../auth/context/AuthContext';
+import { useUser } from '../../contexts/UserContext';
+import { useAuth } from '../../contexts/AuthContext';
 import { useParams } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';

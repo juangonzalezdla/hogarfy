@@ -9,10 +9,10 @@ import authorizeAdmin from '../../Middlewares/authorizeAdmin.middleware.js';
 
 const productRouter = Router();
 
-productRouter.post('/create-product', authenticate, authorizeAdmin, createProduct);
+productRouter.post('/create', authenticate, authorizeAdmin, createProduct);
 productRouter.get('/get-product/:id', getProduct);
 productRouter.get('/get-products', getProducts);
-productRouter.put('/update-product/:id', authenticate, authorizeAdmin, updateProduct);
-productRouter.delete('/delete-product/:id', authenticate, authorizeAdmin, deleteProduct);
+productRouter.put('/update/:id', authenticate, authorizeAdmin, updateProduct);
+productRouter.delete('/delete/:id', authenticate, authorizeAdmin, deleteProduct);
 
 export default productRouter;

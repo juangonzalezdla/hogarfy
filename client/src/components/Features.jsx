@@ -36,7 +36,7 @@ export default function Features() {
         <div className='flex justify-center items-center gap-5 max-lg:flex-col'>
           {features.map((feature) => (
             <article
-              className='w-60 bg-white py-4 px-3 flex flex-col items-center rounded-lg shadow-lg transition-all duration-300 ease-in-out group hover:bg-blue'
+              className='w-60 bg-white py-4 px-3 flex flex-col items-center rounded-lg shadow-lg transition-all duration-500 ease-in-out group hover:bg-blue hover:-translate-y-3 hover:scale-100'
               key={feature.id}
             >
               <i className={feature.icon}></i>

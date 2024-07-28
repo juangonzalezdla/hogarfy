@@ -1,5 +1,5 @@
 import { Modal, Button } from 'flowbite-react';
-import { useProduct } from '../../context/ProductContext';
+import { useProduct } from '../../../contexts/ProductContext';
 
 export default function ModalDeleteProduct({ show, product, onClose }) {
   const { deleteProduct, getProducts } = useProduct();

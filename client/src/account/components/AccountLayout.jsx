@@ -1,6 +1,6 @@
 import BasicHeader from '../../components/BasicHeader';
 import { Button } from 'flowbite-react';
-import { useUser } from '../context/UserContext';
+import { useUser } from '../../contexts/UserContext';
 import { Link, useParams } from 'react-router-dom';
 import { useEffect } from 'react';
 

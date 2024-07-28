@@ -7,7 +7,7 @@ import MessageLink from '../components/MessageLink';
 import { Toaster } from 'react-hot-toast';
 
 import { useEffect, useState } from 'react';
-import { useAuth } from '../context/AuthContext';
+import { useAuth } from '../../contexts/AuthContext';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import logInSchema from '../../schemas/logIn.schema';

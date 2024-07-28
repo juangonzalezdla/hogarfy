@@ -3,7 +3,7 @@ import {
   logUpService,
   logInService,
   verifyTokenService,
-} from '../../services/authServices';
+} from '../services/authServices';
 import Cookies from 'js-cookie';
 import { toast } from 'react-hot-toast';
 

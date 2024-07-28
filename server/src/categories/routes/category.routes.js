@@ -9,10 +9,10 @@ import authorizeAdmin from '../../Middlewares/authorizeAdmin.middleware.js';
 
 const categoryRouter = Router();
 
-categoryRouter.post('/create-category', authenticate, authorizeAdmin, createCategory);
+categoryRouter.post('/create', authenticate, authorizeAdmin, createCategory);
 categoryRouter.get('/get-category/:id', getCategory);
 categoryRouter.get('/get-categories', getCategories);
-categoryRouter.put('/update-category/:id', authenticate, authorizeAdmin, updateCategory);
-categoryRouter.delete('/delete-category/:id', authenticate, authorizeAdmin, deleteCategory);
+categoryRouter.put('/update/:id', authenticate, authorizeAdmin, updateCategory);
+categoryRouter.delete('/delete/:id', authenticate, authorizeAdmin, deleteCategory);
 
 export default categoryRouter;

@@ -5,7 +5,7 @@ import {
   getCategoriesService,
   updateCategoryService,
   deleteCategoryService,
-} from '../../services/categoryServices';
+} from '../services/categoryServices';
 import { toast } from 'react-hot-toast';
 
 // Crear el contexto

@@ -5,7 +5,7 @@ import {
   getProductsService,
   updateProductService,
   deleteProductService,
-} from '../../services/productServices';
+} from '../services/productServices';
 import { toast } from 'react-hot-toast';
 
 // Crear el contexto

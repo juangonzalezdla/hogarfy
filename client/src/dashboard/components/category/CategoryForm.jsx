@@ -1,7 +1,7 @@
 import { Button, Label, TextInput, Select } from 'flowbite-react';
 import { useForm, useFieldArray } from 'react-hook-form';
 import { useEffect } from 'react';
-import { useCategory } from '../../context/CategoryContext';
+import { useCategory } from '../../../contexts/CategoryContext';
 
 export default function CategoryForm({ onSubmit, category }) {
   const { getCategories, categories } = useCategory();

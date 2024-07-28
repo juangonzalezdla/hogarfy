@@ -3,7 +3,7 @@ import ProductRow from './ProductRow';
 import ModalCreateEditProduct from './ModalCreateEditProduct';
 import ModalDeleteProduct from './ModalDeleteProduct';
 import { useEffect, useState } from 'react';
-import { useProduct } from '../../context/ProductContext';
+import { useProduct } from '../../../contexts/ProductContext';
 import { Toaster } from 'react-hot-toast';
 import TablePagination from '../TablePagination';
 

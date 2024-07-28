@@ -1,12 +1,17 @@
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
-import { AuthProvider } from './auth/context/AuthContext';
-import { UserProvider } from './account/context/UserContext';
-import { CategoryProvider } from './dashboard/context/CategoryContext';
-import { ProductProvider } from './dashboard/context/ProductContext';
+import { AuthProvider } from './contexts/AuthContext';
+import { UserProvider } from './contexts/UserContext';
+import { CategoryProvider } from './contexts/CategoryContext';
+import { ProductProvider } from './contexts/ProductContext';
 
 import LogUpPage from './auth/pages/LogUpPage';
 import LogInPage from './auth/pages/LogInPage';
-import Home from './home/pages/Home';
+import HomePage from './home/pages/HomePage';
+import OrdersPage from './home/pages/OrdersPage';
+import CartPage from './home/pages/CartPage';
+import ParentCategoryPage from './home/pages/ParentCategoryPage';
+import ChildCategoryPage from './home/pages/ChildCategoryPage';
+import ProductPage from './home/pages/ProductPage';
 
 import AccountPage from './account/pages/AccountPage';
 import UpdateEmailPage from './account/pages/UpdateEmailPage';
@@ -21,6 +26,7 @@ import Privacy from './legal/pages/Privacy';
 import DashboardPage from './dashboard/pages/DashboardPage';
 import ProductsPage from './dashboard/pages/ProductsPage';
 import CategoriesPage from './dashboard/pages/CategoriesPage';
+
 import UnauthorizedPage from './home/pages/UnauthorizedPage';
 import ProtectedRoute from './ProtectedRoute';
 
@@ -40,13 +46,27 @@ const router = createBrowserRouter([
   },
   {
     path: '/',
-    element: <Home />,
+    element: <HomePage />,
   },
   {
     path: '/orders',
+    element: <OrdersPage />,
   },
   {
     path: '/cart',
+    element: <CartPage />,
+  },
+  {
+    path: '/:parentCategory',
+    element: <ParentCategoryPage />,
+  },
+  {
+    path: '/:parentCategory/:childCategory',
+    element: <ChildCategoryPage />,
+  },
+  {
+    path: '/:parentCategory/:childCategory/product/:id',
+    element: <ProductPage />,
   },
   {
     path: '/legal/',
@@ -97,7 +117,7 @@ const router = createBrowserRouter([
     children: [
       {
         path: 'home',
-        element: <DashboardPage />
+        element: <DashboardPage />,
       },
       {
         path: 'products',
@@ -107,7 +127,7 @@ const router = createBrowserRouter([
         path: 'categories',
         element: <CategoriesPage />,
       },
-    ]
+    ],
   },
   {
     path: '/unauthorized',

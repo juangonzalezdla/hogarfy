@@ -1,7 +1,7 @@
 import { Modal } from 'flowbite-react';
 import ProductForm from './ProductForm';
 import { useEffect, useState } from 'react';
-import { useProduct } from '../../context/ProductContext';
+import { useProduct } from '../../../contexts/ProductContext';
 
 export default function ModalCreateEditProduct({ show, product, onClose }) {
   const { createProduct, updateProduct, getProducts } = useProduct();

@@ -7,7 +7,7 @@ import {
   Radio,
 } from 'flowbite-react';
 import { useForm, useFieldArray } from 'react-hook-form';
-import { useCategory } from '../../context/CategoryContext';
+import { useCategory } from '../../../contexts/CategoryContext';
 import { useState, useEffect } from 'react';
 import ImageUploader from './ImageUploader';
 

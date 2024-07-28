@@ -2,7 +2,7 @@ import AccountLayout from '../components/AccountLayout';
 import { Button, Label, TextInput } from 'flowbite-react';
 import { Toaster } from 'react-hot-toast';
 
-import { useUser } from '../context/UserContext';
+import { useUser } from '../../contexts/UserContext';
 import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { useForm } from 'react-hook-form';

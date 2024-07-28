@@ -2,7 +2,7 @@ export default function SearchBar() {
   return (
     <div className='w-96 max-w-full flex flex-row items-center'>
       <input
-        type='search'
+        type='text'
         placeholder='Buscar en Hogarfy'
         className='w-full h-10 bg-white font-roboto text-base text-black px-3 border-none rounded-l-lg'
       />

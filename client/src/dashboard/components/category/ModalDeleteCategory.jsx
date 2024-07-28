@@ -1,5 +1,5 @@
 import { Modal, Button } from 'flowbite-react';
-import { useCategory } from '../../context/CategoryContext';
+import { useCategory } from '../../../contexts/CategoryContext';
 
 export default function ModalDeleteCategory({ show, category, onClose }) {
   const { deleteCategory, getCategories } = useCategory();

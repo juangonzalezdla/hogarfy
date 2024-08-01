@@ -17,7 +17,6 @@ export default function ProductsTable() {
   const [selectedProduct, setSelectedProduct] = useState(null);
 
   useEffect(() => {
-    document.title = 'Productos';
     getProducts();
   }, []);
 

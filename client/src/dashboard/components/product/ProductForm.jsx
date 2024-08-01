@@ -1,11 +1,4 @@
-import {
-  Button,
-  Label,
-  TextInput,
-  Textarea,
-  Select,
-  Radio,
-} from 'flowbite-react';
+import { Button, Label, TextInput, Textarea, Select, Radio } from 'flowbite-react';
 import { useForm, useFieldArray } from 'react-hook-form';
 import { useCategory } from '../../../contexts/CategoryContext';
 import { useState, useEffect } from 'react';
@@ -23,7 +16,7 @@ export default function ProductForm({ onSubmit, product }) {
       reset({
         name: product.name,
         brand: product.brand,
-        category: product.category._id,
+        category: product.category?._id,
         images: product.images.map((image) => ({
           url: image.url,
           publicId: image.publicId

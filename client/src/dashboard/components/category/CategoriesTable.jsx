@@ -17,7 +17,6 @@ export default function CategoriesTable() {
   const [selectedCategory, setSelectedCategory] = useState(null);
 
   useEffect(() => {
-    document.title = 'Productos';
     getCategories();
   }, []);
 

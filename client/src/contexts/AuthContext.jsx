@@ -37,6 +37,9 @@ export const AuthProvider = ({ children }) => {
     try {
       const res = await logInService(user);
       setIsAuthenticated(true);
+      setIsAuthorized(res.data.isAdmin);
+      setLoading(false);
+      setUser(res.data);
       toast.success(res.data.message, { duration: 3000 });
     } catch (error) {
       toast.error(error.response.data.message, { duration: 3000 });
@@ -64,8 +67,8 @@ export const AuthProvider = ({ children }) => {
         
         setIsAuthenticated(true);
         setIsAuthorized(res.data.isAdmin);
-        setUser(res.data);
         setLoading(false);
+        setUser(res.data);
       } catch (error) {
         setIsAuthenticated(false);
         setLoading(false);

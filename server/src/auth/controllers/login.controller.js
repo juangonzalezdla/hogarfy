@@ -21,7 +21,7 @@ const logIn = async (req, res) => {
     );
     res.cookie('token', token);
 
-    return res.status(200).json({ ok: true, message: 'Inicio de sesión exitoso' });
+    return res.status(200).json({ ok: true, message: 'Inicio de sesión exitoso', data: { _id: userByEmail._id, names: userByEmail.names, isAdmin: userByEmail.isAdmin } });
   } catch (error) {
     return res.status(500).send({ ok: false, message: error.message });
   }

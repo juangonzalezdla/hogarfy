@@ -25,7 +25,7 @@ const logIn = async (req, res) => {
       sameSite: 'None',
     });
 
-    return res.status(200).json({ ok: true, message: 'Inicio de sesión exitoso', data: { _id: userByEmail._id, names: userByEmail.names, isAdmin: userByEmail.isAdmin } });
+    return res.status(200).json({ ok: true, message: 'Inicio de sesión exitoso', user: { _id: userByEmail._id, names: userByEmail.names, isAdmin: userByEmail.isAdmin } });
   } catch (error) {
     return res.status(500).send({ ok: false, message: error.message });
   }

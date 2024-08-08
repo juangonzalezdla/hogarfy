@@ -36,10 +36,11 @@ export const AuthProvider = ({ children }) => {
   const logIn = async (user) => {
     try {
       const res = await logInService(user);
+      console.log(res)
       setIsAuthenticated(true);
-      setIsAuthorized(res.data.isAdmin);
+      setIsAuthorized(res.data.user.isAdmin);
       setLoading(false);
-      setUser(res.data);
+      setUser(res.data.user);
       toast.success(res.data.message, { duration: 3000 });
     } catch (error) {
       toast.error(error.response.data.message, { duration: 3000 });
@@ -63,6 +64,7 @@ export const AuthProvider = ({ children }) => {
 
       try {
         const res = await verifyTokenService(cookies.token);
+        console.log(res)
         if (!res.data) return setIsAuthenticated(false);
         
         setIsAuthenticated(true);

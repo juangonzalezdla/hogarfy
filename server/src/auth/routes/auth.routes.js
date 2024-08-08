@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import logUp from '../controllers/logUp.controller.js';
+import logUp from '../controllers/logup.controller.js';
 import logIn from '../controllers/login.controller.js';
 import logOut from '../controllers/logOut.controller.js';
 import verifyToken from '../controllers/verifyToken.controller.js';

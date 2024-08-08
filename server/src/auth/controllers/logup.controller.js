@@ -5,7 +5,7 @@ import { v4 as uuidv4 } from 'uuid';
 
 const logUp = async (req, res) => {
   try {
-    const { names, lastNames, citizenshipCard, phoneNumber,
+    const { names, lastNames, identificationCard, phoneNumber,
       cityAndDepartment, address, email, password } = req.body;
 
     const userByEmail = await userModel.findOne({ email });
@@ -20,7 +20,7 @@ const logUp = async (req, res) => {
       _id: uuidv4(),
       names,
       lastNames,
-      citizenshipCard,
+      identificationCard,
       phoneNumber,
       cityAndDepartment,
       address,

@@ -1,13 +1,14 @@
 import AccountLayout from '../components/AccountLayout';
 import { Button, Label, TextInput } from 'flowbite-react';
 import { Toaster } from 'react-hot-toast';
+import ValidationForm from '../../components/ValidationForm';
+import { deleteSchema } from '../../schemas/user';
 
 import { useUser } from '../../contexts/UserContext';
 import { useAuth } from '../../contexts/AuthContext';
 import { useParams } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import deleteUserSchema from '../../schemas/deleteUser.schema';
 
 export default function DeleteAccountPage() {
   const { deleteUser } = useUser();
@@ -20,7 +21,7 @@ export default function DeleteAccountPage() {
     setValue,
     formState: { errors },
   } = useForm({
-    resolver: zodResolver(deleteUserSchema),
+    resolver: zodResolver(deleteSchema),
   });
 
   const onSubmit = async (data) => {
@@ -48,9 +49,7 @@ export default function DeleteAccountPage() {
               {...register('password')}
             />
             {errors.password?.message && (
-              <p className='text-red-500 font-semibold'>
-                {errors.password?.message}
-              </p>
+              <ValidationForm message={errors.password?.message} />
             )}
           </div>
         </div>

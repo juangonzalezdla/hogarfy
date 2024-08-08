@@ -4,7 +4,7 @@ const userSchema = new Schema({
   _id: { type: String, _id: false },
   names: { type: String, require: true, minLength: 3, maxLength: 30 },
   lastNames: { type: String, require: true, minLength: 4, maxLength: 30 },
-  citizenshipCard: { type: String, require: true, minLength: 6, maxLength: 10 },
+  identificationCard: { type: String, require: true, minLength: 6, maxLength: 10 },
   phoneNumber: { type: String, require: true, maxLength: 10 },
   cityAndDepartment: { type: String, require: true, minLength: 4, maxLength: 50 },
   address: { type: String, require: true, minLength: 4, maxLength: 50 },

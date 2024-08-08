@@ -1,12 +1,13 @@
 import AccountLayout from '../components/AccountLayout';
 import { Button, Label, TextInput } from 'flowbite-react';
 import { Toaster } from 'react-hot-toast';
+import ValidationForm from '../../components/ValidationForm';
+import { updatePasswordSchema } from '../../schemas/user';
 
 import { useUser } from '../../contexts/UserContext';
 import { useParams } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import updatePasswordSchema from '../../schemas/updatePassword.schema';
 
 export default function UpdatePasswordPage() {
   const { updatePassword } = useUser();
@@ -48,9 +49,7 @@ export default function UpdatePasswordPage() {
               {...register('oldPassword')}
             />
             {errors.oldPassword?.message && (
-              <p className='text-red-500 font-semibold'>
-                {errors.oldPassword?.message}
-              </p>
+              <ValidationForm message={errors.oldPassword?.message} />
             )}
           </div>
 
@@ -66,9 +65,7 @@ export default function UpdatePasswordPage() {
               {...register('newPassword')}
             />
             {errors.newPassword?.message && (
-              <p className='text-red-500 font-semibold'>
-                {errors.newPassword?.message}
-              </p>
+              <ValidationForm message={errors.newPassword?.message} />
             )}
           </div>
         </div>

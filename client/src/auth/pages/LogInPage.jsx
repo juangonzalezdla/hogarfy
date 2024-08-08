@@ -5,12 +5,13 @@ import FormTitle from '../components/FormTitle';
 import { Input } from '../components/Input';
 import MessageLink from '../components/MessageLink';
 import { Toaster } from 'react-hot-toast';
+import ValidationForm from '../../components/ValidationForm';
+import { logInSchema } from '../../schemas/user';
 
 import { useEffect, useState } from 'react';
 import { useAuth } from '../../contexts/AuthContext';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import logInSchema from '../../schemas/logIn.schema';
 import { useNavigate } from 'react-router-dom';
 
 export default function LogInPage() {
@@ -61,9 +62,7 @@ export default function LogInPage() {
               {...register('email')}
             />
             {errors.email?.message && (
-              <p className='text-red-500 font-semibold ml-2'>
-                {errors.email?.message}
-              </p>
+              <ValidationForm message={errors.email?.message} />
             )}
 
             <div className='relative'>
@@ -75,7 +74,7 @@ export default function LogInPage() {
               <button
                 type='button'
                 onClick={togglePasswordVisibility}
-                className='absolute right-4 top-2/3 transform -translate-y-1/2 bg-transparent border-none'
+                className='absolute right-4 top-[70%] transform -translate-y-1/2 bg-transparent border-none'
               >
                 {showPassword ? (
                   <i className='bx bxs-hide text-blue bx-sm'></i>
@@ -85,9 +84,7 @@ export default function LogInPage() {
               </button>
             </div>
             {errors.password?.message && (
-              <p className='text-red-500 font-semibold ml-2'>
-                {errors.password?.message}
-              </p>
+              <ValidationForm message={errors.password?.message} />
             )}
           </div>
 

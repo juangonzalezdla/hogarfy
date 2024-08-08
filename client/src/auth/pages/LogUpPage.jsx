@@ -5,13 +5,14 @@ import FormTitle from '../components/FormTitle';
 import { Input } from '../components/Input';
 import MessageLink from '../components/MessageLink';
 import { Toaster } from 'react-hot-toast';
+import ValidationForm from '../../components/ValidationForm';
+import { logUpSchema } from '../../schemas/user';
 
 import { useEffect, useState } from 'react';
 import { useAuth } from '../../contexts/AuthContext';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useNavigate } from 'react-router-dom';
-import logUpSchema from '../../schemas/logUp.schema';
 
 export default function LogUpPage() {
   const { logUp } = useAuth();
@@ -59,9 +60,7 @@ export default function LogUpPage() {
           <div className='w-full flex flex-col'>
             <Input type='text' placeholder='Nombres' {...register('names')} />
             {errors.names?.message && (
-              <p className='text-red-500 font-semibold ml-2'>
-                {errors.names?.message}
-              </p>
+              <ValidationForm message={errors.names?.message} />
             )}
 
             <Input
@@ -70,9 +69,7 @@ export default function LogUpPage() {
               {...register('lastNames')}
             />
             {errors.lastNames?.message && (
-              <p className='text-red-500 font-semibold ml-2'>
-                {errors.lastNames?.message}
-              </p>
+              <ValidationForm message={errors.lastNames?.message} />
             )}
 
             <Input
@@ -80,10 +77,8 @@ export default function LogUpPage() {
               placeholder='Cédula'
               {...register('citizenshipCard')}
             />
-            {errors.citizenshipCard?.message && (
-              <p className='text-red-500 font-semibold ml-2'>
-                {errors.citizenshipCard?.message}
-              </p>
+            {errors.identificationCard?.message && (
+              <ValidationForm message={errors.identificationCard?.message} />
             )}
 
             <Input
@@ -92,9 +87,7 @@ export default function LogUpPage() {
               {...register('phoneNumber')}
             />
             {errors.phoneNumber?.message && (
-              <p className='text-red-500 font-semibold ml-2'>
-                {errors.phoneNumber?.message}
-              </p>
+              <ValidationForm message={errors.phoneNumber?.message} />
             )}
 
             <Input
@@ -103,9 +96,7 @@ export default function LogUpPage() {
               {...register('cityAndDepartment')}
             />
             {errors.cityAndDepartment?.message && (
-              <p className='text-red-500 font-semibold ml-2'>
-                {errors.cityAndDepartment?.message}
-              </p>
+              <ValidationForm message={errors.cityAndDepartment?.message} />
             )}
 
             <Input
@@ -114,9 +105,7 @@ export default function LogUpPage() {
               {...register('address')}
             />
             {errors.address?.message && (
-              <p className='text-red-500 font-semibold ml-2'>
-                {errors.address?.message}
-              </p>
+              <ValidationForm message={errors.address?.message} />
             )}
 
             <Input
@@ -125,9 +114,7 @@ export default function LogUpPage() {
               {...register('email')}
             />
             {errors.email?.message && (
-              <p className='text-red-500 font-semibold ml-2'>
-                {errors.email?.message}
-              </p>
+              <ValidationForm message={errors.email?.message} />
             )}
 
             <div className='relative'>
@@ -139,7 +126,7 @@ export default function LogUpPage() {
               <button
                 type='button'
                 onClick={togglePasswordVisibility}
-                className='absolute right-4 top-2/3 transform -translate-y-1/2 bg-transparent border-none'
+                className='absolute right-4 top-[70%] transform -translate-y-1/2 bg-transparent border-none'
               >
                 {showPassword ? (
                   <i className='bx bxs-hide text-blue bx-sm'></i>
@@ -149,9 +136,7 @@ export default function LogUpPage() {
               </button>
             </div>
             {errors.password?.message && (
-              <p className='text-red-500 font-semibold ml-2'>
-                {errors.password?.message}
-              </p>
+              <ValidationForm message={errors.password?.message} />
             )}
           </div>
 

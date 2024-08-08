@@ -15,9 +15,9 @@ const verifyToken = async (req, res) => {
     if (!userById)
       return res.status(401).json({ ok: false, message: 'Usuario no autorizado' });
 
-    const { _id, names, lastNames, citizenshipCard, phoneNumber, cityAndDepartment, address, email, isAdmin } = userById;
+    const { _id, names, lastNames, identificationCard, phoneNumber, cityAndDepartment, address, email, isAdmin } = userById;
 
-    return res.json({ _id, names, lastNames, citizenshipCard, phoneNumber, cityAndDepartment, address, email, isAdmin });
+    return res.json({ _id, names, lastNames, identificationCard, phoneNumber, cityAndDepartment, address, email, isAdmin });
   });
 };
 

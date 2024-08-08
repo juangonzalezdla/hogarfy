@@ -1,13 +1,14 @@
 import AccountLayout from '../components/AccountLayout';
 import { Button, Label, TextInput } from 'flowbite-react';
 import { Toaster } from 'react-hot-toast';
+import ValidationForm from '../../components/ValidationForm';
+import { updateUserSchema } from '../../schemas/user';
 
 import { useUser } from '../../contexts/UserContext';
 import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import updateUserSchema from '../../schemas/updateUser.schema';
 
 export default function AccountPage() {
   const { getUser, updateUser } = useUser();
@@ -30,7 +31,7 @@ export default function AccountPage() {
     const loadUser = async () => {
       if (params.id) {
         const user = await getUser(params.id);
-        setValue('citizenshipCard', user.citizenshipCard);
+        setValue('identificationCard', user.identificationCard);
         setValue('email', user.email);
         setValue('names', user.names);
         setValue('lastNames', user.lastNames);
@@ -56,15 +57,15 @@ export default function AccountPage() {
         <div className='w-full flex justify-start items-center flex-wrap gap-5'>
           <div className='w-60'>
             <Label
-              htmlFor='citizenshipCard'
+              htmlFor='identificationCard'
               value='Cedula'
               className='mb-2 block'
             />
             <TextInput
-              id='citizenshipCard'
+              id='identificationCard'
               type='text'
               disabled
-              {...register('citizenshipCard')}
+              {...register('identificationCard')}
             />
           </div>
 
@@ -74,16 +75,19 @@ export default function AccountPage() {
               value='Correo electronico'
               className='mb-2 block'
             />
-            <TextInput id='email' type='email' disabled {...register('email')} />
+            <TextInput
+              id='email'
+              type='email'
+              disabled
+              {...register('email')}
+            />
           </div>
 
           <div className='w-60'>
             <Label htmlFor='names' value='Nombres' className='mb-2 block' />
             <TextInput id='names' type='text' {...register('names')} />
             {errors.name?.message && (
-              <p className='text-red-500 font-semibold'>
-                {errors.name?.message}
-              </p>
+              <ValidationForm message={errors.name?.message} />
             )}
           </div>
 
@@ -95,9 +99,7 @@ export default function AccountPage() {
             />
             <TextInput id='lastNames' type='text' {...register('lastNames')} />
             {errors.lastNames?.message && (
-              <p className='text-red-500 font-semibold'>
-                {errors.lastNames?.message}
-              </p>
+              <ValidationForm message={errors.lastNames?.message} />
             )}
           </div>
 
@@ -109,13 +111,11 @@ export default function AccountPage() {
             />
             <TextInput
               id='phoneNumber'
-              type='text'
+              type='number'
               {...register('phoneNumber')}
             />
             {errors.phoneNumber?.message && (
-              <p className='text-red-500 font-semibold'>
-                {errors.phoneNumber?.message}
-              </p>
+              <ValidationForm message={errors.phoneNumber?.message} />
             )}
           </div>
 
@@ -131,9 +131,7 @@ export default function AccountPage() {
               {...register('cityAndDepartment')}
             />
             {errors.cityAndDepartment?.message && (
-              <p className='text-red-500 font-semibold'>
-                {errors.cityAndDepartment?.message}
-              </p>
+              <ValidationForm message={errors.cityAndDepartment?.message} />
             )}
           </div>
 
@@ -141,9 +139,7 @@ export default function AccountPage() {
             <Label htmlFor='address' value='Dirección' className='mb-2 block' />
             <TextInput id='address' type='text' {...register('address')} />
             {errors.address?.message && (
-              <p className='text-red-500 font-semibold'>
-                {errors.address?.message}
-              </p>
+              <ValidationForm message={errors.address?.message} />
             )}
           </div>
         </div>

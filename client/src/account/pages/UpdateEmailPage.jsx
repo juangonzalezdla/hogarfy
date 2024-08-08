@@ -1,13 +1,14 @@
 import AccountLayout from '../components/AccountLayout';
 import { Button, Label, TextInput } from 'flowbite-react';
 import { Toaster } from 'react-hot-toast';
+import ValidationForm from '../../components/ValidationForm'
+import { updateEmailSchema } from '../../schemas/user';
 
 import { useUser } from '../../contexts/UserContext';
 import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import updateEmailSchema from '../../schemas/updateEmail.schema';
 
 export default function UpdateEmailPAge() {
   const { getUser, updateEmail } = useUser();
@@ -53,9 +54,7 @@ export default function UpdateEmailPAge() {
             />
             <TextInput id='email' type='email' {...register('email')} />
             {errors.email?.message && (
-              <p className='text-red-500 font-semibold'>
-                {errors.email?.message}
-              </p>
+              <ValidationForm message={errors.email?.message} />
             )}
           </div>
 
@@ -71,9 +70,7 @@ export default function UpdateEmailPAge() {
               {...register('password')}
             />
             {errors.password?.message && (
-              <p className='text-red-500 font-semibold'>
-                {errors.password?.message}
-              </p>
+              <ValidationForm message={errors.password?.message} />
             )}
           </div>
         </div>

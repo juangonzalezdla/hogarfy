@@ -37,7 +37,7 @@ export default function DeleteAccountPage() {
 
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className='w-full flex justify-start items-center flex-wrap gap-5'>
-          <div className='w-60'>
+          <div className='w-60 max-md:w-full'>
             <Label
               htmlFor='password'
               value='Contraseña'

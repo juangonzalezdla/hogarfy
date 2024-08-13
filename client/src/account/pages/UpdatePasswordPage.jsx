@@ -37,7 +37,7 @@ export default function UpdatePasswordPage() {
 
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className='w-full flex justify-start items-center flex-wrap gap-5'>
-          <div className='w-60'>
+          <div className='w-60 max-md:w-full'>
             <Label
               htmlFor='oldPassword'
               value='Contraseña actual'
@@ -53,7 +53,7 @@ export default function UpdatePasswordPage() {
             )}
           </div>
 
-          <div className='w-60'>
+          <div className='w-60 max-md:w-full'>
             <Label
               htmlFor='newPassword'
               value='Contraseña nueva'

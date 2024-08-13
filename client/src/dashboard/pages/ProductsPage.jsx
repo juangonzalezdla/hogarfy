@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import DashboardLayout from '../components/DashboardLayout';
+import Layout from '../components/Layout';
 import ProductsTable from '../components/product/ProductsTable';
 
 export default function ProductsPage() {
@@ -9,9 +9,9 @@ export default function ProductsPage() {
 
   return (
     <>
-      <DashboardLayout pageTitle='Productos'>
+      <Layout pageTitle='Productos'>
         <ProductsTable />
-      </DashboardLayout>
+      </Layout>
     </>
   );
 }

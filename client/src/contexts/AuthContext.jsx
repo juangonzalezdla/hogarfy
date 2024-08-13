@@ -36,7 +36,6 @@ export const AuthProvider = ({ children }) => {
   const logIn = async (user) => {
     try {
       const res = await logInService(user);
-      console.log(res)
       setIsAuthenticated(true);
       setIsAuthorized(res.data.user.isAdmin);
       setLoading(false);
@@ -64,9 +63,8 @@ export const AuthProvider = ({ children }) => {
 
       try {
         const res = await verifyTokenService(cookies.token);
-        console.log(res)
         if (!res.data) return setIsAuthenticated(false);
-        
+
         setIsAuthenticated(true);
         setIsAuthorized(res.data.isAdmin);
         setLoading(false);

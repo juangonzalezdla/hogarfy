@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import DashboardLayout from '../components/DashboardLayout';
+import Layout from '../components/Layout';
 
 export default function DashboardPage() {
   useEffect(() => {
@@ -8,7 +8,7 @@ export default function DashboardPage() {
 
   return (
     <>
-      <DashboardLayout pageTitle='Dashboard' />
+      <Layout pageTitle='Dashboard' />
     </>
   );
 }

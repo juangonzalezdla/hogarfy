@@ -15,7 +15,7 @@ export default function AccountLayout({ children }) {
   return (
     <>
       <BasicHeader />
-      <main className='w-full max-w-[1400px] my-0 mx-auto py-12 px-12 flex flex-col justify-center items-center max-[678px]:px-4'>
+      <main className='w-full max-w-[1400px] my-0 mx-auto p-12 flex flex-col justify-center items-center max-[678px]:px-4'>
         <div className='max-w-5xl'>
           <div className='mb-5'>
             <Link

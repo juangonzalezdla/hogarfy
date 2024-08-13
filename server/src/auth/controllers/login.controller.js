@@ -20,9 +20,7 @@ const logIn = async (req, res) => {
       { expiresIn: '2d' }
     );
     res.cookie('token', token, {
-      httpOnly: true,
       secure: process.env.NODE_ENV === 'production',
-      sameSite: 'None',
     });
 
     return res.status(200).json({ ok: true, message: 'Inicio de sesión exitoso', user: { _id: userByEmail._id, names: userByEmail.names, isAdmin: userByEmail.isAdmin } });

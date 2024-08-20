@@ -1,14 +1,22 @@
 import { Table, Dropdown } from 'flowbite-react';
 
 export default function ProductRow({ product, onEdit, onDelete }) {
+  function formatPrice(price) {
+    return new Intl.NumberFormat("es-CO", {
+      style: "currency",
+      currency: "COP",
+      minimumFractionDigits: 0,
+    }).format(price);
+  }
+
   return (
     <>
       <Table.Row className='bg-white'>
-        <Table.Cell className='py-2'>{product.name}</Table.Cell>
-        <Table.Cell className='py-2'>{product.brand}</Table.Cell>
-        <Table.Cell className='py-2'>{product.category?.name}</Table.Cell>
-        <Table.Cell className='py-2'>{product.price}</Table.Cell>
-        <Table.Cell className='py-2'>
+        <Table.Cell className='px-3 py-2'>{product.name}</Table.Cell>
+        <Table.Cell className='px-3 py-2 max-md:hidden'>{product.brand}</Table.Cell>
+        <Table.Cell className='px-3 py-2 max-md:hidden'>{product.category?.name}</Table.Cell>
+        <Table.Cell className='px-3 py-2'>{formatPrice(product.price)}</Table.Cell>
+        <Table.Cell className='px-3 py-2'>
           <Dropdown
             renderTrigger={() => (
               <i className='bx bx-dots-horizontal-rounded text-[25px] cursor-pointer p-2 rounded-full hover:text-dark-gray hover:bg-light-gray'></i>

@@ -74,13 +74,13 @@ export default function ProductsTable() {
         <>
           <Table>
             <Table.Head>
-              <Table.HeadCell className='bg-light-gray'>Nombre</Table.HeadCell>
-              <Table.HeadCell className='bg-light-gray'>Marca</Table.HeadCell>
-              <Table.HeadCell className='bg-light-gray'>
+              <Table.HeadCell className='bg-light-gray px-3'>Nombre</Table.HeadCell>
+              <Table.HeadCell className='bg-light-gray px-3 max-md:hidden'>Marca</Table.HeadCell>
+              <Table.HeadCell className='bg-light-gray px-3 max-md:hidden'>
                 Categoría
               </Table.HeadCell>
-              <Table.HeadCell className='bg-light-gray'>Price</Table.HeadCell>
-              <Table.HeadCell className='bg-light-gray'>
+              <Table.HeadCell className='bg-light-gray px-3'>Price</Table.HeadCell>
+              <Table.HeadCell className='bg-light-gray px-3'>
                 Acciones
               </Table.HeadCell>
             </Table.Head>

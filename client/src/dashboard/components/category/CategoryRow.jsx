@@ -4,9 +4,9 @@ export default function CategoryRow({ category, onEdit, onDelete }) {
   return (
     <>
       <Table.Row key={category._id} className='bg-white'>
-        <Table.Cell className='px-3 py-1.5'>{category.name}</Table.Cell>
-        <Table.Cell className='px-3 py-1.5'>{category.parent?.name}</Table.Cell>
-        <Table.Cell className='px-3 py-1.5'>
+        <Table.Cell className='px-3 py-2'>{category.name}</Table.Cell>
+        <Table.Cell className='px-3 py-2'>{category.parent?.name}</Table.Cell>
+        <Table.Cell className='px-3 py-2'>
           <Dropdown
             renderTrigger={() => (
               <i className='bx bx-dots-horizontal-rounded text-[25px] cursor-pointer p-2 rounded-full hover:text-dark-gray hover:bg-light-gray'></i>

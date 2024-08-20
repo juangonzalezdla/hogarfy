@@ -1,18 +1,17 @@
 import { z } from 'zod';
 
 export const nameSchema = z
-  .string({ required_error: 'Nombre es requerido' })
+  .string()
   .min(3, { message: 'Mínimo 3 caracteres' })
   .max(30, { message: 'Máximo 30 caracteres' });
 
-export const parentIdSchema = z
-  .string().optional();
+export const parentIdSchema = z.string().optional();
 
 export const propertiesSchema = z
   .array(
     z.object({
       name: z
-        .string({ required_error: 'Nombre es requerido' })
+        .string()
         .regex(/^[A-Z]/, 'Debe comenzar con mayúscula'),
       values: z
         .string()

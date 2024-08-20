@@ -8,8 +8,14 @@ import { zodResolver } from '@hookform/resolvers/zod';
 
 export default function CategoryForm({ onSubmit, category }) {
   const { getCategories, categories } = useCategory();
-  const { register, handleSubmit, control, reset, formState: { errors } } = useForm({
-    resolver: zodResolver(categorySchema)
+  const {
+    register,
+    handleSubmit,
+    control,
+    reset,
+    formState: { errors },
+  } = useForm({
+    resolver: zodResolver(categorySchema),
   });
   const { fields, append, remove } = useFieldArray({
     control,
@@ -24,7 +30,7 @@ export default function CategoryForm({ onSubmit, category }) {
         parentId: category.parent?._id || '',
         properties: category.properties.map((property) => ({
           name: property.name,
-          values: property.values.join(', ')
+          values: property.values.join(', '),
         })),
       });
     }
@@ -34,35 +40,38 @@ export default function CategoryForm({ onSubmit, category }) {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <div className='w-full flex justify-start items-center flex-wrap gap-5'>
-        <div className='w-64'>
+      <div className='w-full flex justify-start items-start flex-wrap gap-5'>
+        <div className='w-64 max-sm:w-full'>
           <Label htmlFor='name' value='Nombre' />
-          <TextInput
-            id='name'
-            type='text'
-            placeholder='Nombre de la categoria'
-            {...register('name')}
-          />
-
-          {errors.name?.message && (
-            <ValidationForm message={errors.name?.message} />
-          )}
+          <div className='relative'>
+            <TextInput
+              id='name'
+              type='text'
+              placeholder='Nombre de la categoria'
+              {...register('name')}
+            />
+            {errors.name?.message && (
+              <ValidationForm message={errors.name?.message} />
+            )}
+          </div>
         </div>
 
-        <div className='w-64'>
+        <div className='w-64 max-sm:w-full'>
           <Label htmlFor='parent-category' value='Categoria padre' />
-          <Select
-            defaultValue=''
-            id='parent-category'
-            {...register('parentId')}
-          >
-            <option value=''>Elige categoria padre</option>
-            {parentCategories.map((category) => (
-              <option value={category._id} key={category._id}>
-                {category.name}
-              </option>
-            ))}
-          </Select>
+          <div className='relative'>
+            <Select
+              defaultValue=''
+              id='parent-category'
+              {...register('parentId')}
+            >
+              <option value=''>Elige categoria padre</option>
+              {parentCategories.map((category) => (
+                <option value={category._id} key={category._id}>
+                  {category.name}
+                </option>
+              ))}
+            </Select>
+          </div>
         </div>
 
         <div className='w-64'>
@@ -74,45 +83,55 @@ export default function CategoryForm({ onSubmit, category }) {
           >
             Agregar propiedad
           </Button>
+        </div>
 
-          {fields.map((field, index) => (
-            <div key={field.id} className='flex justify-start items-end flex-row gap-2 mt-3'>
-              <div>
-                <Label>Nombre</Label>
+        {fields.map((field, index) => (
+          <div
+            key={field.id}
+            className='w-full flex justify-start items-start gap-2'
+          >
+            <div className='w-64 max-sm:w-full'>
+              <Label htmlFor='propertyName' value='Nombre' />
+              <div className='relative'>
                 <TextInput
-                  className='w-60'
+                  id='propertyName'
                   placeholder='Ej: Color'
                   {...register(`properties.${index}.name`)}
                 />
-
                 {errors.properties?.[index]?.name && (
-                  <ValidationForm message={errors.properties[index].name.message} />
+                  <ValidationForm
+                    message={errors.properties[index].name.message}
+                  />
                 )}
               </div>
-              <div>
-                <Label>Valores</Label>
+            </div>
+
+            <div className='w-64 max-sm:w-full'>
+              <Label htmlFor='propertyValues' value='Valores' />
+              <div className='relative'>
                 <TextInput
-                  className='w-60'
+                  id='propertyValues'
                   placeholder='Ej: Blanco, Rojo, Negro'
                   {...register(`properties.${index}.values`)}
                 />
-
                 {errors.properties?.[index]?.values && (
-                  <ValidationForm message={errors.properties[index].values.message} />
+                  <ValidationForm
+                    message={errors.properties[index].values.message}
+                  />
                 )}
               </div>
-
-              <Button
-                onClick={() => remove(index)}
-                type='button'
-                color='failure'
-                size='xs'
-              >
-                Eliminar
-              </Button>
             </div>
-          ))}
-        </div>
+
+            <Button
+              onClick={() => remove(index)}
+              type='button'
+              color='failure'
+              size='xs'
+            >
+              Eliminar
+            </Button>
+          </div>
+        ))}
       </div>
 
       <Button className='mt-5' color='purple' type='submit'>

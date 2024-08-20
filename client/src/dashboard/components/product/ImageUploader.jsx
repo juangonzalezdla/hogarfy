@@ -1,4 +1,4 @@
-import { Button, Label, FileInput, Spinner } from 'flowbite-react';
+import { Button, Label, FileInput } from 'flowbite-react';
 import { useState } from 'react';
 import axios from 'axios';
 import { v4 as uuidv4 } from 'uuid';

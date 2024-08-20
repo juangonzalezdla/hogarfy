@@ -3,10 +3,13 @@ import { useForm, useFieldArray } from 'react-hook-form';
 import { useCategory } from '../../../contexts/CategoryContext';
 import { useState, useEffect } from 'react';
 import ImageUploader from './ImageUploader';
+import ValidationForm from '../../../components/ValidationForm';
+import { productSchema } from '../../../schemas/product';
+import { zodResolver } from '@hookform/resolvers/zod';
 
 export default function ProductForm({ onSubmit, product }) {
   const { getCategories, categories } = useCategory();
-  const { register, handleSubmit, control, reset } = useForm();
+  const { register, handleSubmit, control, reset, formState: { errors } } = useForm({ resolver: zodResolver(productSchema) });
   const { fields, append, remove } = useFieldArray({ control, name: 'images' });
   const [selectedCategory, setSelectedCategory] = useState(null);
 
@@ -19,13 +22,16 @@ export default function ProductForm({ onSubmit, product }) {
         category: product.category?._id,
         images: product.images.map((image) => ({
           url: image.url,
-          publicId: image.publicId
+          publicId: image.publicId,
         })),
         price: product.price,
         description: product.description,
         isFeatured: product.isFeatured,
       });
-      setSelectedCategory(product.category);
+      const selectedCat = categories.find(
+        (category) => category._id === product.category?._id
+      );
+      setSelectedCategory(selectedCat);
     }
   }, [product]);
 
@@ -34,7 +40,7 @@ export default function ProductForm({ onSubmit, product }) {
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <div className='w-full flex justify-start items-center flex-wrap gap-5'>
-        <div className='w-64'>
+        <div className='w-64 max-sm:w-full'>
           <Label value='Nombre' htmlFor='name' />
           <TextInput
             id='name'
@@ -42,9 +48,12 @@ export default function ProductForm({ onSubmit, product }) {
             placeholder='Nombre del producto'
             {...register('name')}
           />
+          {errors.name?.message && (
+            <ValidationForm message={errors.name?.message} />
+          )}
         </div>
 
-        <div className='w-64'>
+        <div className='w-64 max-sm:w-full'>
           <Label value='Marca' htmlFor='brand' />
           <TextInput
             id='brand'
@@ -52,35 +61,47 @@ export default function ProductForm({ onSubmit, product }) {
             placeholder='Marca del producto'
             {...register('brand')}
           />
+          {errors.brand?.message && (
+            <ValidationForm message={errors.brand?.message} />
+          )}
         </div>
 
-        <div className='w-64'>
+        <div className='w-64 max-sm:w-full'>
           <Label value='Categoría' htmlFor='category' />
-          <Select id='category' defaultValue='' {...register('category')}>
-            <option value=''>Elige la categoría</option>
+          <Select
+            id='category'
+            defaultValue=''
+            {...register('category')}
+            onChange={(e) => {
+              const selectedCat = categories.find(
+                (category) => category._id === e.target.value
+              );
+              setSelectedCategory(selectedCat);
+            }}
+          >
+            <option value='' disabled>
+              Elige la categoría
+            </option>
             {childrenCategories.map((category) => (
-              <option
-                value={category._id}
-                key={category._id}
-                onClick={() => setSelectedCategory(category._id)}
-              >
+              <option value={category._id} key={category._id}>
                 {category.name}
               </option>
             ))}
           </Select>
         </div>
 
-        {selectedCategory && selectedCategory.properties.length > 0 && (
-          <div className='w-64'>
-            <Label value='Propiedades' htmlFor='properties' />
+        {selectedCategory && selectedCategory.properties?.length > 0 && (
+          <div className='w-64 max-sm:w-full'>
             {selectedCategory.properties.map((property) => (
               <div key={property.name}>
                 <Label
-                  value={property.name}
+                  value={`Propiedad - ${property.name}`}
                   htmlFor={`properties.${property.name}`}
                 />
                 <Select {...register(`properties.${property.name}`)}>
-                  <option value=''>Elige un valor</option>
+                  <option value='' disabled>
+                    Elige un valor
+                  </option>
                   {property.values.map((value, index) => (
                     <option value={value} key={index}>
                       {value}
@@ -94,9 +115,10 @@ export default function ProductForm({ onSubmit, product }) {
 
         <ImageUploader fields={fields} append={append} remove={remove} />
 
-        <div className='w-64'>
+        <div className='w-64 max-sm:w-full'>
           <Label value='Precio' htmlFor='price' />
           <TextInput
+            defaultValue={0}
             id='price'
             type='number'
             placeholder='Precio del producto'
@@ -115,6 +137,9 @@ export default function ProductForm({ onSubmit, product }) {
             className='resize-none'
             {...register('description')}
           />
+          {errors.description?.message && (
+            <ValidationForm message={errors.description?.message} />
+          )}
         </div>
 
         <div className='w-64'>

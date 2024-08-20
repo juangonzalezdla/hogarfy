@@ -10,7 +10,7 @@ const logIn = async (req, res) => {
     if (!userByEmail)
       return res.status(401).json({ ok: false, message: 'Credenciales incorrectas' });
 
-    const checkPassword = await compare(password, userByEmail.password);
+    const checkPassword = compare(password, userByEmail.password);
     if (!checkPassword)
       return res.status(401).json({ ok: false, message: 'Credenciales incorrectas' });
 

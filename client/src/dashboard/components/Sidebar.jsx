@@ -8,11 +8,11 @@ export default function Sidebar({ show, onClose }) {
         (show
           ? ''
           : 'transition-transform -translate-x-full md:translate-x-0') +
-        ' h-full w-56 fixed top-0 left-0 z-10 overflow-x-hidden p-4 bg-light-blue rounded-r-xl max-md:bg-white max-md:w-1/2'
+        ' h-full w-56 fixed top-0 left-0 z-10 overflow-x-hidden p-4 bg-light-blue rounded-r-xl max-md:bg-white max-md:w-2/3'
       }
     >
       <nav className='flex h-full flex-col space-y-3'>
-        <div className='flex items-center justify-betweenmb-5 mb-5'>
+        <div className='flex items-center justify-between mb-5'>
           <Link to='/' className='text-blue font-poppins text-2xl font-bold'>
             Hogarfy
           </Link>

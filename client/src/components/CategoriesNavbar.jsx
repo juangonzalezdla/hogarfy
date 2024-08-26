@@ -46,7 +46,7 @@ export default function CategoriesNavbar() {
           (show
             ? ''
             : 'transition-transform -translate-x-full md:translate-x-0') +
-          ' h-full w-2/3 bg-white fixed top-0 left-0 z-10 overflow-x-hidden p-4 md:static md:h-auto'
+          ' h-full w-2/3 bg-white fixed top-0 left-0 z-10 overflow-x-hidden p-4 md:static md:h-auto md:p-0'
         }
       >
         <nav className='w-full flex items-start gap-3 max-md:flex-col'>
@@ -62,7 +62,7 @@ export default function CategoriesNavbar() {
           )}
 
           {parentCategories.map((parentCategory) => (
-            <div key={parentCategory._id} className='w-full'>
+            <div key={parentCategory._id} className='w-full md:w-auto'>
               <button
                 onClick={() => handleCategoryClick(parentCategory._id)}
                 className='w-full bg-white text-blue text-base font-roboto border-none font-bold outline-none p-2.5 flex items-center hover:bg-light-gray'

@@ -3,6 +3,7 @@ import { AuthProvider } from './contexts/AuthContext';
 import { UserProvider } from './contexts/UserContext';
 import { CategoryProvider } from './contexts/CategoryContext';
 import { ProductProvider } from './contexts/ProductContext';
+import { CartProvider } from './contexts/CartContext';
 
 import LogUpPage from './auth/pages/LogUpPage';
 import LogInPage from './auth/pages/LogInPage';
@@ -141,7 +142,9 @@ function App() {
       <UserProvider>
         <CategoryProvider>
           <ProductProvider>
-            <RouterProvider router={router} />
+            <CartProvider>
+              <RouterProvider router={router} />
+            </CartProvider>
           </ProductProvider>
         </CategoryProvider>
       </UserProvider>

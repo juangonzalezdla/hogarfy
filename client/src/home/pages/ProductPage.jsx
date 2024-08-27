@@ -3,11 +3,14 @@ import Footer from '../../components/Footer.jsx';
 import { useParams, Link } from 'react-router-dom';
 import { useProduct } from '../../contexts/ProductContext.jsx';
 import { useEffect, useState } from 'react';
+import { useCart } from '../../contexts/CartContext.jsx';
+import { Button } from 'flowbite-react';
 
 export default function ProductPage() {
   const { id } = useParams();
   const { getProduct, productData } = useProduct();
   const [activeImage, setActiveImage] = useState(null);
+  const { addToCart } = useCart();
 
   useEffect(() => {
     getProduct(id);
@@ -46,7 +49,7 @@ export default function ProductPage() {
 
       <main className='w-full max-w-[1400px] my-0 mx-auto p-20 flex flex-col justify-center items-center max-md:px-4'>
         <div className='grid grid-cols-2 gap-10 max-md:grid-cols-1'>
-          <div>
+          <div className='order-1 max-md:order-2'>
             <figure className='flex justify-center bg-light-gray p-5 rounded-lg'>
               <img className='w-56 h-56' src={activeImage} alt='Active image' />
             </figure>
@@ -64,7 +67,7 @@ export default function ProductPage() {
             </div>
           </div>
 
-          <div>
+          <div className='order-2 max-md:order-1'>
             <h1 className='text-black text-xl font-bold mb-5'>
               {productData?.name}
             </h1>
@@ -72,6 +75,14 @@ export default function ProductPage() {
               {productData?.description}
             </p>
             <p className='text-dark-gray text-lg font-bold'>{formattedPrice}</p>
+            <Button
+              onClick={() => addToCart(productData?._id)}
+              size='sm'
+              className='flex items-center justify-center mt-5'
+            >
+              Agregar
+              <i className='bx bx-cart-add bx-sm'></i>
+            </Button>
           </div>
         </div>
       </main>

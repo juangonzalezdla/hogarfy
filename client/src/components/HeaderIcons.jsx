@@ -2,9 +2,11 @@ import { useAuth } from '../contexts/AuthContext';
 import { useState } from 'react';
 import IconLink from './IconLink';
 import UserMenu from './UserMenu';
+import { useCart } from '../contexts/CartContext';
 
 export default function HeaderIcons() {
   const { isAuthenticated, user } = useAuth();
+  const { cartProducts } = useCart();
   const [show, setShow] = useState(false);
 
   const handleClick = () => {
@@ -25,6 +27,9 @@ export default function HeaderIcons() {
           <i className='bx bx-package bx-sm p-1 group-hover:bg-white group-hover:text-dark rounded-full'></i>
         </IconLink>
         <IconLink to='/cart' name='Carrito'>
+          <span className='text-white text-xs font-bold absolute left-4 -top-1 group-hover:text-dark'>
+            {cartProducts.length}
+          </span>
           <i className='bx bx-cart bx-sm p-1 group-hover:bg-white group-hover:text-dark rounded-full'></i>
         </IconLink>
       </div>

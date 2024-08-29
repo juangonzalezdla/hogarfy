@@ -1,14 +1,7 @@
 import { Table, Dropdown } from 'flowbite-react';
+import formatPrice from '../../../utils/formatPrice';
 
 export default function ProductRow({ product, onEdit, onDelete }) {
-  function formatPrice(price) {
-    return new Intl.NumberFormat("es-CO", {
-      style: "currency",
-      currency: "COP",
-      minimumFractionDigits: 0,
-    }).format(price);
-  }
-
   return (
     <>
       <Table.Row className='bg-white'>

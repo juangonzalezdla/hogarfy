@@ -1,17 +1,10 @@
 import { Button, Tooltip } from 'flowbite-react';
 import { Link } from 'react-router-dom';
 import { useCart } from '../contexts/CartContext';
+import formatPrice from '../utils/formatPrice';
 
 export default function ProductCard({ _id, name, brand, images, price, url }) {
   const { addToCart } = useCart();
-
-  function formatPrice(price) {
-    return new Intl.NumberFormat('es-CO', {
-      style: 'currency',
-      currency: 'COP',
-      minimumFractionDigits: 0,
-    }).format(price);
-  }
 
   const formattedPrice = formatPrice(price);
 

@@ -5,6 +5,7 @@ import { useProduct } from '../../contexts/ProductContext.jsx';
 import { useEffect, useState } from 'react';
 import { useCart } from '../../contexts/CartContext.jsx';
 import { Button } from 'flowbite-react';
+import formatPrice from '../../utils/formatPrice.js';
 
 export default function ProductPage() {
   const { id } = useParams();
@@ -22,14 +23,6 @@ export default function ProductPage() {
       setActiveImage(productData.images[0].url);
     }
   }, [productData, activeImage]);
-
-  function formatPrice(price) {
-    return new Intl.NumberFormat('es-CO', {
-      style: 'currency',
-      currency: 'COP',
-      minimumFractionDigits: 0,
-    }).format(price);
-  }
 
   const formattedPrice = formatPrice(productData?.price);
 

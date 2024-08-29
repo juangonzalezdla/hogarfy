@@ -63,7 +63,7 @@ export default function ProductsTable() {
         />
 
         <Button color='purple' onClick={() => handleCreateEditModal(null)}>
-          Crear Products
+          Crear Producto
         </Button>
       </div>
       {loading ? (

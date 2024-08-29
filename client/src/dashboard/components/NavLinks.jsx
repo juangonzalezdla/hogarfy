@@ -33,9 +33,9 @@ export default function NavLinks() {
           to={link.to}
           key={link.id}
           className={clsx(
-            'flex items-center p-2 text-dark-gray text-base font-medium rounded-lg transition-colors duration-200 hover:bg-light-gray',
+            'flex items-center p-2 text-dark-gray text-base font-medium rounded-lg transition-colors duration-200 hover:bg-blue hover:text-white',
             {
-              'bg-light-gray text-dark-gray': pathname === link.to,
+              'bg-blue text-white': pathname === link.to,
             }
           )}
         >

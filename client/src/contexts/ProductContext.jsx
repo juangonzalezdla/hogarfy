@@ -3,6 +3,7 @@ import {
   createProductService,
   getProductService,
   getProductsService,
+  getRecentProductsService,
   updateProductService,
   deleteProductService,
 } from '../services/productServices';
@@ -53,6 +54,16 @@ export const ProductProvider = ({ children }) => {
     }
   };
 
+  const getRecentProducts = async () => {
+    try {
+      const res = await getRecentProductsService();
+      setProducts(res.data);
+      setLoading(false);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   const updateProduct = async (id, product) => {
     try {
       const res = await updateProductService(id, product);
@@ -79,6 +90,7 @@ export const ProductProvider = ({ children }) => {
         createProduct,
         getProduct,
         getProducts,
+        getRecentProducts,
         updateProduct,
         deleteProduct,
         loading

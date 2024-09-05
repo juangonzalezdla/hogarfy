@@ -4,6 +4,7 @@ import {
   getProductService,
   getProductsService,
   getRecentProductsService,
+  getFeaturedProductsService,
   updateProductService,
   deleteProductService,
 } from '../services/productServices';
@@ -24,6 +25,7 @@ export const useProduct = () => {
 export const ProductProvider = ({ children }) => {
   const [productData, setProductData] = useState(null);
   const [products, setProducts] = useState([]);
+  const [featuredProducts, setFeaturedProducts] = useState([]);
   const [loading, setLoading] = useState(true);
 
   const createProduct = async (product) => {
@@ -64,6 +66,16 @@ export const ProductProvider = ({ children }) => {
     }
   };
 
+  const getFeaturedProducts = async () => {
+    try {
+      const res = await getFeaturedProductsService();
+      setFeaturedProducts(res.data);
+      setLoading(false);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   const updateProduct = async (id, product) => {
     try {
       const res = await updateProductService(id, product);
@@ -87,10 +99,12 @@ export const ProductProvider = ({ children }) => {
       value={{
         productData,
         products,
+        featuredProducts,
         createProduct,
         getProduct,
         getProducts,
         getRecentProducts,
+        getFeaturedProducts,
         updateProduct,
         deleteProduct,
         loading

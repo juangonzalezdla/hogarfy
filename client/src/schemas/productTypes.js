@@ -3,7 +3,7 @@ import { z } from 'zod';
 export const nameSchema = z
   .string()
   .min(3, { message: 'Mínimo 3 caracteres' })
-  .max(60, { message: 'Máximo 60 caracteres' });
+  .max(80, { message: 'Máximo 80 caracteres' });
 
 export const brandSchema = z
   .string()

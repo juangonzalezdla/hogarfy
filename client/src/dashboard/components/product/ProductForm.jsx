@@ -1,4 +1,4 @@
-import { Button, Label, TextInput, Textarea, Select, Radio } from 'flowbite-react';
+import { Button, Label, TextInput, Textarea, Select, Checkbox } from 'flowbite-react';
 import { useForm, useFieldArray } from 'react-hook-form';
 import { useCategory } from '../../../contexts/CategoryContext';
 import { useState, useEffect } from 'react';
@@ -32,6 +32,11 @@ export default function ProductForm({ onSubmit, product }) {
         (category) => category._id === product.category?._id
       );
       setSelectedCategory(selectedCat);
+    } else {
+      // Si es un producto nuevo, establece el valor predeterminado de isFeatured
+      reset({
+        isFeatured: false,
+      });
     }
   }, [product]);
 
@@ -88,6 +93,9 @@ export default function ProductForm({ onSubmit, product }) {
               </option>
             ))}
           </Select>
+          {selectedCategory === null && errors.category?.message && (
+            <ValidationForm message={errors.category.message} />
+          )}
         </div>
 
         {selectedCategory && selectedCategory.properties?.length > 0 && (
@@ -122,8 +130,11 @@ export default function ProductForm({ onSubmit, product }) {
             id='price'
             type='number'
             placeholder='Precio del producto'
-            {...register('price')}
+            {...register('price', { valueAsNumber: true })}
           />
+          {errors.price?.message && (
+            <ValidationForm message={errors.price?.message} />
+          )}
         </div>
 
         <div className='w-full'>
@@ -143,17 +154,14 @@ export default function ProductForm({ onSubmit, product }) {
         </div>
 
         <div className='w-64'>
-          <Label
-            value='¿Este es un producto destacado?'
-            className='block mb-2'
-          />
           <div className='flex items-center gap-2'>
-            <Radio value={true} {...register('isFeatured')} />
-            <Label value='Si' />
-          </div>
-          <div className='flex items-center gap-2'>
-            <Radio value={false} defaultChecked {...register('isFeatured')} />
-            <Label value='No' />
+            <Checkbox id='isFeatured' {...register('isFeatured')} />
+
+            <Label
+              htmlFor='isFeatured'
+              value='¿Este es un producto destacado?'
+              className='block'
+            />
           </div>
         </div>
       </div>

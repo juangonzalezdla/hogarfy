@@ -64,7 +64,15 @@ export default function NewProducts() {
                   className='flex gap-4 justify-center w-full min-w-full'
                 >
                   {group.map((product) => (
-                    <ProductCard key={product._id} {...product} />
+                    <ProductCard
+                      key={product._id}
+                      url={`/parentCategory/childCategory/product/${product._id}`}
+                      _id={product._id}
+                      name={product.name}
+                      brand={product.brand}
+                      images={product.images}
+                      price={product.price}
+                    />
                   ))}
                 </div>
               ))}
@@ -72,7 +80,7 @@ export default function NewProducts() {
           </div>
           <button
             onClick={prevSlide}
-            className='absolute top-1/2 left-0 transform -translate-y-1/2 flex items-center bg-black bg-opacity-25 text-white p-2 rounded-full'
+            className='absolute top-1/2 left-0 transform -translate-y-1/2 flex items-center bg-black bg-opacity-50 text-white p-2 rounded-full'
           >
             <i className='bx bx-chevron-left bx-sm'></i>
           </button>

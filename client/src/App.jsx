@@ -73,15 +73,15 @@ const router = createBrowserRouter([
     path: '/legal/',
     children: [
       {
-        path: 'sobre-nosotros',
+        path: 'nosotros',
         element: <AboutUs />,
       },
       {
-        path: 'preguntas-frecuentes',
+        path: 'preguntas',
         element: <FrequentQuestions />,
       },
       {
-        path: 'terminos-condiciones',
+        path: 'terminos',
         element: <Terms />,
       },
       {

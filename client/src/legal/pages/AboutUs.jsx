@@ -1,10 +1,10 @@
 import { useEffect } from 'react';
-import BasicHeader from '../../components/BasicHeader';
-import Main from '../components/Main';
-import Title from '../components/Title';
-import Subtitle from '../components/Subtitle';
-import StrongText from '../components/StrongText';
-import Footer from '../../components/Footer';
+import BasicHeader from '../../ui/BasicHeader';
+import Main from '../../ui/legal/Main';
+import Title from '../../ui/legal/Title';
+import Subtitle from '../../ui/legal/Subtitle';
+import StrongText from '../../ui/legal/StrongText';
+import Footer from '../../ui/Footer';
 import Ilustration from '../../assets/shopping__bags.svg';
 
 export default function AboutUs() {

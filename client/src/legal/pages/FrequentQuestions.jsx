@@ -1,9 +1,9 @@
 import { useEffect } from 'react';
-import BasicHeader from '../../components/BasicHeader';
-import Main from '../components/Main';
-import Title from '../components/Title';
-import Subtitle from '../components/Subtitle';
-import Footer from '../../components/Footer';
+import BasicHeader from '../../ui/BasicHeader';
+import Main from '../../ui/legal/Main';
+import Title from '../../ui/legal/Title';
+import Subtitle from '../../ui/legal/Subtitle';
+import Footer from '../../ui/Footer';
 
 const questions = [
   {

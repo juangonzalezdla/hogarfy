@@ -2,27 +2,27 @@ import { Link } from 'react-router-dom';
 import Logo from './Logo';
 
 const legalInformation = [
-  { id: 1, name: '¿Quiénes somos?', url: '/legal/sobre-nosotros' },
-  { id: 2, name: 'Preguntas frecuentes', url: '/legal/preguntas-frecuentes' },
-  { id: 3, name: 'Términos y condiciones', url: '/legal/terminos-condiciones' },
-  { id: 4, name: 'Política de privacidad', url: '/legal/privacidad' },
+  { id: 1, name: '¿Quiénes somos?', href: '/legal/nosotros' },
+  { id: 2, name: 'Preguntas frecuentes', href: '/legal/preguntas' },
+  { id: 3, name: 'Términos y condiciones', href: '/legal/terminos' },
+  { id: 4, name: 'Política de privacidad', href: '/legal/privacidad' },
 ];
 
 const social = [
   {
     id: 1,
     icon: 'bx bxl-facebook-circle bx-sm text-black group-hover:text-white',
-    url: 'https://www.facebook.com/',
+    href: 'https://www.facebook.com/',
   },
   {
     id: 2,
     icon: 'bx bxl-instagram bx-sm text-black group-hover:text-white',
-    url: 'https://www.instagram.com/',
+    href: 'https://www.instagram.com/',
   },
   {
     id: 3,
     icon: 'bx bxl-twitter bx-sm text-black group-hover:text-white',
-    url: 'https://www.twitter.com/',
+    href: 'https://www.twitter.com/',
   },
 ];
 
@@ -39,7 +39,7 @@ export default function Footer() {
           <h2 className='text-2xl font-bold mb-2'>Informacíon</h2>
           {legalInformation.map((information) => (
             <Link
-              to={information.url}
+              to={information.href}
               className='mb-1 hover:underline'
               target='_blank'
               key={information.id}
@@ -54,7 +54,7 @@ export default function Footer() {
           <div className='flex items-center gap-5'>
             {social.map((social) => (
               <a
-                href={social.url}
+                href={social.href}
                 className='bg-white p-1.5 flex items-center rounded-lg border-2 border-solid border-white group hover:bg-dark'
                 target='_blank'
                 key={social.id}

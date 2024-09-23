@@ -1,9 +1,9 @@
-import BasicHeader from '../../components/BasicHeader';
-import Form from '../components/Form';
-import Main from '../components/Main';
-import FormTitle from '../components/FormTitle';
-import { Input } from '../components/Input';
-import MessageLink from '../components/MessageLink';
+import BasicHeader from '../../ui/BasicHeader';
+import Form from '../../ui/auth/Form';
+import Container from '../../ui/Container';
+import FormTitle from '../../ui/auth/FormTitle';
+import { Input } from '../../ui/auth/Input';
+import MessageLink from '../../ui/auth/MessageLink';
 import { Toaster } from 'react-hot-toast';
 import ValidationForm from '../../components/ValidationForm';
 import { logInSchema } from '../../schemas/user';
@@ -51,7 +51,7 @@ export default function LogInPage() {
     <>
       <Toaster />
       <BasicHeader />
-      <Main>
+      <Container>
         <Form onSubmit={handleSubmit(onSubmit)}>
           <FormTitle title='Iniciar sesión' />
 
@@ -101,7 +101,7 @@ export default function LogInPage() {
             name='Registrate'
           />
         </Form>
-      </Main>
+      </Container>
     </>
   );
 }

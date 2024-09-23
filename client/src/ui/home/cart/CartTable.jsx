@@ -1,6 +1,6 @@
-import { useCart } from '../../contexts/CartContext';
+import { useCart } from '../../../contexts/CartContext';
 import { Button, Table } from 'flowbite-react';
-import formatPrice from '../../utils/formatPrice';
+import formatPrice from '../../../utils/formatPrice';
 
 export default function CartTable() {
   const { cartProducts, removeFromCart, addToCart, decreaseFromCart } =

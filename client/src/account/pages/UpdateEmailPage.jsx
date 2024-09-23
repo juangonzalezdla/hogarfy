@@ -1,4 +1,4 @@
-import AccountLayout from '../components/AccountLayout';
+import AccountLayout from '../AccountLayout';
 import { Button, Label, TextInput } from 'flowbite-react';
 import { Toaster } from 'react-hot-toast';
 import ValidationForm from '../../components/ValidationForm';
@@ -45,8 +45,8 @@ export default function UpdateEmailPAge() {
       <h2 className='font-bold text-blue text-xl mb-5'>Actualizar Email</h2>
 
       <form onSubmit={handleSubmit(onSubmit)}>
-        <div className='w-full flex justify-start items-center flex-wrap gap-5'>
-          <div className='w-60 max-md:w-full'>
+        <div className='w-full grid grid-cols-2 gap-5 max-md:grid-cols-1'>
+          <div className='w-full'>
             <Label
               htmlFor='email'
               value='Correo electronico'
@@ -58,7 +58,7 @@ export default function UpdateEmailPAge() {
             )}
           </div>
 
-          <div className='w-60 max-md:w-full'>
+          <div className='w-full'>
             <Label
               htmlFor='password'
               value='Contraseña'

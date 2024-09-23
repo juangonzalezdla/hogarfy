@@ -1,4 +1,4 @@
-import AccountLayout from '../components/AccountLayout';
+import AccountLayout from '../AccountLayout';
 import { Button, Label, TextInput } from 'flowbite-react';
 import { Toaster } from 'react-hot-toast';
 import ValidationForm from '../../components/ValidationForm';
@@ -54,8 +54,8 @@ export default function AccountPage() {
       <h2 className='font-bold text-blue text-xl mb-5'>Tus datos</h2>
 
       <form onSubmit={handleSubmit(onSubmit)}>
-        <div className='w-full flex justify-start items-center flex-wrap gap-5'>
-          <div className='w-60 max-md:w-full'>
+        <div className='w-full grid grid-cols-2 gap-5 max-md:grid-cols-1'>
+          <div className='w-full'>
             <Label
               htmlFor='identificationCard'
               value='Cedula'
@@ -69,7 +69,7 @@ export default function AccountPage() {
             />
           </div>
 
-          <div className='w-60 max-md:w-full'>
+          <div className='w-full'>
             <Label
               htmlFor='email'
               value='Correo electronico'
@@ -83,7 +83,7 @@ export default function AccountPage() {
             />
           </div>
 
-          <div className='w-60 max-md:w-full'>
+          <div className='w-full'>
             <Label htmlFor='names' value='Nombres' className='mb-2 block' />
             <TextInput id='names' type='text' {...register('names')} />
             {errors.names?.message && (
@@ -91,7 +91,7 @@ export default function AccountPage() {
             )}
           </div>
 
-          <div className='w-60 max-md:w-full'>
+          <div className='w-full'>
             <Label
               htmlFor='lastNames'
               value='Apellidos'
@@ -103,7 +103,7 @@ export default function AccountPage() {
             )}
           </div>
 
-          <div className='w-60 max-md:w-full'>
+          <div className='w-full'>
             <Label
               htmlFor='phoneNumber'
               value='Número de telefono'
@@ -119,7 +119,7 @@ export default function AccountPage() {
             )}
           </div>
 
-          <div className='w-60 max-md:w-full'>
+          <div className='w-full'>
             <Label
               htmlFor='cityAndDepartment'
               value='Ciudad - Departamento'
@@ -135,7 +135,7 @@ export default function AccountPage() {
             )}
           </div>
 
-          <div className='w-60 max-md:w-full'>
+          <div className='w-full'>
             <Label htmlFor='address' value='Dirección' className='mb-2 block' />
             <TextInput id='address' type='text' {...register('address')} />
             {errors.address?.message && (

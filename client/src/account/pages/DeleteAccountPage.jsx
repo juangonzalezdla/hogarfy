@@ -1,4 +1,4 @@
-import AccountLayout from '../components/AccountLayout';
+import AccountLayout from '../AccountLayout';
 import { Button, Label, TextInput } from 'flowbite-react';
 import { Toaster } from 'react-hot-toast';
 import ValidationForm from '../../components/ValidationForm';
@@ -36,7 +36,7 @@ export default function DeleteAccountPage() {
       <Toaster />
 
       <form onSubmit={handleSubmit(onSubmit)}>
-        <div className='w-full flex justify-start items-center flex-wrap gap-5'>
+        <div className='w-full flex justify-start items-center gap-5'>
           <div className='w-60 max-md:w-full'>
             <Label
               htmlFor='password'

@@ -1,10 +1,11 @@
-import Header from '../../components/Header';
-import Main from '../../components/Main';
+import Header from '../../ui/Header';
+import Container from '../../ui/Container';
 import BreadcrumbPagination from '../../components/BreadcrumbPagination';
-import Footer from '../../components/Footer';
+import Footer from '../../ui/Footer';
 import { useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { useCategory } from '../../contexts/CategoryContext';
+import normalizeString from '../../utils/normalizeString';
 
 export default function ParentCategoryPage() {
   const { parentCategory } = useParams();
@@ -14,13 +15,6 @@ export default function ParentCategoryPage() {
     getCategories();
   }, []);
 
-  const normalizeString = (str) => {
-    return str
-      .normalize('NFD')
-      .replace(/[\u0300-\u036f]/g, '')
-      .toLowerCase();
-  };
-
   const parentCategoryData = categories.find(
     (category) =>
       !category.parent &&
@@ -28,12 +22,12 @@ export default function ParentCategoryPage() {
   );
 
   return (
-    <>
+    <div className='bg-light-blue'>
       <Header />
       <section className='w-full max-w-[1400px] my-0 mx-auto py-3 px-12 flex flex-col max-md:px-4'>
         <BreadcrumbPagination />
       </section>
-      <Main>
+      <Container>
         <h1 className='text-2xl text-blue font-semibold font-roboto mb-10'>
           {parentCategoryData?.name} - Categorias hijas
         </h1>
@@ -52,8 +46,8 @@ export default function ParentCategoryPage() {
             </Link>
           ))}
         </section>
-      </Main>
+      </Container>
       <Footer />
-    </>
+    </div>
   );
 }

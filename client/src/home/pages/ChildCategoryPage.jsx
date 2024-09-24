@@ -1,13 +1,14 @@
-import Header from '../../components/Header';
-import Main from '../../components/Main';
+import Header from '../../ui/Header';
+import Container from '../../ui/Container';
 import BreadcrumbPagination from '../../components/BreadcrumbPagination';
-import Footer from '../../components/Footer';
+import Footer from '../../ui/Footer';
 import { useEffect } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { useCategory } from '../../contexts/CategoryContext';
 import { useProduct } from '../../contexts/ProductContext';
-import ProductGrid from '../../components/ProductGrid';
-import ProductCard from '../../components/ProductCard';
+import ProductGrid from '../../ui/home/product/ProductGrid';
+import ProductCard from '../../ui/home/product/ProductCard';
+import normalizeString from '../../utils/normalizeString';
 
 export default function ChildCategoryPage() {
   const { parentCategory, childCategory } = useParams();
@@ -18,13 +19,6 @@ export default function ChildCategoryPage() {
     getCategories();
     getProducts();
   }, []);
-
-  const normalizeString = (str) => {
-    return str
-      .normalize('NFD')
-      .replace(/[\u0300-\u036f]/g, '')
-      .toLowerCase();
-  };
 
   const parentCategoryData = categories.find(
     (category) =>
@@ -47,12 +41,12 @@ export default function ChildCategoryPage() {
   );
 
   return (
-    <>
+    <div className='bg-light-blue'>
       <Header />
       <section className='w-full max-w-[1400px] my-0 mx-auto py-3 px-12 flex flex-col max-md:px-4'>
         <BreadcrumbPagination />
       </section>
-      <Main>
+      <Container>
         <h1 className='text-2xl text-blue font-bold mb-20'>
           {childCategoryData?.name}
         </h1>
@@ -76,8 +70,8 @@ export default function ChildCategoryPage() {
             ))}
           </ProductGrid>
         )}
-      </Main>
+      </Container>
       <Footer />
-    </>
+    </div>
   );
 }

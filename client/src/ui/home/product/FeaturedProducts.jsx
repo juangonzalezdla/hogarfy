@@ -1,9 +1,11 @@
 import { useEffect, useState } from 'react';
 import { useProduct } from '../../../contexts/ProductContext';
 import ProductCard from './ProductCard';
+import Container from '../../Container';
+import { Spinner } from 'flowbite-react';
 
 export default function FeaturedProducts() {
-  const { getFeaturedProducts, featuredProducts } = useProduct();
+  const { getFeaturedProducts, featuredProducts, loading } = useProduct();
   const [currentSlide, setCurrentSlide] = useState(0);
   const [groupSize, setGroupSize] = useState(4);
 
@@ -49,61 +51,69 @@ export default function FeaturedProducts() {
   };
 
   return (
-    <div className='bg-light-blue py-8'>
-      <main className='w-full max-w-[1400px] my-0 mx-auto px-12 flex flex-col justify-center items-center max-md:px-4'>
-        <h2 className='text-2xl text-blue font-bold mb-5'>Productos Destacados</h2>
-        <div className='w-full relative'>
-          <div className='overflow-hidden'>
-            <div
-              className='flex transition-transform duration-500'
-              style={{ transform: `translateX(-${currentSlide * 100}%)` }}
+    <div className='bg-light-blue'>
+      <Container>
+        <h2 className='text-2xl text-blue font-bold mb-5'>
+          Productos Destacados
+        </h2>
+        {loading ? (
+          <div className='flex justify-center items-center py-10'>
+            <Spinner className='w-20 h-20' />
+          </div>
+        ) : (
+          <div className='w-full relative'>
+            <div className='overflow-hidden'>
+              <div
+                className='flex transition-transform duration-500'
+                style={{ transform: `translateX(-${currentSlide * 100}%)` }}
+              >
+                {groupedProducts.map((group, index) => (
+                  <div
+                    key={index}
+                    className='flex gap-4 justify-center w-full min-w-full'
+                  >
+                    {group.map((product) => (
+                      <ProductCard
+                        key={product._id}
+                        url={`/parentCategory/childCategory/product/${product._id}`}
+                        _id={product._id}
+                        name={product.name}
+                        brand={product.brand}
+                        images={product.images}
+                        price={product.price}
+                      />
+                    ))}
+                  </div>
+                ))}
+              </div>
+            </div>
+            <button
+              onClick={prevSlide}
+              className='absolute top-1/2 left-0 transform -translate-y-1/2 flex items-center bg-black bg-opacity-50 text-white p-2 rounded-full'
             >
-              {groupedProducts.map((group, index) => (
-                <div
+              <i className='bx bx-chevron-left bx-sm'></i>
+            </button>
+            <button
+              onClick={nextSlide}
+              className='absolute top-1/2 right-0 transform -translate-y-1/2 flex items-center bg-black bg-opacity-50 text-white p-2 rounded-full'
+            >
+              <i className='bx bx-chevron-right bx-sm'></i>
+            </button>
+
+            <div className='flex justify-center mt-4'>
+              {groupedProducts.map((_, index) => (
+                <button
                   key={index}
-                  className='flex gap-4 justify-center w-full min-w-full'
-                >
-                  {group.map((product) => (
-                    <ProductCard
-                      key={product._id}
-                      url={`/parentCategory/childCategory/product/${product._id}`}
-                      _id={product._id}
-                      name={product.name}
-                      brand={product.brand}
-                      images={product.images}
-                      price={product.price}
-                    />
-                  ))}
-                </div>
+                  onClick={() => goToSlide(index)}
+                  className={`h-2 w-2 mx-1 rounded-full ${
+                    index === currentSlide ? 'bg-black' : 'bg-gray-300'
+                  }`}
+                ></button>
               ))}
             </div>
           </div>
-          <button
-            onClick={prevSlide}
-            className='absolute top-1/2 left-0 transform -translate-y-1/2 flex items-center bg-black bg-opacity-50 text-white p-2 rounded-full'
-          >
-            <i className='bx bx-chevron-left bx-sm'></i>
-          </button>
-          <button
-            onClick={nextSlide}
-            className='absolute top-1/2 right-0 transform -translate-y-1/2 flex items-center bg-black bg-opacity-50 text-white p-2 rounded-full'
-          >
-            <i className='bx bx-chevron-right bx-sm'></i>
-          </button>
-
-          <div className='flex justify-center mt-4'>
-            {groupedProducts.map((_, index) => (
-              <button
-                key={index}
-                onClick={() => goToSlide(index)}
-                className={`h-2 w-2 mx-1 rounded-full ${
-                  index === currentSlide ? 'bg-black' : 'bg-gray-300'
-                }`}
-              ></button>
-            ))}
-          </div>
-        </div>
-      </main>
+        )}
+      </Container>
     </div>
   );
 }

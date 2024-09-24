@@ -1,9 +1,9 @@
-import Header from '../../components/Header';
+import Header from '../../ui/Header';
 import CategoriesNavbar from '../../components/CategoriesNavbar';
-import Features from '../../components/Features';
-import Footer from '../../components/Footer';
-import FeaturedProducts from '../components/FeaturedProducts';
-import NewProducts from '../components/NewProducts';
+import Features from '../../ui/home/Features';
+import Footer from '../../ui/Footer';
+import FeaturedProducts from '../../ui/home/product/FeaturedProducts';
+import NewProducts from '../../ui/home/product/NewProducts';
 
 export default function HomePage() {
   return (

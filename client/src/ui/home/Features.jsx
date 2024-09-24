@@ -1,3 +1,5 @@
+import Container from '../../ui/Container'
+
 const features = [
   {
     id: 1,
@@ -27,8 +29,8 @@ const features = [
 
 export default function Features() {
   return (
-    <section className=' bg-light-blue py-12 px-12'>
-      <div className='w-full max-w-[1400px] my-0 mx-auto flex flex-col justify-center items-center gap-10'>
+    <section className='bg-light-blue'>
+      <Container>
         <h1 className='text-2xl text-center text-blue font-roboto font-bold mb-2'>
           En Hogarfy nos caracterizamos por
         </h1>
@@ -49,7 +51,7 @@ export default function Features() {
             </article>
           ))}
         </div>
-      </div>
+      </Container>
     </section>
   );
 }

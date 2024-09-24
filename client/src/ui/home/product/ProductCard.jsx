@@ -1,7 +1,7 @@
 import { Button, Tooltip } from 'flowbite-react';
 import { Link } from 'react-router-dom';
-import { useCart } from '../contexts/CartContext';
-import formatPrice from '../utils/formatPrice';
+import { useCart } from '../../../contexts/CartContext';
+import formatPrice from '../../../utils/formatPrice';
 
 export default function ProductCard({ _id, name, brand, images, price, url }) {
   const { addToCart } = useCart();
@@ -12,7 +12,7 @@ export default function ProductCard({ _id, name, brand, images, price, url }) {
     <div className='max-w-[250px] bg-white p-3 font-poppins rounded-md shadow-lg max-lg:px-4'>
       <Link to={url}>
         <figure className='w-full flex justify-center'>
-          <img className='w-40 h-40' src={images[0].url} alt='' />
+          <img className='w-40 h-40' src={images[0].url} alt='Imagen del producto' />
         </figure>
       </Link>
 

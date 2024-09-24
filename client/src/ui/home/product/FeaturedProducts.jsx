@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
-import { useProduct } from '../../contexts/ProductContext';
-import ProductCard from '../../components/ProductCard';
+import { useProduct } from '../../../contexts/ProductContext';
+import ProductCard from './ProductCard';
 
 export default function FeaturedProducts() {
   const { getFeaturedProducts, featuredProducts } = useProduct();

@@ -41,7 +41,6 @@ export default function Footer() {
             <Link
               to={information.href}
               className='mb-1 hover:underline'
-              target='_blank'
               key={information.id}
             >
               {information.name}

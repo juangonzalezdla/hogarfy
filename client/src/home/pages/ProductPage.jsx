@@ -1,11 +1,12 @@
-import Header from '../../components/Header.jsx';
-import Footer from '../../components/Footer.jsx';
-import { useParams, Link } from 'react-router-dom';
+import Header from '../../ui/Header.jsx';
+import Footer from '../../ui/Footer';
+import { useParams } from 'react-router-dom';
 import { useProduct } from '../../contexts/ProductContext.jsx';
 import { useEffect, useState } from 'react';
 import { useCart } from '../../contexts/CartContext.jsx';
 import { Button } from 'flowbite-react';
 import formatPrice from '../../utils/formatPrice.js';
+import ButtonBack from '../../ui/ButtonBack.jsx';
 
 export default function ProductPage() {
   const { id } = useParams();
@@ -31,13 +32,7 @@ export default function ProductPage() {
       <Header />
 
       <div className='m-5 ml-20 max-md:ml-4'>
-        <Link
-          to='/'
-          className='w-40 bg-light-gray flex justify-center items-center gap-1 text-base text-dark-gray font-medium p-2 rounded-lg shadow-md'
-        >
-          <i className='bx bx-arrow-back md-sm'></i>
-          Volver al inicio
-        </Link>
+        <ButtonBack />
       </div>
 
       <main className='w-full max-w-[1400px] my-0 mx-auto p-20 flex flex-col justify-center items-center max-md:px-4'>

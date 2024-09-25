@@ -1,6 +1,6 @@
 import Header from '../../ui/Header';
 import Container from '../../ui/Container';
-import BreadcrumbPagination from '../../components/BreadcrumbPagination';
+import BreadcrumbPagination from '../../ui/BreadcrumbPagination';
 import Footer from '../../ui/Footer';
 import { useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';

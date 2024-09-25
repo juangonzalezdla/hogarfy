@@ -1,5 +1,5 @@
 import Header from '../../ui/Header';
-import CategoriesNavbar from '../../components/CategoriesNavbar';
+import CategoriesNavbar from '../../ui/CategoriesNavbar';
 import Features from '../../ui/home/Features';
 import Footer from '../../ui/Footer';
 import FeaturedProducts from '../../ui/home/product/FeaturedProducts';

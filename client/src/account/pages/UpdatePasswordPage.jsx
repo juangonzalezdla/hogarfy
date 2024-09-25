@@ -1,7 +1,7 @@
 import AccountLayout from '../AccountLayout';
 import { Button, Label, TextInput } from 'flowbite-react';
 import { Toaster } from 'react-hot-toast';
-import ValidationForm from '../../components/ValidationForm';
+import ValidationForm from '../../ui/ValidationForm';
 import { updatePasswordSchema } from '../../schemas/user';
 
 import { useUser } from '../../contexts/UserContext';

@@ -5,7 +5,7 @@ import FormTitle from '../../ui/auth/FormTitle';
 import { Input } from '../../ui/auth/Input';
 import MessageLink from '../../ui/auth/MessageLink';
 import { Toaster } from 'react-hot-toast';
-import ValidationForm from '../../components/ValidationForm';
+import ValidationForm from '../../ui/ValidationForm';
 import { logUpSchema } from '../../schemas/user';
 
 import { useEffect, useState } from 'react';

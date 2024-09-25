@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
-import Layout from '../components/Layout';
-import ProductsTable from '../components/product/ProductsTable';
+import Layout from '../../ui/dashboard/Layout';
+import ProductsTable from '../../ui/dashboard/product/ProductsTable';
 
 export default function ProductsPage() {
   useEffect(() => {

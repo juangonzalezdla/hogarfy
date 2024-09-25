@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import Layout from '../components/Layout';
+import Layout from '../../ui/dashboard/Layout';
 
 export default function DashboardPage() {
   useEffect(() => {

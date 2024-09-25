@@ -2,7 +2,7 @@ import { Button, Label, TextInput, Select } from 'flowbite-react';
 import { useForm, useFieldArray } from 'react-hook-form';
 import { useEffect } from 'react';
 import { useCategory } from '../../../contexts/CategoryContext';
-import ValidationForm from '../../../components/ValidationForm';
+import ValidationForm from '../../ValidationForm';
 import { categorySchema } from '../../../schemas/category';
 import { zodResolver } from '@hookform/resolvers/zod';
 

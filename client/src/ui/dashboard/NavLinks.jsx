@@ -5,19 +5,19 @@ const Links = [
   {
     id: 1,
     name: 'Dashboard',
-    to: '/dashboard/home',
+    href: '/dashboard/home',
     icon: 'bx bxs-dashboard bx-sm',
   },
   {
     id: 2,
     name: 'Productos',
-    to: '/dashboard/products',
+    href: '/dashboard/products',
     icon: 'bx bxs-shopping-bags bx-sm',
   },
   {
     id: 3,
     name: 'Categorias',
-    to: '/dashboard/categories',
+    href: '/dashboard/categories',
     icon: 'bx bxs-category bx-sm',
   },
 ];
@@ -30,12 +30,12 @@ export default function NavLinks() {
     <>
       {Links.map((link) => (
         <Link
-          to={link.to}
+          to={link.href}
           key={link.id}
           className={clsx(
             'flex items-center p-2 text-dark-gray text-base font-medium rounded-lg transition-colors duration-200 hover:bg-blue hover:text-white',
             {
-              'bg-blue text-white': pathname === link.to,
+              'bg-blue text-white': pathname === link.href,
             }
           )}
         >

@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
-import Layout from '../components/Layout';
-import CategoriesTable from '../components/category/CategoriesTable';
+import Layout from '../../ui/dashboard/Layout';
+import CategoriesTable from '../../ui/dashboard/category/CategoriesTable';
 
 export default function CategoriesPage() {
   useEffect(() => {

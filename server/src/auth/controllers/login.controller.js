@@ -17,14 +17,12 @@ const logIn = async (req, res) => {
     const token = jwt.sign(
       { id: userByEmail._id, isAdmin: userByEmail.isAdmin },
       process.env.JWT_PRIVATE_KEY,
-      { expiresIn: 24 * 60 * 60 * 1000 }
+      { expiresIn: '1d' }
     );
     res.cookie('token', token, {
       httpOnly: true,
       secure: process.env.NODE_ENV === 'production',
       sameSite: 'None',
-      maxAge: 24 * 60 * 60 * 1000, 
-      path: '/',
     });
 
     return res.status(200).json({ ok: true, message: 'Inicio de sesión exitoso', user: { _id: userByEmail._id, names: userByEmail.names, isAdmin: userByEmail.isAdmin } });

@@ -2,6 +2,7 @@ import { createContext, useContext, useState, useEffect } from 'react';
 import {
   logUpService,
   logInService,
+  LogOutService,
   verifyTokenService,
 } from '../services/authServices';
 import Cookies from 'js-cookie';
@@ -46,25 +47,27 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
-  const logOut = () => {
-    Cookies.remove('token');
-    setUser(null);
-    setIsAuthenticated(false);
+  const logOut = async () => {
+    try {
+      const res = await LogOutService();
+      setUser(null);
+      setIsAuthenticated(false);
+      toast.success(res.data.message, { duration: 3000 });
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   useEffect(() => {
     const checkLogIn = async () => {
-      const cookies = Cookies.get();
-      if (!cookies.token) {
-        setIsAuthenticated(false);
-        setLoading(false);
-        return;
-      }
-
       try {
-        const res = await verifyTokenService(cookies.token);
-        if (!res.data) return setIsAuthenticated(false);
-
+        const res = await verifyTokenService();
+        if (!res.data) {
+          setIsAuthenticated(false);
+          setLoading(false);
+          return;
+        }
+  
         setIsAuthenticated(true);
         setIsAuthorized(res.data.isAdmin);
         setLoading(false);
